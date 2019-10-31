@@ -1,30 +1,99 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
+    ListView mListView;
+
+    TextView mTextView1;
+    TextView mTextView2;
+    TextView mTextView3;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
-    }
 
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        setContentView(R.layout.activity_main);
+
+        final LayoutInflater inflater = getLayoutInflater();
+        LinearLayout linearLayout = findViewById(R.id.linearLayout);
+        inflater.inflate(R.layout.my_layout, linearLayout, true);
+
+        mListView = findViewById(R.id.listview);
+        mTextView1 = findViewById(R.id.main_page1);
+        mTextView2 = findViewById(R.id.main_page2);
+        mTextView3 = findViewById(R.id.main_page3);
+
+        ArrayList<String> data1 = new ArrayList<>();
+        final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data1);
+        //mListView.setAdapter(adapter1);
+
+        databaseReference.child("group").push().setValue("1"); //데이터베이스에쓰기
+
+        databaseReference.child("group").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String groupData = dataSnapshot.getValue().toString();
+                adapter1.add(groupData);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) { }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) { }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) { }
+        });
+
+        mTextView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view1) {
+                mListView.setAdapter(adapter1);
+            }
+        });
+        mTextView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view3) {
+                ArrayList<String> data = new ArrayList<>();
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment3, data);
+                mListView.setAdapter(adapter2);
+            }
+        });
+        mTextView3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view2) {
+                ArrayList<Integer> data2 = new ArrayList<>();
+                data2.add(R.mipmap.ic_launcher);
+                data2.add(R.mipmap.ic_launcher);
+                data2.add(R.mipmap.ic_launcher);
+                ImageArrayAdapter adapter3 = new ImageArrayAdapter(getApplicationContext(), R.layout.fragment2, data2);
+                mListView.setAdapter(adapter3);
+            }
+        });
+
+    }
 }
