@@ -76,21 +76,18 @@ public class MainActivity extends Activity {
         });
         mTextView2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view3) {
-                ArrayList<String> data = new ArrayList<>();
-                ArrayAdapter<String> adapter2 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment3, data);
+            public void onClick(View view2) {
+                ArrayList<Integer> data2 = new ArrayList<>();
+                //data2.add(R.mipmap.ic_launcher);
+                ImageArrayAdapter adapter2 = new ImageArrayAdapter(getApplicationContext(), R.layout.fragment2, data2);
                 mListView.setAdapter(adapter2);
             }
         });
         mTextView3.setOnClickListener(new View.OnClickListener() {
-
             @Override
-            public void onClick(View view2) {
-                ArrayList<Integer> data2 = new ArrayList<>();
-                data2.add(R.mipmap.ic_launcher);
-                data2.add(R.mipmap.ic_launcher);
-                data2.add(R.mipmap.ic_launcher);
-                ImageArrayAdapter adapter3 = new ImageArrayAdapter(getApplicationContext(), R.layout.fragment2, data2);
+            public void onClick(View view3) {
+                ArrayList<String> data = new ArrayList<>();
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment3, data);
                 mListView.setAdapter(adapter3);
             }
         });
