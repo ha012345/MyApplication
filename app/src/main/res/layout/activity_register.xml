@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <ScrollView
+        android:id="@+id/ScrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="50dp"
+                android:text="이름" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="@string/email" />
+
+            <EditText
+                android:id="@+id/et_eamil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_email"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_eamil"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="@string/password" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_password"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_password"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="닉네임" />
+
+            <EditText
+                android:id="@+id/et_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_nickname"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+            <TextView
+                android:id="@+id/tv_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_nickname"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="성별" />
+
+            <LinearLayout
+                android:id="@+id/LinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_gender"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/radiogroup_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radio_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:checked="true"
+                        android:text="남" />
+
+                    <RadioButton
+                        android:id="@+id/radio_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="여" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/LinearLayout"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="50dp"
+                android:text="생년월일" />
+
+            <EditText
+                android:id="@+id/et_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_birth"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+            <TextView
+                android:id="@+id/tv_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_birth"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="혐오메뉴" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_food"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+            <Button
+                android:id="@+id/btn_signUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_weight="1"
+                android:onClick="singUp"
+                android:text="가입하기" />
+        </LinearLayout>
+    </ScrollView>>
+</RelativeLayout>

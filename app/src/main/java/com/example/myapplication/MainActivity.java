@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
         final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data1);
         //mListView.setAdapter(adapter1);
 
-        databaseReference.child("group").push().setValue("1"); //데이터베이스에쓰기
+        //databaseReference.child("group").push().setValue("1"); //데이터베이스에쓰기
 
         databaseReference.child("group").addChildEventListener(new ChildEventListener() {
             @Override

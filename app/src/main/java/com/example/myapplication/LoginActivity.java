@@ -44,12 +44,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void singUp(View view) {
-        email = editTextEmail.getText().toString();
-        password = editTextPassword.getText().toString();
-
-        if(isValidEmail() && isValidPasswd()) {
-            createUser(email, password);
-        }
+        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(intent);
     }
 
     public void signIn(View view) {
