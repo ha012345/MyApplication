@@ -14,9 +14,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-//
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
@@ -26,12 +23,6 @@ public class LoginActivity extends AppCompatActivity {
 
     // 파이어베이스 인증 객체 생성
     private FirebaseAuth firebaseAuth;
-
-    // DB
-    private FirebaseDatabase firebaseDatabase;
-    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference conditionRef = mRootRef.child("user");
-
 
     // 이메일과 비밀번호
     private EditText editTextEmail;
@@ -53,12 +44,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void singUp(View view) {
-        email = editTextEmail.getText().toString();
-        password = editTextPassword.getText().toString();
-
-        if(isValidEmail() && isValidPasswd()) {
-            createUser(email, password);
-        }
+        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(intent);
     }
 
     public void signIn(View view) {
@@ -107,15 +94,10 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // 회원가입 성공
                             Toast.makeText(LoginActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
-                            UserModel userModel = new UserModel();
-                            userModel.UserEmail = editTextEmail.getText().toString();
-                            String uid = task.getResult().getUser().getUid();
-                            FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel);
                         } else {
                             // 회원가입 실패
                             Toast.makeText(LoginActivity.this, R.string.failed_signup, Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
     }
