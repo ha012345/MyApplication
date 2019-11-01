@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
         final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data1);
         //mListView.setAdapter(adapter1);
 
-        //databaseReference.child("group").push().setValue("1"); //데이터베이스에쓰기
+        //databaseReference.child("group").push().setValue("1"); //�이�베�스�쓰�
 
         databaseReference.child("group").addChildEventListener(new ChildEventListener() {
             @Override
@@ -103,6 +103,43 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) { }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) { }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) { }
+        });
+
+        mTextView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view1) {
+                mListView.setAdapter(adapter1);
+            }
+        });
+        mTextView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view2) {
+                ArrayList<Integer> data2 = new ArrayList<>();
+                //data2.add(R.mipmap.ic_launcher);
+                ImageArrayAdapter adapter2 = new ImageArrayAdapter(getApplicationContext(), R.layout.fragment2, data2);
+                mListView.setAdapter(adapter2);
+            }
+        });
+        mTextView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view3) {
+                ArrayList<String> data = new ArrayList<>();
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment3, data);
+                mListView.setAdapter(adapter3);
             }
         });
 

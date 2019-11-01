@@ -35,11 +35,16 @@ import java.util.Locale;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    // 비밀번호 정규식
+    // 비�번호 �규
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$");
     private FirebaseAuth firebaseAuth;
     private EditText editTextEmail;
     private EditText editTextPassword;
+
+    //
+    private EditText editNickName;
+    //
+
     private String email = "";
     private String password = "";
     Calendar myCalendar = Calendar.getInstance();
@@ -47,46 +52,51 @@ public class RegisterActivity extends AppCompatActivity {
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
-    // 이메일 유효성 검사
+    // �메�효검
     private boolean isValidEmail() {
         if (email.isEmpty()) {
-            // 이메일 공백
+            // �메공백
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            // 이메일 형식 불일치
+            // �메�식 불일�
             return false;
         } else {
             return true;
         }
     }
 
-    // 비밀번호 유효성 검사
+    // 비�번호 �효검
     private boolean isValidPasswd() {
         if (password.isEmpty()) {
-            // 비밀번호 공백
+            // 비�번호 공백
             return false;
         } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
-            // 비밀번호 형식 불일치
+            // 비�번호 �식 불일�
             return false;
         } else {
             return true;
         }
     }
 
-    // 회원가입
+    // �원가
     private void createUser(String email, String password) {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // 회원가입 성공
+                            // �원가�공
                             Toast.makeText(RegisterActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
-
+                            UserModel userModel = new UserModel();
+                            userModel.UserEmail = editTextEmail.getText().toString();
+                            userModel.UserNickName = editNickName.getText().toString();
+                            //userModel.UserHate = spinner2.getTextAlignment();
+                            String uid = task.getResult().getUser().getUid();
+                            FirebaseDatabase.getInstance().getReference().child("User").child(uid).setValue(userModel);
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                         } else {
-                            // 회원가입 실패
+                            // �원가�패
                             Toast.makeText(RegisterActivity.this, R.string.failed_signup, Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -111,6 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.et_eamil);
         editTextPassword = findViewById(R.id.et_password);
+        editNickName = findViewById(R.id.et_nickname);
         editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         EditText et_Date = (EditText) findViewById(R.id.et_birth);
         et_Date.setOnClickListener(new View.OnClickListener() {
@@ -122,16 +133,16 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         arrayList = new ArrayList<>();
-        arrayList.add("한식");
+        arrayList.add("�식");
         arrayList.add("분식");
-        arrayList.add("일식");
+        arrayList.add("�식");
         arrayList.add("치킨");
-        arrayList.add("피자");
+        arrayList.add("�자");
         arrayList.add("찜·탕");
-        arrayList.add("도시락");
-        arrayList.add("양식");
+        arrayList.add("�시);
+        arrayList.add("�식");
         arrayList.add("중식");
-        arrayList.add("카페·디저트");
+        arrayList.add("카페·��);
 
         arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
@@ -139,6 +150,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         spinner2 = (Spinner)findViewById(R.id.spinner);
         spinner2.setAdapter(arrayAdapter);
+
+
 
     }
 
@@ -153,7 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
     };
 
     private void updateLabel() {
-        String myFormat = "yyyy/MM/dd";    // 출력형식   2018/11/28
+        String myFormat = "yyyy/MM/dd";    // 출력�식   2018/11/28
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
         EditText et_date = (EditText) findViewById(R.id.et_birth);
@@ -163,7 +176,7 @@ public class RegisterActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            Toast.makeText(getApplicationContext(), year + "년" + monthOfYear + "월" + dayOfMonth +"일", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), year + " + monthOfYear + " + dayOfMonth +", Toast.LENGTH_SHORT).show();
         }
     };
 }
