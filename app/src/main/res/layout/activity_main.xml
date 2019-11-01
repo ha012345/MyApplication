@@ -4,19 +4,25 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="650dp"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="50dp"
-        android:id="@+id/linearLayout"
         android:orientation="vertical">
     </LinearLayout>
+    <Button
+        android:id="@+id/addgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/horizonScroll"
         android:layout_alignParentBottom="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

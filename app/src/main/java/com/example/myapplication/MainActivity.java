@@ -1,10 +1,12 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,6 +26,8 @@ public class MainActivity extends Activity {
     TextView mTextView2;
     TextView mTextView3;
 
+    Button mButton;
+
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
@@ -41,6 +45,7 @@ public class MainActivity extends Activity {
         mTextView1 = findViewById(R.id.main_page1);
         mTextView2 = findViewById(R.id.main_page2);
         mTextView3 = findViewById(R.id.main_page3);
+        mButton = findViewById(R.id.addgroup);
 
         ArrayList<String> data1 = new ArrayList<>();
         final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data1);
@@ -89,6 +94,15 @@ public class MainActivity extends Activity {
                 ArrayList<String> data = new ArrayList<>();
                 ArrayAdapter<String> adapter3 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment3, data);
                 mListView.setAdapter(adapter3);
+            }
+        });
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
