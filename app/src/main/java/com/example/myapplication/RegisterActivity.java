@@ -35,7 +35,6 @@ import java.util.Locale;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    // 비�번호 �규
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$");
     private FirebaseAuth firebaseAuth;
     private EditText editTextEmail;
@@ -52,40 +51,33 @@ public class RegisterActivity extends AppCompatActivity {
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
-    // �메�효검
     private boolean isValidEmail() {
         if (email.isEmpty()) {
-            // �메공백
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            // �메�식 불일�
+
             return false;
         } else {
             return true;
         }
     }
 
-    // 비�번호 �효검
     private boolean isValidPasswd() {
         if (password.isEmpty()) {
-            // 비�번호 공백
             return false;
         } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
-            // 비�번호 �식 불일�
             return false;
         } else {
             return true;
         }
     }
 
-    // �원가
     private void createUser(String email, String password) {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // �원가�공
                             Toast.makeText(RegisterActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
                             UserModel userModel = new UserModel();
                             userModel.UserEmail = editTextEmail.getText().toString();
@@ -96,7 +88,6 @@ public class RegisterActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                         } else {
-                            // �원가�패
                             Toast.makeText(RegisterActivity.this, R.string.failed_signup, Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -133,16 +124,16 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         arrayList = new ArrayList<>();
-        arrayList.add("�식");
-        arrayList.add("분식");
-        arrayList.add("�식");
-        arrayList.add("치킨");
-        arrayList.add("�자");
-        arrayList.add("찜·탕");
-        arrayList.add("�시);
-        arrayList.add("�식");
-        arrayList.add("중식");
-        arrayList.add("카페·��);
+        arrayList.add("1");
+        arrayList.add("2");
+        arrayList.add("3");
+        arrayList.add("4");
+        arrayList.add("5");
+        arrayList.add("6");
+        arrayList.add("7");
+        arrayList.add("8");
+        arrayList.add("9");
+        arrayList.add("10");
 
         arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
@@ -166,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
     };
 
     private void updateLabel() {
-        String myFormat = "yyyy/MM/dd";    // 출력�식   2018/11/28
+        String myFormat = "yyyy/MM/dd";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
         EditText et_date = (EditText) findViewById(R.id.et_birth);
@@ -176,7 +167,7 @@ public class RegisterActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            Toast.makeText(getApplicationContext(), year + " + monthOfYear + " + dayOfMonth +", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), year + " + monthOfYear + " + dayOfMonth , Toast.LENGTH_SHORT).show();
         }
     };
 }

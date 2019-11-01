@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
         final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data1);
         //mListView.setAdapter(adapter1);
 
-        //databaseReference.child("group").push().setValue("1"); //∞Ïù¥∞Î≤†¥Ïä§êÏì∞Í∏
+        //databaseReference.child("group").push().setValue("1");
 
         databaseReference.child("group").addChildEventListener(new ChildEventListener() {
             @Override
@@ -104,19 +104,6 @@ public class MainActivity extends Activity {
                 startActivity(intent);
                 finish();
             }
-        });
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) { }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) { }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) { }
         });
 
         mTextView1.setOnClickListener(new View.OnClickListener() {
