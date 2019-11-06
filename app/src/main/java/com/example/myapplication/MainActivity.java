@@ -27,6 +27,10 @@ public class MainActivity extends Activity {
     TextView mTextView3;
 
     Button mButton;
+    Button mButton1;
+    Button mButton2;
+    Button mButton3;
+
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -46,6 +50,10 @@ public class MainActivity extends Activity {
         mTextView2 = findViewById(R.id.main_page2);
         mTextView3 = findViewById(R.id.main_page3);
         mButton = findViewById(R.id.addgroup);
+        mButton1 = findViewById(R.id.move_to_friends);
+        mButton2 = findViewById(R.id.move_to_Like);
+        mButton3 = findViewById(R.id.move_to_recommend);
+
 
         ArrayList<String> data1 = new ArrayList<>();
         final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data1);
@@ -103,7 +111,30 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
                 startActivity(intent);
-                finish();
+            }
+        });
+
+        mButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FriendActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Edit_like.class);
+                startActivity(intent);
+            }
+        });
+
+        mButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RecommendActivity.class);
+                startActivity(intent);
             }
         });
 

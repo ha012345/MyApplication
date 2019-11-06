@@ -10,13 +10,33 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="50dp"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/addgroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/move_to_friends"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Friend" />
+
+        <Button
+            android:id="@+id/move_to_Like"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Like" />
+
+        <Button
+            android:id="@+id/move_to_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recommend" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/addgroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
