@@ -15,4 +15,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="group_register_success">그룹 등록 성공</string>
+    <string name="group_register_fail">그룹 등록 실패</string>
 </resources>

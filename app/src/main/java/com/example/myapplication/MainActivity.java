@@ -76,6 +76,7 @@ public class MainActivity extends Activity {
         mTextView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
+                //databaseReference.child("group").push().setValue("1");
                 mListView.setAdapter(adapter1);
             }
         });
@@ -103,30 +104,6 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-
-        mTextView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view1) {
-                mListView.setAdapter(adapter1);
-            }
-        });
-        mTextView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view2) {
-                ArrayList<Integer> data2 = new ArrayList<>();
-                //data2.add(R.mipmap.ic_launcher);
-                ImageArrayAdapter adapter2 = new ImageArrayAdapter(getApplicationContext(), R.layout.fragment2, data2);
-                mListView.setAdapter(adapter2);
-            }
-        });
-        mTextView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view3) {
-                ArrayList<String> data = new ArrayList<>();
-                ArrayAdapter<String> adapter3 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment3, data);
-                mListView.setAdapter(adapter3);
             }
         });
 
