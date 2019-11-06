@@ -79,12 +79,15 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(RegisterActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
+                            String uid = task.getResult().getUser().getUid();
                             UserModel userModel = new UserModel();
+                            Food_Ranking food_ranking = new Food_Ranking();
                             userModel.UserEmail = editTextEmail.getText().toString();
+                            //userModel.UserID = uid;
                             userModel.UserNickName = editNickName.getText().toString();
                             //userModel.UserHate = spinner2.getTextAlignment();
-                            String uid = task.getResult().getUser().getUid();
                             FirebaseDatabase.getInstance().getReference().child("User").child(uid).setValue(userModel);
+                            FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank").setValue(food_ranking);
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                         } else {

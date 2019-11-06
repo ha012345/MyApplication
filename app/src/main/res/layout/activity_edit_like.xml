@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Edit_like">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chk_Korean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Korean"
+             />
+
+        <CheckBox
+            android:id="@+id/chk_Snack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Snack"
+            />
+
+        <CheckBox
+            android:id="@+id/chk_dessert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dessert"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chk_curtlet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Curtlet"
+             />
+
+        <CheckBox
+            android:id="@+id/chk_chicken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chicken"
+            />
+
+        <CheckBox
+            android:id="@+id/chk_pizza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pizza"
+             />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chk_asian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Asian"
+            />
+
+        <CheckBox
+            android:id="@+id/chk_china"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="China"
+             />
+
+        <CheckBox
+            android:id="@+id/chk_pork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pork"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <CheckBox
+        android:id="@+id/chk_soup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soup"
+        />
+
+    <CheckBox
+        android:id="@+id/chk_lunch_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lunch_box"
+         />
+
+    <CheckBox
+        android:id="@+id/chk_fast_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fast_food"
+         />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_edit_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
