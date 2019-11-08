@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +36,7 @@ public class MainActivity extends Activity {
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     @Override
 
@@ -60,8 +63,10 @@ public class MainActivity extends Activity {
         //mListView.setAdapter(adapter1);
 
         //databaseReference.child("group").push().setValue("1");
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        String uid = currentUser.getUid();
 
-        databaseReference.child("group").addChildEventListener(new ChildEventListener() {
+        databaseReference.child("User").child(uid).child("group").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String groupData = dataSnapshot.getValue().toString();

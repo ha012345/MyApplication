@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,9 +14,15 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.internal.IdTokenListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.internal.InternalTokenResult;
 
 import java.util.ArrayList;
 
@@ -43,7 +51,7 @@ public class GroupActivity extends AppCompatActivity {
         mSearch = (Button) findViewById(R.id.button2);
         mListView = (ListView) findViewById(R.id.listView1);
         mButton1 = (Button) findViewById(R.id.button3);
-        ArrayList<String> data = new ArrayList<>();
+        final ArrayList<String> data = new ArrayList<>();
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data);
 
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +64,7 @@ public class GroupActivity extends AppCompatActivity {
                 databaseReference.child("group").child(key).child(groupname).setValue(groupname);
                 FirebaseUser currentUser = firebaseAuth.getCurrentUser();
                 uid = currentUser.getUid();
-                databaseReference.child("User").child(uid).child("group").child(key).setValue(key);
+                databaseReference.child("User").child(uid).child("group").child(key).setValue(groupname);
                 Toast.makeText(GroupActivity.this, R.string.group_register_success, Toast.LENGTH_SHORT).show();
             }
         });
