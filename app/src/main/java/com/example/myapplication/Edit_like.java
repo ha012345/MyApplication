@@ -78,5 +78,8 @@ public class Edit_like extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }
