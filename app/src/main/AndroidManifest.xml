@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Edit_like"></activity>
         <activity android:name=".RecommendActivity" />
-        <activity android:name=".Main2Activity" />
+        <activity android:name=".GroupActivity" />
         <activity android:name=".FriendActivity" />
         <activity android:name=".RegisterActivity" />
         <activity
