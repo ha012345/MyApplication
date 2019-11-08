@@ -76,8 +76,28 @@ public class GroupActivity extends AppCompatActivity {
                 email = mEmailSearch.getText().toString();
                 String groupname;
                 groupname = mGroupName.getText().toString();
-                databaseReference.child("group").child(key).child(groupname).push().setValue(email);
-                adapter.add(email);
+                databaseReference.child("User").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot val : dataSnapshot.getChildren()){
+                            if(val.child("UserEmail").getValue(String.class).contains(mEmailSearch.getText().toString())){
+                                databaseReference.child("group").child(key).child(mGroupName.getText().toString()).push().setValue(mEmailSearch.getText().toString());
+                                String mem_uid = val.getKey();
+                                if(!data.contains(mEmailSearch.getText().toString())){
+                                    adapter.add(mEmailSearch.getText().toString());
+                                }
+                                databaseReference.child("User").child(mem_uid).child("group").child(key).setValue(mGroupName.getText().toString());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                //databaseReference.child("group").child(key).child(groupname).push().setValue(email);
+                //adapter.add(email);
                 mListView.setAdapter(adapter);
                 //if (databaseReference.child("User").equals(email)) {
                     //databaseReference.child("group").child(groupname).push().setValue(email);

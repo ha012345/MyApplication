@@ -18,4 +18,6 @@
 
     <string name="group_register_success">그룹 등록 성공</string>
     <string name="group_register_fail">그룹 등록 실패</string>
+    <string name="member_register_success">이메일 등록 성공</string>
+    <string name="member_register_fail">이메일 등록 실패</string>
 </resources>
