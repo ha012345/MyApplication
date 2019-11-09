@@ -20,6 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 public class Edit_like extends AppCompatActivity {
 
     CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9, cb10;
@@ -76,6 +80,7 @@ public class Edit_like extends AppCompatActivity {
         ImageButton button = (ImageButton) findViewById(R.id.btn_edit_like);
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("group").child("sswtest_group").child("today_hate_food");
+        //final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank");
 
         /*ValueEventListener eventListener = new ValueEventListener() {
             @Override
@@ -88,29 +93,33 @@ public class Edit_like extends AppCompatActivity {
 
             }
         };
-        ref.addValueEventListener(eventListener);
-        */
+        ref.addValueEventListener(eventListener);*/
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (cb1.isChecked() == true) ref.child("Korean").setValue(food_ranking.Korean - 100);
-                if (cb2.isChecked() == true) ref.child("Snack").setValue(food_ranking.Snack - 100);
-                if (cb3.isChecked() == true)
-                    ref.child("Dessert").setValue(food_ranking.dessert - 100);
-                if (cb4.isChecked() == true)
-                    ref.child("Chicken").setValue(food_ranking.curtlet - 100);
-                if (cb5.isChecked() == true)
-                    ref.child("Pizza").setValue(food_ranking.chicken - 100);
-                if (cb6.isChecked() == true) ref.child("Asian").setValue(food_ranking.pizza - 100);
-                if (cb7.isChecked() == true) ref.child("China").setValue(food_ranking.asian - 100);
-                if (cb8.isChecked() == true) ref.child("Soup").setValue(food_ranking.china - 100);
-                if (cb9.isChecked() == true) ref.child("Lunch_box").setValue(food_ranking.pork - 100);
-                if (cb10.isChecked() == true) ref.child("Fast_food").setValue(food_ranking.soup - 100);
+                long now = System.currentTimeMillis();
+                // 현재시간을 date 변수에 저장한다.
+                Date date = new Date(now);
+                // 시간을 나타냇 포맷을 정한다 ( yyyy/MM/dd 같은 형태로 변형 가능 )
+                SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                // nowDate 변수에 값을 저장한다.
+                String formatDate = sdfNow.format(date);
+
+                if (cb1.isChecked() == true) ref.child("Korean").setValue(formatDate);
+                if (cb2.isChecked() == true) ref.child("Snack").setValue(formatDate);
+                if (cb3.isChecked() == true) ref.child("dessert").setValue(formatDate);
+                if (cb4.isChecked() == true) ref.child("chicken").setValue(formatDate);
+                if (cb5.isChecked() == true) ref.child("pizza").setValue(formatDate);
+                if (cb6.isChecked() == true) ref.child("asian").setValue(formatDate);
+                if (cb7.isChecked() == true) ref.child("china").setValue(formatDate);
+                if (cb8.isChecked() == true) ref.child("soup").setValue(formatDate);
+                if (cb9.isChecked() == true) ref.child("lunch_box").setValue(formatDate);
+                if (cb10.isChecked() == true) ref.child("fast_food").setValue(formatDate);
 
                 Toast.makeText(Edit_like.this, "설정되었습니다.", Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

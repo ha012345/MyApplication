@@ -24,9 +24,7 @@ public class RecommendActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recommend);
 
         Button rec_food = (Button)findViewById(R.id.btn_recommend);
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("Food_Rank");
         final int[] max_value = {0};
         final String[] menu = {""};
