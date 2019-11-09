@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        android:layout_height="190dp">
 
         <Button
             android:id="@+id/move_to_recommend"
@@ -23,8 +22,8 @@
             android:id="@+id/move_to_Like"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Like"
             android:layout_marginTop="47.5dp"
+            android:text="당일 비선호 메뉴"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,8 +40,8 @@
             android:id="@+id/addgroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
             android:layout_marginTop="142.5dp"
+            android:text="create Group"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
