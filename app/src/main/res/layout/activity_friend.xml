@@ -1,36 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical">
-
-    <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/Recyclerview_dashboard"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbarFadeDuration="0"
-    android:scrollbarSize="5dp"
-    android:scrollbarThumbVertical="@android:color/darker_gray"
-    android:scrollbars="vertical"
-    android:layout_weight="1"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Recyclerview_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbarFadeDuration="0"
+        android:scrollbarSize="5dp"
+        android:scrollbarThumbVertical="@android:color/darker_gray"
+        android:scrollbars="vertical"
+        android:layout_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         ></androidx.recyclerview.widget.RecyclerView>
 
-    <EditText
-        android:id="@+id/et_search_nickname"
+    <LinearLayout
+        android:id="@+id/layout_search_friend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName" />
+        android:orientation="horizontal">
 
-    <Button
-    android:id="@+id/btn_add"
-    android:layout_weight="8"
-    android:text="추가"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"></Button>
+        <EditText
+            android:id="@+id/et_search_nickname"
+            android:hint="@string/friend_add_email"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_weight="9"
+            />
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/frined_add_button"></Button>
+    </LinearLayout>
+
+
+
 
 
 </LinearLayout>
