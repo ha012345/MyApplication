@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RecommendActivity extends AppCompatActivity {
 
-    private String groupname;
+    private String groupname, groupkey;
     private TextView mGroupName;
 
     @Override
@@ -29,14 +29,16 @@ public class RecommendActivity extends AppCompatActivity {
         mGroupName = (TextView) findViewById(R.id.group);
 
         Intent intent = getIntent();
+        groupkey = (String) intent.getExtras().get("groupkey");
         groupname = (String) intent.getExtras().get("groupname");
-        mGroupName.setText(groupname);
+        mGroupName.setText(groupkey + " " + groupname);
 
         Button rec_food = (Button)findViewById(R.id.btn_recommend);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("Food_Rank");
         final int[] max_value = {0};
         final String[] menu = {""};
+        final String[] member = {""};
 
         ValueEventListener eventListener = new ValueEventListener() {
             @Override

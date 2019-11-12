@@ -61,17 +61,20 @@ public class MainActivity extends Activity {
 
 
         ArrayList<String> data1 = new ArrayList<>();
+        final ArrayList<String> keydata = new ArrayList<>();
         final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data1);
         //mListView.setAdapter(adapter1);
 
         //databaseReference.child("group").push().setValue("1");
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        String uid = currentUser.getUid();
+        final String uid = currentUser.getUid();
 
         databaseReference.child("User").child(uid).child("group").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String groupData = dataSnapshot.getValue().toString();
+                String groupKey = dataSnapshot.getKey().toString();
+                keydata.add(groupKey);
                 adapter1.add(groupData);
             }
 
@@ -121,6 +124,7 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(click==1){
                     Intent intent = new Intent(getApplicationContext(), RecommendActivity.class);
+                    intent.putExtra("groupkey", keydata.get(position));
                     intent.putExtra("groupname", adapter1.getItem(position));
                     startActivity(intent);
                 }
