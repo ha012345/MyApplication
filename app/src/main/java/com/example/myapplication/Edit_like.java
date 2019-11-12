@@ -79,7 +79,8 @@ public class Edit_like extends AppCompatActivity {
 
         ImageButton button = (ImageButton) findViewById(R.id.btn_edit_like);
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("group").child("sswtest_group").child("today_hate_food");
+
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("today_hate_food");
         //final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank");
 
         /*ValueEventListener eventListener = new ValueEventListener() {
