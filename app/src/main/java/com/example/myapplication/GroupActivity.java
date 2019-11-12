@@ -81,9 +81,10 @@ public class GroupActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot val : dataSnapshot.getChildren()){
                             if(val.child("UserEmail").getValue(String.class).contains(mEmailSearch.getText().toString())){
-                                databaseReference.child("group").child(key).child(mGroupName.getText().toString()).push().setValue(mEmailSearch.getText().toString());
+
                                 String mem_uid = val.getKey();
                                 if(!data.contains(mEmailSearch.getText().toString())){
+                                    databaseReference.child("group").child(key).child(mGroupName.getText().toString()).push().setValue(mEmailSearch.getText().toString());
                                     adapter.add(mEmailSearch.getText().toString());
                                 }
                                 databaseReference.child("User").child(mem_uid).child("group").child(key).setValue(mGroupName.getText().toString());
