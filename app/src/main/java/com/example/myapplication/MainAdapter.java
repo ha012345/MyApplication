@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
 
@@ -43,6 +46,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
             public void onClick(View v) {
                 String curName = holder.tv_name.getText().toString();
                 Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), RecommendActivity.class);
+                intent.putExtra("groupname", curName);
+                v.getContext().startActivity(intent);
             }
         });
 

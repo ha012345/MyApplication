@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -33,6 +34,7 @@ public class MainActivity extends Activity {
     Button mButton2;
     Button mButton3;
 
+    int click;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -59,17 +61,20 @@ public class MainActivity extends Activity {
 
 
         ArrayList<String> data1 = new ArrayList<>();
+        final ArrayList<String> keydata = new ArrayList<>();
         final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data1);
         //mListView.setAdapter(adapter1);
 
         //databaseReference.child("group").push().setValue("1");
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        String uid = currentUser.getUid();
+        final String uid = currentUser.getUid();
 
         databaseReference.child("User").child(uid).child("group").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String groupData = dataSnapshot.getValue().toString();
+                String groupKey = dataSnapshot.getKey().toString();
+                keydata.add(groupKey);
                 adapter1.add(groupData);
             }
 
@@ -89,6 +94,7 @@ public class MainActivity extends Activity {
         mTextView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
+                click = 1;
                 //databaseReference.child("group").push().setValue("1");
                 mListView.setAdapter(adapter1);
             }
@@ -96,6 +102,7 @@ public class MainActivity extends Activity {
         mTextView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view2) {
+                click = 2;
                 ArrayList<Integer> data2 = new ArrayList<>();
                 //data2.add(R.mipmap.ic_launcher);
                 ImageArrayAdapter adapter2 = new ImageArrayAdapter(getApplicationContext(), R.layout.fragment2, data2);
@@ -105,9 +112,22 @@ public class MainActivity extends Activity {
         mTextView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view3) {
+                click = 3;
                 ArrayList<String> data = new ArrayList<>();
                 ArrayAdapter<String> adapter3 = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment3, data);
                 mListView.setAdapter(adapter3);
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(click==1){
+                    Intent intent = new Intent(getApplicationContext(), RecommendActivity.class);
+                    intent.putExtra("groupkey", keydata.get(position));
+                    intent.putExtra("groupname", adapter1.getItem(position));
+                    startActivity(intent);
+                }
             }
         });
 

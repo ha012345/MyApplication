@@ -42,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     Food_Ranking food_ranking = new Food_Ranking();
+    Food_Ranking hating_food = new Food_Ranking();
     CheckBox checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6, checkbox7;
     CheckBox checkbox8, checkbox9, checkbox10;
     RadioButton radioButton;
@@ -91,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                             //userModel.UserHate = spinner2.getTextAlignment();
                             FirebaseDatabase.getInstance().getReference().child("User").child(uid).setValue(userModel);
                             FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank").setValue(food_ranking);
+                            FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("today_hate_food").setValue(hating_food);
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                         } else {

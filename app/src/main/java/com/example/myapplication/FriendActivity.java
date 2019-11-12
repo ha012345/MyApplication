@@ -122,7 +122,8 @@ public class FriendActivity extends AppCompatActivity {
 
             }
         };
-        db.addListenerForSingleValueEvent(eventListener);
+        if(arrayList.isEmpty())
+            db.addListenerForSingleValueEvent(eventListener);
     }
 
     //사용자 존재 여부 체크 후 추가

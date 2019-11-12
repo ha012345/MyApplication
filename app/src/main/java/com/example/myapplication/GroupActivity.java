@@ -3,6 +3,8 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,11 @@ import java.util.ArrayList;
 //이메일검색해서 사용자 찾고 그룹 만들기
 public class GroupActivity extends AppCompatActivity {
 
+    private ArrayList<MainData> arrayList;
+    private MainAdapter mainAdapter;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+
     private EditText mEmailSearch, mGroupName;
     private Button mButton, mSearch, mButton1;
     private ListView mListView;
@@ -45,12 +52,21 @@ public class GroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        recyclerView = (RecyclerView)findViewById(R.id.Recyclerview_group);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        arrayList = new ArrayList<>();
+        mainAdapter = new MainAdapter(arrayList);
+        recyclerView.setAdapter(mainAdapter);
+
+
         mEmailSearch = (EditText) findViewById(R.id.emailsearch);
         mGroupName = (EditText) findViewById(R.id.group_name);
         mButton = (Button) findViewById(R.id.button1);
         mSearch = (Button) findViewById(R.id.button2);
-        mListView = (ListView) findViewById(R.id.listView1);
-        mButton1 = (Button) findViewById(R.id.button3);
+//        mListView = (ListView) findViewById(R.id.listView1);
+//        mButton1 = (Button) findViewById(R.id.button3);
         final ArrayList<String> data = new ArrayList<>();
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data);
 
@@ -65,6 +81,11 @@ public class GroupActivity extends AppCompatActivity {
                 FirebaseUser currentUser = firebaseAuth.getCurrentUser();
                 uid = currentUser.getUid();
                 databaseReference.child("User").child(uid).child("group").child(key).setValue(groupname);
+
+                MainData mainData = new MainData(R.mipmap.ic_launcher, groupname, "dsad");
+                arrayList.add(mainData);
+                mainAdapter.notifyDataSetChanged();
+
                 Toast.makeText(GroupActivity.this, R.string.group_register_success, Toast.LENGTH_SHORT).show();
             }
         });
@@ -106,6 +127,31 @@ public class GroupActivity extends AppCompatActivity {
                 //}
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("group");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    String email = ds.getValue().toString();
+                    MainData mainData = new MainData(R.mipmap.ic_launcher, email, "www");
+                    arrayList.add(mainData);
+                    mainAdapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        if(arrayList.isEmpty())
+            db.addListenerForSingleValueEvent(eventListener);
     }
 
     @Override
