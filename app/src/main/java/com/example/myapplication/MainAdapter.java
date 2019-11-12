@@ -45,8 +45,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
             @Override
             public void onClick(View v) {
                 String curName = holder.tv_name.getText().toString();
+                String curKey = holder.tv_content.getText().toString();
                 Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(v.getContext(), RecommendActivity.class);
+                Intent intent = new Intent(v.getContext(), EachGroupActivity.class);
+                intent.putExtra("groupkey", curKey);
                 intent.putExtra("groupname", curName);
                 v.getContext().startActivity(intent);
             }

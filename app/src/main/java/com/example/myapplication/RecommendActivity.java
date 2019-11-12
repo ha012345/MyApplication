@@ -30,6 +30,7 @@ public class RecommendActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         groupname = (String) intent.getExtras().get("groupname");
+        groupkey = (String) intent.getExtras().get("groupkey");
 
         Button rec_food = (Button)findViewById(R.id.btn_recommend);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

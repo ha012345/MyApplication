@@ -46,6 +46,7 @@ public class GroupActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     String key, uid;
+    String groupname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,16 +74,29 @@ public class GroupActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String groupname;
                 groupname = mGroupName.getText().toString();
                 DatabaseReference newDatabaseReference = databaseReference.child("group").push();
                 key = newDatabaseReference.getKey();
-                databaseReference.child("group").child(key).child(groupname).setValue(groupname);
+//                databaseReference.child("group").child(key).child(groupname).setValue(groupname);
                 FirebaseUser currentUser = firebaseAuth.getCurrentUser();
                 uid = currentUser.getUid();
-                databaseReference.child("User").child(uid).child("group").child(key).setValue(groupname);
 
-                MainData mainData = new MainData(R.mipmap.ic_launcher, groupname, "dsad");
+                //그룹에 자기 자신 추가
+                DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("UserEmail");
+                ValueEventListener eventListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String email = dataSnapshot.getValue().toString();
+                        databaseReference.child("group").child(key).child(groupname).push().setValue(email);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                };
+                db.addListenerForSingleValueEvent(eventListener);
+                databaseReference.child("User").child(uid).child("group").child(key).setValue(groupname);
+                MainData mainData = new MainData(R.mipmap.ic_launcher, groupname, key);
                 arrayList.add(mainData);
                 mainAdapter.notifyDataSetChanged();
 
@@ -140,7 +154,7 @@ public class GroupActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     String email = ds.getValue().toString();
-                    MainData mainData = new MainData(R.mipmap.ic_launcher, email, "www");
+                    MainData mainData = new MainData(R.mipmap.ic_launcher, email, ds.getKey().toString());
                     arrayList.add(mainData);
                     mainAdapter.notifyDataSetChanged();
                 }
