@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,10 +19,18 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RecommendActivity extends AppCompatActivity {
 
+    private String groupname;
+    private TextView mGroupName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend);
+        mGroupName = (TextView) findViewById(R.id.group);
+
+        Intent intent = getIntent();
+        groupname = (String) intent.getExtras().get("groupname");
+        mGroupName.setText(groupname);
 
         Button rec_food = (Button)findViewById(R.id.btn_recommend);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
