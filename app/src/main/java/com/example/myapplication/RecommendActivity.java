@@ -48,11 +48,10 @@ public class RecommendActivity extends AppCompatActivity {
         final int[] max_value = {0};
         final String[] menu = {""};
 
-        databaseReference.child("group").child(groupkey).addChildEventListener(new ChildEventListener() {
+        databaseReference.child("group").child(groupkey).child(groupname).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String member_email = dataSnapshot.getValue().toString();
-                member.add(member_email);
+
             }
 
             @Override

@@ -47,7 +47,13 @@ public class FriendActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
 
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private DataSnapshot dataSnapshot;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
     private String target_email;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,7 @@ public class FriendActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         mainAdapter = new MainAdapter(arrayList);
         recyclerView.setAdapter(mainAdapter);
+        final ArrayList<String> data = new ArrayList<>();
 
         final EditText et_search_nickname = (EditText)findViewById(R.id.et_search_nickname);
         Button btn_add = (Button)findViewById(R.id.btn_add);
@@ -68,33 +75,34 @@ public class FriendActivity extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                target_email = et_search_nickname.getText().toString();
-
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                final DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("friends");
-
-                ValueEventListener eventListener = new ValueEventListener() {
+                final String nickname;
+                nickname = et_search_nickname.getText().toString();
+                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+                uid = currentUser.getUid();
+                databaseReference.child("User").addValueEventListener(new ValueEventListener() {
                     @Override
-                    // 데이터 돌아다니면서 하나하나 확인
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot ds : dataSnapshot.getChildren()){
-                            String email = ds.child("friend_email").getValue().toString();
-                            if(email.equals(target_email)){
-                                Toast.makeText(FriendActivity.this, "이미 등록한 사용자 입니다", Toast.LENGTH_SHORT).show();
-                                return;
+                        for (DataSnapshot val : dataSnapshot.getChildren()){
+                            if(val.child("UserNickName").getValue(String.class).contains(nickname)){
+
+                                String mem_uid = val.getKey();
+                                String email = val.child("UserEmail").getValue(String.class);
+                                //String nickname = val.child("UserNickName").getValue(String.class);
+                                if(!data.contains(nickname)){
+                                    databaseReference.child("User").child(uid).child("friends").child(mem_uid).child("friend_email").setValue(email);
+                                    databaseReference.child("User").child(uid).child("friends").child(mem_uid).child("friend_nickname").setValue(nickname);
+                                    data.add(nickname);
+                                    add_frined_to_view(email, nickname);
+                                }
                             }
                         }
-
-                        add_friend(target_email);
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
-                };
-                db.addListenerForSingleValueEvent(eventListener);
-
+                });
             }
         });
     }
@@ -122,8 +130,8 @@ public class FriendActivity extends AppCompatActivity {
 
             }
         };
-        if(arrayList.isEmpty())
-            db.addListenerForSingleValueEvent(eventListener);
+        //if(arrayList.isEmpty())
+            //db.addListenerForSingleValueEvent(eventListener);
     }
 
     //사용자 존재 여부 체크 후 추가
