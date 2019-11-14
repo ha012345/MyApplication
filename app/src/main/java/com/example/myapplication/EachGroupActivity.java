@@ -55,6 +55,7 @@ public class EachGroupActivity extends AppCompatActivity {
         final EditText et_search_email = (EditText)findViewById(R.id.et_search_email);
         Button btn_add = (Button)findViewById(R.id.btn_add_eachgroup);
         Button btn_move = (Button)findViewById(R.id.btn_move_to_recommend);
+        Button btn_vote = (Button)findViewById(R.id.button_vote);
 
         btn_add.setOnClickListener(new OnClickListener() {
             @Override
@@ -84,6 +85,16 @@ public class EachGroupActivity extends AppCompatActivity {
 //                };
 //                db.addListenerForSingleValueEvent(eventListener);
 
+            }
+        });
+
+        btn_vote.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intend = new Intent(getApplicationContext(), Vote.class);
+                intend.putExtra("groupkey", groupkey);
+                intend.putExtra("groupname", groupname);
+                startActivity(intend);
             }
         });
 
