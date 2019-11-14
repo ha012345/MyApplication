@@ -5,6 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecommendActivity">
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tv_recommend"
@@ -31,6 +36,7 @@
     <ImageView
         android:id="@+id/image_food"
         android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
         android:layout_height="400dp"
         app:layout_constraintTop_toTopOf="parent"
         />

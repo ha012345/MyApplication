@@ -28,10 +28,10 @@ public class RecommendActivity extends AppCompatActivity {
     private TextView mGroupName;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private DatabaseReference databaseReference1 = firebaseDatabase.getReference();
+    private DatabaseReference databaseReference2 = firebaseDatabase.getReference();
+    private DatabaseReference databaseReference3 = firebaseDatabase.getReference();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
-    ArrayList<String> member = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +43,20 @@ public class RecommendActivity extends AppCompatActivity {
         groupkey = (String) intent.getExtras().get("groupkey");
 
         Button rec_food = (Button)findViewById(R.id.btn_recommend);
+        mGroupName = (TextView)findViewById(R.id.text1);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("Food_Rank");
         final int[] max_value = {0};
         final String[] menu = {""};
+        final ArrayList<String> member = new ArrayList<>();
+        final ArrayList<String> mem_uid = new ArrayList<>();
+        final int[] score = {0};
 
-        databaseReference.child("group").child(groupkey).child(groupname).addChildEventListener(new ChildEventListener() {
+        databaseReference1.child("group").child(groupkey).child(groupname).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String email = dataSnapshot.getValue().toString();
+                member.add(email);
             }
 
             @Override
@@ -74,6 +79,61 @@ public class RecommendActivity extends AppCompatActivity {
 
             }
         });
+
+        databaseReference2.child("User").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int i = 0;
+                for (DataSnapshot val : dataSnapshot.getChildren()){
+                    for(i=0; i<member.size(); i++){
+                        if(val.child("UserEmail").getValue(String.class).contains(member.get(i))){
+                            if(!mem_uid.contains(val.getKey())){
+                                mem_uid.add(val.getKey());
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        /*for(int j=0; j<mem_uid.size(); j++){
+            databaseReference3.child("User").child(mem_uid.get(j)).child("today_hate_food").addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    if(dataSnapshot.getKey() == "Korean"){
+                        score[0] += dataSnapshot.getValue().hashCode();
+                    }
+                    else if(dataSnapshot.getKey() == "Snack"){
+                        score[1] += dataSnapshot.getValue().hashCode();
+                    }
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }*/
+
 
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
@@ -100,6 +160,7 @@ public class RecommendActivity extends AppCompatActivity {
         rec_food.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                mGroupName.setText(score[0]);
                 if(menu[0].equals("Korean"))
                 {
                     imageview.setImageResource(R.drawable.rice);
