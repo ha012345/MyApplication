@@ -134,7 +134,7 @@ public class GroupActivity extends AppCompatActivity {
                 });
                 //databaseReference.child("group").child(key).child(groupname).push().setValue(email);
                 //adapter.add(email);
-                mListView.setAdapter(adapter);
+                //mListView.setAdapter(adapter);
                 //if (databaseReference.child("User").equals(email)) {
                     //databaseReference.child("group").child(groupname).push().setValue(email);
                     //Toast.makeText(GroupActivity.this, R.string.group_register_success, Toast.LENGTH_SHORT).show();
