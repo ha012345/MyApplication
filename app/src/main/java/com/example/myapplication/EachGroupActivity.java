@@ -33,6 +33,12 @@ public class EachGroupActivity extends AppCompatActivity {
 
     private String target_email, target_uid;
     private String groupkey, groupname;
+    ArrayList<String> data = new ArrayList<>();
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private DataSnapshot dataSnapshot;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
     @Override
@@ -65,7 +71,29 @@ public class EachGroupActivity extends AppCompatActivity {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 final DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("group").child(groupkey).child(groupname);
 
-                invite_member();
+                //invite_member();
+                databaseReference.child("User").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot val : dataSnapshot.getChildren()){
+                            if(val.child("UserEmail").getValue(String.class).contains(target_email)){
+
+                                String mem_uid = val.getKey();
+                                if(!data.contains(target_email)){
+                                    databaseReference.child("group").child(groupkey).child(groupname).push().setValue(target_email);
+                                    data.add(target_email);
+                                    add_frined_to_view(target_email, "");
+                                }
+                                databaseReference.child("User").child(mem_uid).child("group").child(groupkey).setValue(groupname);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
 //                ValueEventListener eventListener = new ValueEventListener() {
 //                    @Override
@@ -123,6 +151,7 @@ public class EachGroupActivity extends AppCompatActivity {
                     String email = ds.getValue().toString();
                     MainData mainData = new MainData(R.mipmap.ic_launcher, email, "");
                     arrayList.add(mainData);
+                    data.add(email);
                     mainAdapter.notifyDataSetChanged();
                 }
             }
