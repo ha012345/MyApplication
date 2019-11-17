@@ -34,6 +34,7 @@ public class EachGroupActivity extends AppCompatActivity {
     private String target_email, target_uid;
     private String groupkey, groupname;
     ArrayList<String> data = new ArrayList<>();
+    Food_Ranking food_ranking = new Food_Ranking();
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -63,6 +64,18 @@ public class EachGroupActivity extends AppCompatActivity {
         Button btn_move = (Button)findViewById(R.id.btn_move_to_recommend);
         Button btn_vote = (Button)findViewById(R.id.button_vote);
 
+        databaseReference.child("group").child(groupkey).child("data").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                food_ranking = dataSnapshot.getValue(Food_Ranking.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         btn_add.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,18 +96,40 @@ public class EachGroupActivity extends AppCompatActivity {
                                     databaseReference.child("group").child(groupkey).child(groupname).push().setValue(target_email);
                                     data.add(target_email);
                                     add_frined_to_view(target_email, "");
+                                    databaseReference.child("User").child(mem_uid).child("Food_Rank").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            Food_Ranking food = dataSnapshot.getValue(Food_Ranking.class);
+                                            food_ranking.Korean += food.Korean;
+                                            food_ranking.Snack += food.Snack;
+                                            food_ranking.dessert += food.dessert;
+                                            food_ranking.curtlet += food.curtlet;
+                                            food_ranking.chicken += food.chicken;
+                                            food_ranking.pizza += food.pizza;
+                                            food_ranking.asian += food.asian;
+                                            food_ranking.china += food.china;
+                                            food_ranking.pork += food.pork;
+                                            food_ranking.soup += food.soup;
+                                            food_ranking.lunch_box += food.lunch_box;
+                                            food_ranking.fast_food += food.fast_food;
+                                            databaseReference.child("group").child(groupkey).child("data").setValue(food_ranking);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
                                 }
                                 databaseReference.child("User").child(mem_uid).child("group").child(groupkey).setValue(groupname);
                             }
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
-
 //                ValueEventListener eventListener = new ValueEventListener() {
 //                    @Override
 //                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
