@@ -24,7 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 public class RecommendActivity extends AppCompatActivity {
@@ -41,6 +43,8 @@ public class RecommendActivity extends AppCompatActivity {
     ArrayList<String> member = new ArrayList<>();
     ArrayList<String> mem_uid = new ArrayList<>();
     Map<String, Integer> score = new HashMap<>();
+    ArrayList<String> menu1 = new ArrayList<>();
+    //ArrayList<Food_Ranking> score = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,8 +114,9 @@ public class RecommendActivity extends AppCompatActivity {
         databaseReference3.child("group").child(groupkey).child("data").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String name = dataSnapshot.getKey();
-                int val = dataSnapshot.getValue(Integer.class);
+                DataSnapshot ds = dataSnapshot;
+                String name = ds.getKey();
+                int val = ds.getValue(Integer.class);
                 score.put(name, val);
             }
 
@@ -136,7 +141,7 @@ public class RecommendActivity extends AppCompatActivity {
             }
         });
 
-        ValueEventListener eventListener = new ValueEventListener() {
+        /*ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
@@ -153,7 +158,7 @@ public class RecommendActivity extends AppCompatActivity {
 
             }
         };
-        ref.addListenerForSingleValueEvent(eventListener);
+        ref.addListenerForSingleValueEvent(eventListener);*/
 
 
         final ImageView imageview = (ImageView)findViewById(R.id.imageView);
@@ -162,38 +167,54 @@ public class RecommendActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mGroupName.setText(Integer.toString(score.size()));
-                if(menu[0].equals("Korean"))
+                int max = score.get("Korean");
+                int index = 0;
+                menu1.add(index, "Korean");
+                Set key = score.keySet();
+                for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                    final String keyname = (String) iterator.next();
+                    if(max < score.get(keyname)){
+                        menu1.set(index, keyname);
+                        max = score.get(keyname);
+                    } else if(max == score.get(keyname)){
+                        index++;
+                        menu1.add(index, keyname);
+                    }
+                }
+                Random rand = new Random();
+                String final_menu = menu1.get(rand.nextInt(menu1.size()));
+                if(final_menu.equals("Korean"))
                 {
                     imageview.setImageResource(R.drawable.rice);
-                }else if(menu[0].equals("Snack"))
+                }else if(final_menu.equals("Snack"))
                 {
                     imageview.setImageResource(R.drawable.snack);
-                }else if(menu[0].equals("asian"))
+                }else if(final_menu.equals("asian"))
                 {
                     imageview.setImageResource(R.drawable.sushi);
-                }else if(menu[0].equals("chicken"))
+                }else if(final_menu.equals("chicken"))
                 {
                     imageview.setImageResource(R.drawable.chicken);
-                }else if(menu[0].equals("china"))
+                }else if(final_menu.equals("china"))
                 {
                     imageview.setImageResource(R.drawable.china);
-                }else if(menu[0].equals("dessert"))
+                }else if(final_menu.equals("dessert"))
                 {
                     imageview.setImageResource(R.drawable.dessert);
-                }else if(menu[0].equals("fast_food"))
+                }else if(final_menu.equals("fast_food"))
                 {
                     imageview.setImageResource(R.drawable.steak);
-                }else if(menu[0].equals("lunch_box"))
+                }else if(final_menu.equals("lunch_box"))
                 {
                     imageview.setImageResource(R.drawable.lunch_box);
-                }else if(menu[0].equals("pizza"))
+                }else if(final_menu.equals("pizza"))
                 {
                     imageview.setImageResource(R.drawable.pizza);
-                }else if(menu[0].equals("soup"))
+                }else if(final_menu.equals("soup"))
                 {
                     imageview.setImageResource(R.drawable.soup);
                 }
-                textView.setText(menu[0]);
+                textView.setText(final_menu + " " + score.get(final_menu));
             }
         });
     }
