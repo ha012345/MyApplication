@@ -42,6 +42,7 @@ public class GroupActivity extends AppCompatActivity {
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private DatabaseReference databaseReference1 = firebaseDatabase.getReference();
     private DataSnapshot dataSnapshot;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
@@ -72,6 +73,19 @@ public class GroupActivity extends AppCompatActivity {
         final ArrayList<String> data = new ArrayList<>();
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.fragment1, data);
 
+        food_ranking.Korean = 0;
+        food_ranking.Snack = 0;
+        food_ranking.dessert = 0;
+        food_ranking.curtlet = 0;
+        food_ranking.chicken = 0;
+        food_ranking.pizza = 0;
+        food_ranking.asian = 0;
+        food_ranking.china = 0;
+        food_ranking.pork = 0;
+        food_ranking.soup = 0;
+        food_ranking.lunch_box = 0;
+        food_ranking.fast_food = 0;
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +95,6 @@ public class GroupActivity extends AppCompatActivity {
 //                databaseReference.child("group").child(key).child(groupname).setValue(groupname);
                 FirebaseUser currentUser = firebaseAuth.getCurrentUser();
                 uid = currentUser.getUid();
-                databaseReference.child("group").child(key).child("data").setValue(food_ranking);
                 //그룹에 자기 자신 추가
                 DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("UserEmail");
                 ValueEventListener eventListener = new ValueEventListener() {
@@ -89,12 +102,36 @@ public class GroupActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         String email = dataSnapshot.getValue().toString();
                         databaseReference.child("group").child(key).child(groupname).push().setValue(email);
+                        databaseReference.child("User").child(uid).child("Food_Rank").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Food_Ranking food = dataSnapshot.getValue(Food_Ranking.class);
+                                food_ranking.Korean += food.Korean;
+                                food_ranking.Snack += food.Snack;
+                                food_ranking.dessert += food.dessert;
+                                food_ranking.curtlet += food.curtlet;
+                                food_ranking.chicken += food.chicken;
+                                food_ranking.pizza += food.pizza;
+                                food_ranking.asian += food.asian;
+                                food_ranking.china += food.china;
+                                food_ranking.pork += food.pork;
+                                food_ranking.soup += food.soup;
+                                food_ranking.lunch_box += food.lunch_box;
+                                food_ranking.fast_food += food.fast_food;
+                                databaseReference.child("group").child(key).child("data").setValue(food_ranking);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
-                };
+                 };
                 db.addListenerForSingleValueEvent(eventListener);
                 databaseReference.child("User").child(uid).child("group").child(key).setValue(groupname);
                 MainData mainData = new MainData(R.mipmap.ic_launcher, groupname, key);
@@ -122,6 +159,30 @@ public class GroupActivity extends AppCompatActivity {
                                 if(!data.contains(mEmailSearch.getText().toString())){
                                     databaseReference.child("group").child(key).child(mGroupName.getText().toString()).push().setValue(mEmailSearch.getText().toString());
                                     adapter.add(mEmailSearch.getText().toString());
+                                    databaseReference.child("User").child(mem_uid).child("Food_Rank").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            Food_Ranking food = dataSnapshot.getValue(Food_Ranking.class);
+                                            food_ranking.Korean += food.Korean;
+                                            food_ranking.Snack += food.Snack;
+                                            food_ranking.dessert += food.dessert;
+                                            food_ranking.curtlet += food.curtlet;
+                                            food_ranking.chicken += food.chicken;
+                                            food_ranking.pizza += food.pizza;
+                                            food_ranking.asian += food.asian;
+                                            food_ranking.china += food.china;
+                                            food_ranking.pork += food.pork;
+                                            food_ranking.soup += food.soup;
+                                            food_ranking.lunch_box += food.lunch_box;
+                                            food_ranking.fast_food += food.fast_food;
+                                            databaseReference.child("group").child(key).child("data").setValue(food_ranking);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
                                 }
                                 databaseReference.child("User").child(mem_uid).child("group").child(key).setValue(mGroupName.getText().toString());
                             }

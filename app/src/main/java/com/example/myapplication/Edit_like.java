@@ -95,7 +95,7 @@ public class Edit_like extends AppCompatActivity {
         cb10 = (CheckBox) findViewById(R.id.chk_fast_food);
 
         ImageButton button = (ImageButton) findViewById(R.id.btn_edit_like);
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("today_hate_food");
         //final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank");
@@ -151,16 +151,18 @@ public class Edit_like extends AppCompatActivity {
                 // nowDate 변수에 값을 저장한다.
                 String formatDate = sdfNow.format(date);
                 DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("group");
+                DatabaseReference db1 = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank").child("Korean");
                 Set key = group.keySet();
                 if (cb1.isChecked() == true) {
                     ref.child("Korean").setValue(formatDate);
+
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("Korean").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -178,7 +180,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -196,7 +198,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -214,7 +216,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -232,7 +234,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -250,7 +252,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -268,7 +270,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -286,7 +288,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -304,7 +306,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -322,7 +324,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override

@@ -107,43 +107,34 @@ public class RecommendActivity extends AppCompatActivity {
             }
         });
 
-        /*for (int j=0; j<mem_uid.size(); j++){
-            databaseReference3.child("User").child(mem_uid.get(j)).child("today_hate_food").addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    if(dataSnapshot.getKey().contains("Korean")){
-                        int value = Integer.parseInt(dataSnapshot.getValue(String.class));
-                        if(score.containsKey("Korean")) {
-                            int past = score.get("Korean");
-                            score.put("Korean", past + value);
-                        } else{
-                            score.put("Korean", value);
-                        }
-                    }
-                }
+        databaseReference3.child("group").child(groupkey).child("data").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String name = dataSnapshot.getKey();
+                int val = dataSnapshot.getValue(Integer.class);
+                score.put(name, val);
+            }
 
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                }
+            }
 
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
-                }
+            }
 
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
-        }*/
-
+            }
+        });
 
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
