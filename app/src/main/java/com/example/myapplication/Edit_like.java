@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.icu.text.Edits;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +25,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 
 public class Edit_like extends AppCompatActivity {
@@ -59,6 +68,14 @@ public class Edit_like extends AppCompatActivity {
         cb7.toggle();
     }
 
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private DatabaseReference databaseReference1 = firebaseDatabase.getReference();
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    Map<String, String> group = new HashMap<String, String>();
+    int value;
+    int[] score = {0};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +110,35 @@ public class Edit_like extends AppCompatActivity {
             }
         };
         ref.addValueEventListener(eventListener);*/
+        databaseReference.child("User").child(uid).child("group").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String id = dataSnapshot.getKey().toString();
+                String name = dataSnapshot.getValue().toString();
+                group.put(id, name);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,17 +150,188 @@ public class Edit_like extends AppCompatActivity {
                 SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 // nowDate 변수에 값을 저장한다.
                 String formatDate = sdfNow.format(date);
+                DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("group");
+                Set key = group.keySet();
+                if (cb1.isChecked() == true) {
+                    ref.child("Korean").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("Korean").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
 
-                if (cb1.isChecked() == true) ref.child("Korean").setValue(formatDate);
-                if (cb2.isChecked() == true) ref.child("Snack").setValue(formatDate);
-                if (cb3.isChecked() == true) ref.child("dessert").setValue(formatDate);
-                if (cb4.isChecked() == true) ref.child("chicken").setValue(formatDate);
-                if (cb5.isChecked() == true) ref.child("pizza").setValue(formatDate);
-                if (cb6.isChecked() == true) ref.child("asian").setValue(formatDate);
-                if (cb7.isChecked() == true) ref.child("china").setValue(formatDate);
-                if (cb8.isChecked() == true) ref.child("soup").setValue(formatDate);
-                if (cb9.isChecked() == true) ref.child("lunch_box").setValue(formatDate);
-                if (cb10.isChecked() == true) ref.child("fast_food").setValue(formatDate);
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                if (cb2.isChecked() == true) {
+                    ref.child("Snack").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("Snack").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                if (cb3.isChecked() == true) {
+                    ref.child("dessert").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("dessert").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                if (cb4.isChecked() == true) {
+                    ref.child("chicken").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("chicken").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                if (cb5.isChecked() == true) {
+                    ref.child("pizza").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("pizza").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                if (cb6.isChecked() == true) {
+                    ref.child("asian").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("asian").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                if (cb7.isChecked() == true) {
+                    ref.child("china").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("china").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                if (cb8.isChecked() == true) {
+                    ref.child("soup").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("soup").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                if (cb9.isChecked() == true) {
+                    ref.child("lunch_box").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("lunch_box").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                if (cb10.isChecked() == true) {
+                    ref.child("fast_food").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("fast_food").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val+1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
 
                 Toast.makeText(Edit_like.this, "설정되었습니다.", Toast.LENGTH_LONG).show();
 

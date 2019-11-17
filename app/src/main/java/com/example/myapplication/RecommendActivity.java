@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class RecommendActivity extends AppCompatActivity {
 
@@ -32,6 +37,10 @@ public class RecommendActivity extends AppCompatActivity {
     private DatabaseReference databaseReference2 = firebaseDatabase.getReference();
     private DatabaseReference databaseReference3 = firebaseDatabase.getReference();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+    ArrayList<String> member = new ArrayList<>();
+    ArrayList<String> mem_uid = new ArrayList<>();
+    Map<String, Integer> score = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +57,7 @@ public class RecommendActivity extends AppCompatActivity {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("Food_Rank");
         final int[] max_value = {0};
         final String[] menu = {""};
-        final ArrayList<String> member = new ArrayList<>();
-        final ArrayList<String> mem_uid = new ArrayList<>();
-        final int[] score = {0};
+        //final int[] score = {0};
 
         databaseReference1.child("group").child(groupkey).child(groupname).addChildEventListener(new ChildEventListener() {
             @Override
@@ -83,9 +90,8 @@ public class RecommendActivity extends AppCompatActivity {
         databaseReference2.child("User").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int i = 0;
                 for (DataSnapshot val : dataSnapshot.getChildren()){
-                    for(i=0; i<member.size(); i++){
+                    for(int i=0; i<member.size(); i++){
                         if(val.child("UserEmail").getValue(String.class).contains(member.get(i))){
                             if(!mem_uid.contains(val.getKey())){
                                 mem_uid.add(val.getKey());
@@ -100,15 +106,19 @@ public class RecommendActivity extends AppCompatActivity {
 
             }
         });
-        /*for(int j=0; j<mem_uid.size(); j++){
+
+        /*for (int j=0; j<mem_uid.size(); j++){
             databaseReference3.child("User").child(mem_uid.get(j)).child("today_hate_food").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    if(dataSnapshot.getKey() == "Korean"){
-                        score[0] += dataSnapshot.getValue().hashCode();
-                    }
-                    else if(dataSnapshot.getKey() == "Snack"){
-                        score[1] += dataSnapshot.getValue().hashCode();
+                    if(dataSnapshot.getKey().contains("Korean")){
+                        int value = Integer.parseInt(dataSnapshot.getValue(String.class));
+                        if(score.containsKey("Korean")) {
+                            int past = score.get("Korean");
+                            score.put("Korean", past + value);
+                        } else{
+                            score.put("Korean", value);
+                        }
                     }
                 }
 
@@ -160,7 +170,7 @@ public class RecommendActivity extends AppCompatActivity {
         rec_food.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                mGroupName.setText(score[0]);
+                mGroupName.setText(Integer.toString(score.size()));
                 if(menu[0].equals("Korean"))
                 {
                     imageview.setImageResource(R.drawable.rice);

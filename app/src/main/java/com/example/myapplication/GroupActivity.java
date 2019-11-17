@@ -47,6 +47,7 @@ public class GroupActivity extends AppCompatActivity {
 
     String key, uid;
     String groupname;
+    Food_Ranking food_ranking = new Food_Ranking();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class GroupActivity extends AppCompatActivity {
 //                databaseReference.child("group").child(key).child(groupname).setValue(groupname);
                 FirebaseUser currentUser = firebaseAuth.getCurrentUser();
                 uid = currentUser.getUid();
-
+                databaseReference.child("group").child(key).child("data").setValue(food_ranking);
                 //그룹에 자기 자신 추가
                 DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("UserEmail");
                 ValueEventListener eventListener = new ValueEventListener() {
