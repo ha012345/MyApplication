@@ -21,8 +21,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -90,6 +92,11 @@ public class RecommendActivity extends AppCompatActivity {
 
             }
         });
+
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd");
+        final String formatDate = sdfNow.format(date);
 
         databaseReference2.child("User").addValueEventListener(new ValueEventListener() {
             @Override
@@ -169,16 +176,22 @@ public class RecommendActivity extends AppCompatActivity {
                 mGroupName.setText(Integer.toString(score.size()));
                 int max = score.get("Korean");
                 int index = 0;
-                menu1.add(index, "Korean");
+                //menu1.add(index, "Korean");
                 Set key = score.keySet();
                 for(Iterator iterator = key.iterator(); iterator.hasNext();){
                     final String keyname = (String) iterator.next();
                     if(max < score.get(keyname)){
-                        menu1.set(index, keyname);
+                        //menu1.set(index, keyname);
                         max = score.get(keyname);
-                    } else if(max == score.get(keyname)){
-                        index++;
-                        menu1.add(index, keyname);
+                    } //else if(max == score.get(keyname)){
+                        //index++;
+                        //menu1.add(index, keyname);
+                    //}
+                }
+                for (Iterator iterator = key.iterator(); iterator.hasNext();){
+                    final String keyname = (String) iterator.next();
+                    if(max == score.get(keyname)){
+                        menu1.add(keyname);
                     }
                 }
                 Random rand = new Random();
