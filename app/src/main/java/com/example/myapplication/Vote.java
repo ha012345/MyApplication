@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -95,6 +96,7 @@ public class Vote extends AppCompatActivity {
                 if (c1.isChecked() == true) ref.child("Korean").setValue(1);
                 if (c2.isChecked() == true) ref.child("Snack").setValue(1);
                 if (c3.isChecked() == true) ref.child("dessert").setValue(1);
+                Toast.makeText(Vote.this, "투표 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }
