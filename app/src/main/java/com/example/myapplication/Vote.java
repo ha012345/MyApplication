@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -47,12 +48,10 @@ public class Vote extends AppCompatActivity {
         final CheckBox c2 = (CheckBox)findViewById(R.id.checkBox2);
         final CheckBox c3 = (CheckBox)findViewById(R.id.checkBox3);
         final Button vote = (Button)findViewById(R.id.voting);
-        final TextView textView = (TextView)findViewById(R.id.textView);
 
         Intent intent = getIntent();
         groupname = (String) intent.getExtras().get("groupname");
         groupkey = (String) intent.getExtras().get("groupkey");
-        vote.setEnabled(false);
 
         final DatabaseReference ref3 = FirebaseDatabase.getInstance().getReference().child("group").child(groupkey).child("data");
         ref3.orderByValue().addChildEventListener(new ChildEventListener() {
@@ -113,59 +112,49 @@ public class Vote extends AppCompatActivity {
         });
 
         final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("vote").child(uid);
+        final DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("group").child(groupkey).child("vote").child(uid);
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd);
+        SimpleDateFormat format2 = new SimpleDateFormat("HH");
+        Date time = new Date();
+        String a = format2.format(time);
+        final Long hour = Long.parseLong(a);
 
-        final SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        final SimpleDateFormat format2 = new SimpleDateFormat("HH");
-        final Date time = new Date();
+        if(hour > 16)
+        {
+            dating.setText(format.format(time)+ " ��표");
+        }else if(hour > 11)
+        {
+            dating.setText(format.format(time)+ " �심 �표");
+        }else{
+            dating.setText(format.format(time)+ " �침 �표");
+        }
 
-        reff.runTransaction(new Transaction.Handler() {
-            @NonNull
+        ValueEventListener postListener = new ValueEventListener() {
             @Override
-            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                String value = mutableData.getValue(String.class);
-                String a = format2.format(time);
-                textView.setText("a"+value+"a");
-
-                int hour = Integer.parseInt(a);
-                if(hour > 16)
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Long value = dataSnapshot.getValue(Long.class);
+                if(value == null)
                 {
-                    dating.setText(format.format(time)+ " ��표");
-                    if(value.equals("�"))
-                    {
-                        vote.setEnabled(false);
-                    }else{
-                        vote.setEnabled(true);
-                    }
-                    reff.setValue("�");
-                }else if(hour > 11)
-                {
-                    dating.setText(format.format(time)+ " �심 �표");
-                    if(value.equals("�심"))
-                    {
-                        vote.setEnabled(false);
-                    }else{
-                        vote.setEnabled(true);
-                    }
-                    reff.setValue("�심");
+                    vote.setEnabled(true);
                 }else{
-                    dating.setText(format.format(time)+ " �침 �표");
-                    if(value.equals("�침"))
+                    Long dif = value - hour;
+                    if(dif < 0)
+                        dif = dif * -1;
+
+                    if(dif >= 6)
                     {
-                        vote.setEnabled(false);
-                    }else{
                         vote.setEnabled(true);
+                    }else{
+                        vote.setEnabled(false);
+                        vote.setText("�시 �표�기");
                     }
-                    reff.setValue("�침");
                 }
-                return Transaction.success(mutableData);
             }
-
             @Override
-            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-
+            public void onCancelled(DatabaseError databaseError) {
             }
-        });
+        };
+        reff.addValueEventListener(postListener);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,17 +184,685 @@ public class Vote extends AppCompatActivity {
             public void onClick(View view) {
                 if (c1.isChecked() == true)
                 {
-                    if(btn1.getText().toString().equals("pork"))
-                    {
+                    if(btn1.getText().toString().equals("pork")) {
                         ref.child("pork").runTransaction(new Transaction.Handler() {
                             @NonNull
                             @Override
                             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
                                 Long value = mutableData.getValue(Long.class);
-                                if(value==null){
+                                if (value == null) {
                                     mutableData.setValue(0);
-                                }else{
-                                    mutableData.setValue(value+10);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("soup")) {
+                        ref.child("soup").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("pizza")) {
+                        ref.child("pizza").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("lunch_box")) {
+                        ref.child("lunch_box").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("fast_food")) {
+                        ref.child("fast_food").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("dessert")) {
+                        ref.child("dessert").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("curtlet")) {
+                        ref.child("curtlet").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("china")) {
+                        ref.child("china").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("asian")) {
+                        ref.child("asian").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("Snack")) {
+                        ref.child("Snack").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("Korean")) {
+                        ref.child("Korean").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn1.getText().toString().equals("chicken")) {
+                        ref.child("chicken").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }
+                }else if(c2.isChecked()==true){
+                    if(btn2.getText().toString().equals("pork")) {
+                        ref.child("pork").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("soup")) {
+                        ref.child("soup").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("pizza")) {
+                        ref.child("pizza").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("lunch_box")) {
+                        ref.child("lunch_box").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("fast_food")) {
+                        ref.child("fast_food").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("dessert")) {
+                        ref.child("dessert").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("curtlet")) {
+                        ref.child("curtlet").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("china")) {
+                        ref.child("china").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("asian")) {
+                        ref.child("asian").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("Snack")) {
+                        ref.child("Snack").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("Korean")) {
+                        ref.child("Korean").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn2.getText().toString().equals("chicken")) {
+                        ref.child("chicken").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }
+                }else if(c3.isChecked()==true){
+                    if(btn3.getText().toString().equals("pork")) {
+                        ref.child("pork").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("soup")) {
+                        ref.child("soup").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("pizza")) {
+                        ref.child("pizza").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("lunch_box")) {
+                        ref.child("lunch_box").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("fast_food")) {
+                        ref.child("fast_food").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("dessert")) {
+                        ref.child("dessert").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("curtlet")) {
+                        ref.child("curtlet").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("china")) {
+                        ref.child("china").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("asian")) {
+                        ref.child("asian").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("Snack")) {
+                        ref.child("Snack").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("Korean")) {
+                        ref.child("Korean").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+                            }
+                        });
+                    }else if(btn3.getText().toString().equals("chicken")) {
+                        ref.child("chicken").runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                Long value = mutableData.getValue(Long.class);
+                                if (value == null) {
+                                    mutableData.setValue(0);
+                                } else {
+                                    mutableData.setValue(value + 10);
                                 }
                                 return Transaction.success(mutableData);
                             }
@@ -217,11 +874,11 @@ public class Vote extends AppCompatActivity {
                         });
                     }
                 }
-                //if (c2.isChecked() == true) ref.child("Snack").setValue(1);
-                //if (c3.isChecked() == true) ref.child("dessert").setValue(1);
 
                 Toast.makeText(Vote.this, "�표 �료�었�니", Toast.LENGTH_SHORT).show();
+                reff.setValue(hour);
                 vote.setEnabled(false);
+                vote.setText("�시 �표�기");
             }
         });
     }
