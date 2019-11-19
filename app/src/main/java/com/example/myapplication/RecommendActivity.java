@@ -40,12 +40,15 @@ public class RecommendActivity extends AppCompatActivity {
     private DatabaseReference databaseReference1 = firebaseDatabase.getReference();
     private DatabaseReference databaseReference2 = firebaseDatabase.getReference();
     private DatabaseReference databaseReference3 = firebaseDatabase.getReference();
+    private DatabaseReference databaseReference4 = firebaseDatabase.getReference();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     ArrayList<String> member = new ArrayList<>();
     ArrayList<String> mem_uid = new ArrayList<>();
     Map<String, Integer> score = new HashMap<>();
     ArrayList<String> menu1 = new ArrayList<>();
+    ArrayList<String> today_hate = new ArrayList<>();
+    String[] menu = {"Korean", "Snack", "asian", "chicken", "china", "curtlet", "dessert", "fast_food", "lunch_box", "pizza", "pork", "soup"};
     //ArrayList<Food_Ranking> score = new ArrayList<>();
 
     @Override
@@ -62,7 +65,6 @@ public class RecommendActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("Food_Rank");
         final int[] max_value = {0};
-        final String[] menu = {""};
         //final int[] score = {0};
 
         databaseReference1.child("group").child(groupkey).child(groupname).addChildEventListener(new ChildEventListener() {
@@ -92,11 +94,6 @@ public class RecommendActivity extends AppCompatActivity {
 
             }
         });
-
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd");
-        final String formatDate = sdfNow.format(date);
 
         databaseReference2.child("User").addValueEventListener(new ValueEventListener() {
             @Override
@@ -148,6 +145,12 @@ public class RecommendActivity extends AppCompatActivity {
             }
         });
 
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd");
+        final String formatDate = sdfNow.format(date);
+
+
         /*ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -173,7 +176,31 @@ public class RecommendActivity extends AppCompatActivity {
         rec_food.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                mGroupName.setText(Integer.toString(score.size()));
+                for (int i=0; i<mem_uid.size(); i++){
+                    for(int j=0; j<menu.length; j++){
+                        databaseReference4.child("User").child(mem_uid.get(i)).child("today_hate_food").child(menu[j]).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                String time = dataSnapshot.getValue(String.class);
+                                if(time.contains(formatDate)){
+                                    String menu = dataSnapshot.getKey();
+                                    if(!today_hate.contains(menu)){
+                                        today_hate.add(menu);
+                                        int v = score.get(menu);
+                                        score.remove(menu);
+                                        score.put(menu, v-100);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+                mGroupName.setText(groupname);
                 int max = score.get("Korean");
                 int index = 0;
                 //menu1.add(index, "Korean");
