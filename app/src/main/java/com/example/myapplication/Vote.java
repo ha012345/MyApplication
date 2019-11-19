@@ -113,7 +113,7 @@ public class Vote extends AppCompatActivity {
 
         final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("group").child(groupkey).child("vote").child(uid);
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd);
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat format2 = new SimpleDateFormat("HH");
         Date time = new Date();
         String a = format2.format(time);
@@ -121,12 +121,12 @@ public class Vote extends AppCompatActivity {
 
         if(hour > 16)
         {
-            dating.setText(format.format(time)+ " ��표");
+            dating.setText(format.format(time)+ " ��표");
         }else if(hour > 11)
         {
-            dating.setText(format.format(time)+ " �심 �표");
+            dating.setText(format.format(time)+ " �심 �표");
         }else{
-            dating.setText(format.format(time)+ " �침 �표");
+            dating.setText(format.format(time)+ " �침 �표");
         }
 
         ValueEventListener postListener = new ValueEventListener() {
@@ -146,7 +146,7 @@ public class Vote extends AppCompatActivity {
                         vote.setEnabled(true);
                     }else{
                         vote.setEnabled(false);
-                        vote.setText("�시 �표�기");
+                        vote.setText("�시 �표�기");
                     }
                 }
             }
@@ -878,7 +878,7 @@ public class Vote extends AppCompatActivity {
                 Toast.makeText(Vote.this, "�표 �료�었�니", Toast.LENGTH_SHORT).show();
                 reff.setValue(hour);
                 vote.setEnabled(false);
-                vote.setText("�시 �표�기");
+                vote.setText("�시 �표�기");
             }
         });
     }
