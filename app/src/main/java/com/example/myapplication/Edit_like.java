@@ -151,7 +151,7 @@ public class Edit_like extends AppCompatActivity {
                 // nowDate 변수에 값을 저장한다.
                 String formatDate = sdfNow.format(date);
                 DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("group");
-                DatabaseReference db1 = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank").child("Korean");
+                DatabaseReference db1 = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank");
                 Set key = group.keySet();
                 if (cb1.isChecked() == true) {
                     ref.child("Korean").setValue(formatDate);
@@ -171,6 +171,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("Korean").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 if (cb2.isChecked() == true) {
                     ref.child("Snack").setValue(formatDate);
@@ -189,6 +201,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("Snack").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 if (cb3.isChecked() == true) {
                     ref.child("dessert").setValue(formatDate);
@@ -207,6 +231,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("dessert").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 if (cb4.isChecked() == true) {
                     ref.child("chicken").setValue(formatDate);
@@ -225,6 +261,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("chicken").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 if (cb5.isChecked() == true) {
                     ref.child("pizza").setValue(formatDate);
@@ -243,6 +291,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("pizza").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 if (cb6.isChecked() == true) {
                     ref.child("asian").setValue(formatDate);
@@ -261,6 +321,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("asian").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 if (cb7.isChecked() == true) {
                     ref.child("china").setValue(formatDate);
@@ -279,6 +351,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("china").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 if (cb8.isChecked() == true) {
                     ref.child("soup").setValue(formatDate);
@@ -297,6 +381,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("soup").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 if (cb9.isChecked() == true) {
                     ref.child("lunch_box").setValue(formatDate);
@@ -315,6 +411,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("lunch_box").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
                 if (cb10.isChecked() == true) {
                     ref.child("fast_food").setValue(formatDate);
@@ -333,6 +441,18 @@ public class Edit_like extends AppCompatActivity {
                             }
                         });
                     }
+                    db1.child("fast_food").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
 
                 Toast.makeText(Edit_like.this, "설정되었습니다.", Toast.LENGTH_LONG).show();

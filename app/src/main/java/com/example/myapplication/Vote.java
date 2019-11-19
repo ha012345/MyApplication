@@ -115,7 +115,7 @@ public class Vote extends AppCompatActivity {
         final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("vote").child(uid);
 
-        final SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd);
+        final SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         final SimpleDateFormat format2 = new SimpleDateFormat("HH");
         final Date time = new Date();
 
@@ -130,33 +130,33 @@ public class Vote extends AppCompatActivity {
                 int hour = Integer.parseInt(a);
                 if(hour > 16)
                 {
-                    dating.setText(format.format(time)+ " €¬í‘œ");
-                    if(value.equals("€))
+                    dating.setText(format.format(time)+ " ï¿½ï¿½í‘œ");
+                    if(value.equals("ï¿½"))
                     {
                         vote.setEnabled(false);
                     }else{
                         vote.setEnabled(true);
                     }
-                    reff.setValue("€);
+                    reff.setValue("ï¿½");
                 }else if(hour > 11)
                 {
-                    dating.setText(format.format(time)+ " ì‹¬ ¬í‘œ");
-                    if(value.equals("ì‹¬"))
+                    dating.setText(format.format(time)+ " ï¿½ì‹¬ ï¿½í‘œ");
+                    if(value.equals("ï¿½ì‹¬"))
                     {
                         vote.setEnabled(false);
                     }else{
                         vote.setEnabled(true);
                     }
-                    reff.setValue("ì‹¬");
+                    reff.setValue("ï¿½ì‹¬");
                 }else{
-                    dating.setText(format.format(time)+ " „ì¹¨ ¬í‘œ");
-                    if(value.equals("„ì¹¨"))
+                    dating.setText(format.format(time)+ " ï¿½ì¹¨ ï¿½í‘œ");
+                    if(value.equals("ï¿½ì¹¨"))
                     {
                         vote.setEnabled(false);
                     }else{
                         vote.setEnabled(true);
                     }
-                    reff.setValue("„ì¹¨");
+                    reff.setValue("ï¿½ì¹¨");
                 }
                 return Transaction.success(mutableData);
             }
@@ -220,7 +220,7 @@ public class Vote extends AppCompatActivity {
                 //if (c2.isChecked() == true) ref.child("Snack").setValue(1);
                 //if (c3.isChecked() == true) ref.child("dessert").setValue(1);
 
-                Toast.makeText(Vote.this, "¬í‘œ „ë£Œ˜ì—ˆµë‹ˆ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Vote.this, "ï¿½í‘œ ï¿½ë£Œï¿½ì—ˆï¿½ë‹ˆ", Toast.LENGTH_SHORT).show();
                 vote.setEnabled(false);
             }
         });
