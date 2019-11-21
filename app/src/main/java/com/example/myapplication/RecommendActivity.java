@@ -184,7 +184,8 @@ public class RecommendActivity extends AppCompatActivity {
                 }
 
                 mGroupName.setText(groupname);
-                int max = 0;
+                //int max = 0;
+                int max = score.get("Korean");
                 int index = 0;
                 if(score.isEmpty())
                     Toast.makeText(RecommendActivity.this, "score is empty", Toast.LENGTH_SHORT).show();
