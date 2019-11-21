@@ -49,8 +49,10 @@
             android:id="@+id/btn_goto_map"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="190dp"
             android:text="지도"
-            app:layout_constraintTop_toBottomOf="@+id/addgroup"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -60,8 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="237.5dp"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical">
 
 
