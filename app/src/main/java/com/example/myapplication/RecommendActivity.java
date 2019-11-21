@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -48,6 +47,7 @@ public class RecommendActivity extends AppCompatActivity {
     Map<String, Integer> score = new HashMap<>();
     ArrayList<String> menu1 = new ArrayList<>();
     ArrayList<String> today_hate = new ArrayList<>();
+//    ArrayList<Integer> score = new ArrayList<>();
     String[] menu = {"Korean", "Snack", "asian", "chicken", "china", "curtlet", "dessert", "fast_food", "lunch_box", "pizza", "pork", "soup"};
     //ArrayList<Food_Ranking> score = new ArrayList<>();
 
@@ -120,23 +120,17 @@ public class RecommendActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 DataSnapshot ds = dataSnapshot;
                 String name = ds.getKey();
-                int val = ds.getValue(Integer.class);
+                int val = ds.getValue(Integer.class).hashCode();
                 score.put(name, val);
             }
-
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
-
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
             }
-
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
 
             @Override
@@ -145,50 +139,38 @@ public class RecommendActivity extends AppCompatActivity {
             }
         });
 
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd");
-        final String formatDate = sdfNow.format(date);
-
-
-        /*ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    int rank = ds.getValue().hashCode();
-                    if(rank > max_value[0]){
-                        max_value[0] = rank;
-                        menu[0] = ds.getKey().toString();
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        ref.addListenerForSingleValueEvent(eventListener);*/
-
-
         final ImageView imageview = (ImageView)findViewById(R.id.imageView);
         final TextView textView = (TextView)findViewById(R.id.tv_recommend);
+
+        for(int i = 0; i<score.size();i++){
+            Toast.makeText(RecommendActivity.this, score.get(i), Toast.LENGTH_SHORT).show();
+        }
+
+
         rec_food.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+
+                long now = System.currentTimeMillis();
+                Date date = new Date(now);
+                SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd");
+                final String formatDate = sdfNow.format(date);
+
                 for (int i=0; i<mem_uid.size(); i++){
                     for(int j=0; j<menu.length; j++){
-                        databaseReference4.child("User").child(mem_uid.get(i)).child("today_hate_food").child(menu[j]).addListenerForSingleValueEvent(new ValueEventListener() {
+                        databaseReference4.child("User").child(mem_uid.get(i)).child("today_hate_food").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                String time = dataSnapshot.getValue(String.class);
-                                if(time.contains(formatDate)){
-                                    String menu = dataSnapshot.getKey();
-                                    if(!today_hate.contains(menu)){
-                                        today_hate.add(menu);
-                                        int v = score.get(menu);
-                                        score.remove(menu);
-                                        score.put(menu, v-100);
+                                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                                    String time = ds.getValue().toString();
+                                    if(time.contains(formatDate)){
+                                        String menu = ds.getKey();
+                                        if(!today_hate.contains(menu)){
+                                            today_hate.add(menu);
+                                            int v = score.get(menu);
+                                            score.remove(menu);
+                                            score.put(menu, v-100);
+                                        }
                                     }
                                 }
                             }
@@ -200,64 +182,133 @@ public class RecommendActivity extends AppCompatActivity {
                         });
                     }
                 }
+
                 mGroupName.setText(groupname);
-                int max = score.get("Korean");
+                int max = 0;
                 int index = 0;
-                //menu1.add(index, "Korean");
-                Set key = score.keySet();
-                for(Iterator iterator = key.iterator(); iterator.hasNext();){
-                    final String keyname = (String) iterator.next();
-                    if(max < score.get(keyname)){
-                        //menu1.set(index, keyname);
-                        max = score.get(keyname);
-                    } //else if(max == score.get(keyname)){
-                        //index++;
-                        //menu1.add(index, keyname);
-                    //}
+                if(score.isEmpty())
+                    Toast.makeText(RecommendActivity.this, "score is empty", Toast.LENGTH_SHORT).show();
+
+                for(String key : score.keySet()){
+                    if(max < score.get(key).hashCode())
+                        max = score.get(key).hashCode();
                 }
-                for (Iterator iterator = key.iterator(); iterator.hasNext();){
-                    final String keyname = (String) iterator.next();
-                    if(max == score.get(keyname)){
-                        menu1.add(keyname);
-                    }
+                for(String key : score.keySet()){
+                    if(max ==  score.get(key).hashCode())
+                        menu1.add(key);
                 }
+
+
                 Random rand = new Random();
-                String final_menu = menu1.get(rand.nextInt(menu1.size()));
-                if(final_menu.equals("Korean"))
-                {
-                    imageview.setImageResource(R.drawable.rice);
-                }else if(final_menu.equals("Snack"))
-                {
-                    imageview.setImageResource(R.drawable.snack);
-                }else if(final_menu.equals("asian"))
-                {
-                    imageview.setImageResource(R.drawable.sushi);
-                }else if(final_menu.equals("chicken"))
-                {
-                    imageview.setImageResource(R.drawable.chicken);
-                }else if(final_menu.equals("china"))
-                {
-                    imageview.setImageResource(R.drawable.china);
-                }else if(final_menu.equals("dessert"))
-                {
-                    imageview.setImageResource(R.drawable.dessert);
-                }else if(final_menu.equals("fast_food"))
-                {
-                    imageview.setImageResource(R.drawable.steak);
-                }else if(final_menu.equals("lunch_box"))
-                {
-                    imageview.setImageResource(R.drawable.lunch_box);
-                }else if(final_menu.equals("pizza"))
-                {
-                    imageview.setImageResource(R.drawable.pizza);
-                }else if(final_menu.equals("soup"))
-                {
-                    imageview.setImageResource(R.drawable.soup);
+                if(!menu1.isEmpty()) {
+                    String final_menu = menu1.get(rand.nextInt(menu1.size()));
+                    if(final_menu.equals("Korean"))
+                    {
+                        imageview.setImageResource(R.drawable.rice);
+                    }else if(final_menu.equals("Snack"))
+                    {
+                        imageview.setImageResource(R.drawable.snack);
+                    }else if(final_menu.equals("asian"))
+                    {
+                        imageview.setImageResource(R.drawable.sushi);
+                    }else if(final_menu.equals("chicken"))
+                    {
+                        imageview.setImageResource(R.drawable.chicken);
+                    }else if(final_menu.equals("china"))
+                    {
+                        imageview.setImageResource(R.drawable.china);
+                    }else if(final_menu.equals("dessert"))
+                    {
+                        imageview.setImageResource(R.drawable.dessert);
+                    }else if(final_menu.equals("fast_food"))
+                    {
+                        imageview.setImageResource(R.drawable.steak);
+                    }else if(final_menu.equals("lunch_box"))
+                    {
+                        imageview.setImageResource(R.drawable.lunch_box);
+                    }else if(final_menu.equals("pizza"))
+                    {
+                        imageview.setImageResource(R.drawable.pizza);
+                    }else if(final_menu.equals("soup"))
+                    {
+                        imageview.setImageResource(R.drawable.soup);
+                    }
+                    textView.setText(final_menu + " " + score.get(final_menu));
                 }
-                textView.setText(final_menu + " " + score.get(final_menu));
+                else
+                    Toast.makeText(RecommendActivity.this, "Menu Error", Toast.LENGTH_SHORT).show();
+
             }
         });
+
+            Button button_like = (Button)findViewById(R.id.btn_like);
+            Button button_hate = (Button)findViewById(R.id.btn_hate);
+            button_like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!menu1.isEmpty()){
+                        final String food_name = menu1.get(0);
+                        final DatabaseReference ref = databaseReference1.child("group").child(groupkey).child("Like_Hate").child("Like").child(food_name);
+                        ValueEventListener valueEventListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                try {
+                                    int num = dataSnapshot.getValue().hashCode();
+                                    ref.setValue(num + 1);
+                                }catch (Exception e){
+                                    ref.setValue(1);
+                                }
+
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                            }
+                        };
+                        ref.addListenerForSingleValueEvent(valueEventListener);
+                    }
+                    else{
+                        Toast.makeText(RecommendActivity.this, "Menu is empty", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                private void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+
+            });
+
+        button_hate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!menu1.isEmpty()){
+                    final String food_name = menu1.get(0);
+                    final DatabaseReference ref = databaseReference1.child("group").child(groupkey).child("Like_Hate").child("Hate").child(food_name);
+                    ValueEventListener valueEventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            try {
+                                int num = dataSnapshot.getValue().hashCode();
+                                ref.setValue(num + 1);
+                            }catch (Exception e){
+                                ref.setValue(1);
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    };
+                    ref.addListenerForSingleValueEvent(valueEventListener);
+                }
+                else{
+                    Toast.makeText(RecommendActivity.this, "Menu is empty", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+            private void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+
+        });
     }
+
 
     @Override
     public void onBackPressed() {

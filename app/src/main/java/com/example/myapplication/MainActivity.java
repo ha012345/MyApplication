@@ -1,7 +1,15 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +19,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +43,7 @@ public class MainActivity extends Activity {
     Button mButton1;
     Button mButton2;
     Button mButton3;
+    Button mButton4;
 
     int click;
 
@@ -58,6 +69,7 @@ public class MainActivity extends Activity {
         mButton1 = findViewById(R.id.move_to_friends);
         mButton2 = findViewById(R.id.move_to_Like);
         mButton3 = findViewById(R.id.move_to_recommend);
+        mButton4 = findViewById(R.id.btn_goto_map);
 
 
         ArrayList<String> data1 = new ArrayList<>();
@@ -79,16 +91,20 @@ public class MainActivity extends Activity {
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) { }
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) { }
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) { }
+            public void onCancelled(DatabaseError databaseError) {
+            }
         });
 
         mTextView1.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +138,7 @@ public class MainActivity extends Activity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(click==1){
+                if (click == 1) {
                     Intent intent = new Intent(getApplicationContext(), RecommendActivity.class);
                     intent.putExtra("groupkey", keydata.get(position));
                     intent.putExtra("groupname", adapter1.getItem(position));
@@ -159,6 +175,16 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RecommendActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mButton4.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                String Url = "daummaps://open?page=placeSearch";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Url));
                 startActivity(intent);
             }
         });

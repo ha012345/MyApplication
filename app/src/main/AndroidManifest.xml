@@ -2,7 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
+    <meta-data
+        android:name="com.kakao.sdk.AppKey"
+        android:value="f1e50941cd1548d4903e4f15febe890d" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -11,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EachGroupActivity"></activity>
+        <activity android:name=".EachGroupActivity" />
         <activity android:name=".Edit_like" />
         <activity android:name=".RecommendActivity" />
         <activity android:name=".GroupActivity" />
@@ -27,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Vote"/>
+        <activity android:name=".Vote" />
     </application>
 
 </manifest>
