@@ -50,6 +50,7 @@ public class RecommendActivity extends AppCompatActivity {
 //    ArrayList<Integer> score = new ArrayList<>();
     String[] menu = {"Korean", "Snack", "asian", "chicken", "china", "curtlet", "dessert", "fast_food", "lunch_box", "pizza", "pork", "soup"};
     //ArrayList<Food_Ranking> score = new ArrayList<>();
+    String final_menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +201,7 @@ public class RecommendActivity extends AppCompatActivity {
 
                 Random rand = new Random();
                 if(!menu1.isEmpty()) {
-                    String final_menu = menu1.get(rand.nextInt(menu1.size()));
+                    final_menu = menu1.get(rand.nextInt(menu1.size()));
                     if(final_menu.equals("Korean"))
                     {
                         imageview.setImageResource(R.drawable.rice);
@@ -246,13 +247,13 @@ public class RecommendActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(!menu1.isEmpty()){
-                        final String food_name = menu1.get(0);
-                        final DatabaseReference ref = databaseReference1.child("group").child(groupkey).child("Like_Hate").child("Like").child(food_name);
+                        final String food_name = final_menu;
+                        final DatabaseReference ref = databaseReference1.child("group").child(groupkey).child("Like_Hate").child(food_name).child("Like");
                         ValueEventListener valueEventListener = new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 try {
-                                    int num = dataSnapshot.getValue().hashCode();
+                                    int num = dataSnapshot.getValue(Integer.class);
                                     ref.setValue(num + 1);
                                 }catch (Exception e){
                                     ref.setValue(1);
@@ -279,13 +280,13 @@ public class RecommendActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!menu1.isEmpty()){
-                    final String food_name = menu1.get(0);
-                    final DatabaseReference ref = databaseReference1.child("group").child(groupkey).child("Like_Hate").child("Hate").child(food_name);
+                    final String food_name = final_menu;
+                    final DatabaseReference ref = databaseReference1.child("group").child(groupkey).child("Like_Hate").child(food_name).child("Hate");
                     ValueEventListener valueEventListener = new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             try {
-                                int num = dataSnapshot.getValue().hashCode();
+                                int num = dataSnapshot.getValue(Integer.class);
                                 ref.setValue(num + 1);
                             }catch (Exception e){
                                 ref.setValue(1);
