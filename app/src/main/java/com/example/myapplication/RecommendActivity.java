@@ -157,7 +157,6 @@ public class RecommendActivity extends AppCompatActivity {
                 final String formatDate = sdfNow.format(date);
 
                 for (int i=0; i<mem_uid.size(); i++){
-                    for(int j=0; j<menu.length; j++){
                         databaseReference4.child("User").child(mem_uid.get(i)).child("today_hate_food").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -180,7 +179,6 @@ public class RecommendActivity extends AppCompatActivity {
 
                             }
                         });
-                    }
                 }
 
                 mGroupName.setText(groupname);
