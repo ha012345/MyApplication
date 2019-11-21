@@ -19,91 +19,66 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginRight="50dp"
-                android:text="이름" />
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
+                android:text="Sign Up"
+                android:textColor="#0F0F0F"
+                android:fontFamily="@font/lobster"
+                android:textSize="28dp" />
 
             <EditText
                 android:id="@+id/et_name"
+                android:background="@drawable/bg_editext"
+                android:drawableLeft="@drawable/usericon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_name"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
-
-            <TextView
-                android:id="@+id/tv_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_name"
-                android:layout_centerHorizontal="true"
+                android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:text="@string/email" />
+                android:layout_marginTop="50dp"
+                android:hint="이름"/>
+
 
             <EditText
                 android:id="@+id/et_eamil"
+                android:background="@drawable/bg_editext"
+                android:drawableLeft="@drawable/mailicon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_email"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
-
-            <TextView
-                android:id="@+id/tv_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_eamil"
-                android:layout_centerInParent="true"
+                android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:text="@string/password" />
+                android:layout_marginTop="10dp"
+                android:hint="이메일"/>
 
             <EditText
                 android:id="@+id/et_password"
+                android:background="@drawable/bg_editext"
+                android:drawableLeft="@drawable/lockicon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_password"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
-
-            <TextView
-                android:id="@+id/tv_nickname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_password"
-                android:layout_centerInParent="true"
+                android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:text="닉네임" />
+                android:layout_marginTop="10dp"
+                android:hint="비밀번호"/>
+
 
             <EditText
                 android:id="@+id/et_nickname"
+                android:background="@drawable/bg_editext"
+                android:drawableLeft="@drawable/nicknameicon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_nickname"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
-
-            <TextView
-                android:id="@+id/tv_gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_nickname"
+                android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:text="성별" />
+                android:layout_marginTop="10dp"
+                android:hint="닉네임"/>
+
 
             <LinearLayout
                 android:id="@+id/LinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_gender"
                 android:layout_marginLeft="45dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="50dp"
@@ -132,37 +107,30 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_birth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/LinearLayout"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="50dp"
-                android:text="생년월일" />
-
             <EditText
                 android:id="@+id/et_birth"
+                android:background="@drawable/bg_editext"
+                android:drawableLeft="@drawable/birthdayicon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_birth"
+                android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:clickable="true"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
-
+                android:focusableInTouchMode="false"
+                android:layout_marginTop="10dp"
+                android:hint="생년월일"/>
             <TextView
                 android:id="@+id/tv_food"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/et_birth"
                 android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
+                android:textSize="18dp"
                 android:text="혐오메뉴" />
 
             <LinearLayout
@@ -260,7 +228,8 @@
 
             <Button
                 android:id="@+id/btn_signUp"
-                android:layout_width="wrap_content"
+                android:background="@drawable/bg_button"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/spinner"
                 android:layout_gravity="center"

@@ -3,66 +3,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/foodbackground"
     tools:context=".LoginActivity">
 
-    <TextView
-        android:id="@+id/tv_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/email"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp" />
-
-    <EditText
-        android:id="@+id/et_eamil"
-        android:layout_below="@id/tv_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"/>
-
-    <TextView
-        android:id="@+id/tv_password"
-        android:layout_below="@id/et_eamil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/password"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"/>
-
-    <EditText
-        android:id="@+id/et_password"
-        android:inputType="textPassword"
-        android:layout_below="@id/tv_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"/>
-
     <LinearLayout
+        android:background="@drawable/bgcard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_password">
+        android:orientation="vertical"
+        android:padding="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">>
 
-        <Button
-            android:id="@+id/btn_signUp"
-            android:text="@string/signup"
-            android:onClick="singUp"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="50dp"/>
+            android:layout_gravity="center"
+            android:text="Welcome!"
+            android:textColor="#0F0F0F"
+            android:fontFamily="@font/lobster"
+            android:textSize="28dp" />
+
+        <EditText
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_editext"
+            android:id="@+id/et_eamil"
+            android:drawableRight="@drawable/mailicon"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingLeft="18dp"
+            android:hint="이메일"/>
+
+        <EditText
+            android:layout_marginTop="12dp"
+            android:paddingLeft="18dp"
+            android:background="@drawable/bg_editext"
+            android:drawableRight="@drawable/lockicon"
+            android:id="@+id/et_password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="비밀번호"/>
 
         <Button
             android:id="@+id/btn_signIn"
-            android:text="@string/signin"
-            android:onClick="signIn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:layout_weight="1"
-            android:layout_marginRight="50dp"/>
+            android:background="@drawable/bg_button"
+            android:onClick="signIn"
+            android:text="@string/signin"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btn_signUp"
+            android:background="@drawable/bgcard"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:onClick="singUp"
+            android:text="@string/signup"
+            android:textSize="11dp" />
 
     </LinearLayout>
 
