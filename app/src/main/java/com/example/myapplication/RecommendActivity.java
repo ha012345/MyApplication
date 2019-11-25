@@ -48,6 +48,7 @@ public class RecommendActivity extends AppCompatActivity {
     ArrayList<String> menu1 = new ArrayList<>();
     ArrayList<String> today_hate = new ArrayList<>();
     Map<String, Double> like_hate = new HashMap<>();
+    Map<String, Map<String, Double>> other_group = new HashMap<>();
 //    ArrayList<Integer> score = new ArrayList<>();
     String[] menu = {"Korean", "Snack", "asian", "chicken", "china", "curtlet", "dessert", "fast_food", "lunch_box", "pizza", "pork", "soup"};
     //ArrayList<Food_Ranking> score = new ArrayList<>();
@@ -336,6 +337,49 @@ public class RecommendActivity extends AppCompatActivity {
         });
     }
 
+    //피어슨 점수 계산 함수
+    private double sim_pearson(String group, String other) {
+        ArrayList<String> item = new ArrayList<>();
+        //그룹에서 공통으로 평가된 항목 목록 구함
+        for(int i=0; i<menu.length; i++){
+            if(like_hate.containsKey(menu[i]) && other_group.get(other).containsKey(menu[i])){
+                item.add(menu[i]);
+            }
+        }
+        //공통 항목 개수
+        int n = item.size();
+        //공통항목이 없으면 0 리턴
+        if(n==0){
+            return 0;
+        }
+        //모든 평점을 합산
+        double groupsum = 0;
+        double othersum = 0;
+        for(int i=0; i<item.size(); i++){
+            groupsum += like_hate.get(item.get(i));
+            othersum += other_group.get(other).get(item.get(i));
+        }
+        //제곱의 합을 계산
+        double groupsumSq = 0;
+        double othersumSq = 0;
+        for(int i=0; i<item.size(); i++){
+            groupsumSq += Math.pow(like_hate.get(item.get(i)), 2);
+            othersumSq += Math.pow(other_group.get(other).get(item.get(i)), 2);
+        }
+        //곱의 합을 계산
+        double pSum = 0;
+        for (int i=0; i<item.size(); i++){
+            pSum += like_hate.get(item.get(i))*other_group.get(other).get(item.get(i));
+        }
+        //피어슨 점수 계산
+        double num = pSum - (groupsum*othersum/n);
+        double den = Math.sqrt((groupsumSq-Math.pow(groupsum,2)/n) * (othersumSq-Math.pow(othersum,2)/n));
+        if(den==0){
+            return 0;
+        }
+        double r = num/den;
+        return r;
+    }
 
     @Override
     public void onBackPressed() {
