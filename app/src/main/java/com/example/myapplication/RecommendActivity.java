@@ -47,6 +47,7 @@ public class RecommendActivity extends AppCompatActivity {
     Map<String, Integer> score = new HashMap<>();
     ArrayList<String> menu1 = new ArrayList<>();
     ArrayList<String> today_hate = new ArrayList<>();
+    Map<String, Double> like_hate = new HashMap<>();
 //    ArrayList<Integer> score = new ArrayList<>();
     String[] menu = {"Korean", "Snack", "asian", "chicken", "china", "curtlet", "dessert", "fast_food", "lunch_box", "pizza", "pork", "soup"};
     //ArrayList<Food_Ranking> score = new ArrayList<>();
@@ -147,6 +148,32 @@ public class RecommendActivity extends AppCompatActivity {
             Toast.makeText(RecommendActivity.this, score.get(i), Toast.LENGTH_SHORT).show();
         }
 
+        databaseReference3.child("group").child(groupkey).child("Like_Hate").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                DataSnapshot ds = dataSnapshot;
+                String name = ds.getKey();
+                int like = ds.child("Like").getValue(Integer.class).hashCode();
+                int hate = ds.child("Hate").getValue(Integer.class).hashCode();
+                double value = 3.0 * ((double)like/(double)(like+hate));
+                like_hate.put(name, value);
+            }
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            }
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+            }
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         rec_food.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -182,7 +209,7 @@ public class RecommendActivity extends AppCompatActivity {
                         });
                 }
 
-                mGroupName.setText(groupname);
+                mGroupName.setText(Integer.toString(like_hate.size()));
                 //int max = 0;
                 int max = score.get("Korean");
                 int index = 0;
