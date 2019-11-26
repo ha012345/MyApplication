@@ -338,7 +338,7 @@ public class RecommendActivity extends AppCompatActivity {
     }
 
     //피어슨 점수 계산 함수
-    private double sim_pearson(String group, String other) {
+    private double sim_pearson(String other) {
         ArrayList<String> item = new ArrayList<>();
         //그룹에서 공통으로 평가된 항목 목록 구함
         for(int i=0; i<menu.length; i++){
@@ -379,6 +379,23 @@ public class RecommendActivity extends AppCompatActivity {
         }
         double r = num/den;
         return r;
+    }
+
+    private ArrayList<String> get_recommendations(){
+        Map<String, Double> totals = new HashMap<>();
+        Map<String, Double> simSums = new HashMap<>();
+        ArrayList<String> similar_groups = new ArrayList<>();
+        //모든 그룹에 대해 피어슨 점수 구함
+        for(String key : other_group.keySet()){
+            Double sim = sim_pearson(key);
+            //0 이하 점수는 무시
+            if(sim <= 0){
+                continue;
+            }
+            //유사한 그룹 리스트에 저장
+            similar_groups.add(key);
+        }
+        return similar_groups;
     }
 
     @Override
