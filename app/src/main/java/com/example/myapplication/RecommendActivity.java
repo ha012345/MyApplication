@@ -175,6 +175,49 @@ public class RecommendActivity extends AppCompatActivity {
             }
         });
 
+        databaseReference3.child("group").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String key = dataSnapshot.getKey();
+                Map<String, Double> data = new HashMap<>();
+                if(!key.equals(groupkey)){
+                    for(DataSnapshot ds : dataSnapshot.child("Like_Hate").getChildren()) {
+                        try {
+                            String menu = ds.getKey();
+                            int like = ds.child("Like").getValue(Integer.class).hashCode();
+                            int hate = ds.child("Hate").getValue(Integer.class).hashCode();
+                            double value = 3.0 * ((double) like / (double) (like + hate));
+                            data.put(menu, value);
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }
+                if(!data.isEmpty()){
+                    other_group.put(key, data);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         rec_food.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -210,7 +253,7 @@ public class RecommendActivity extends AppCompatActivity {
                         });
                 }
 
-                mGroupName.setText(Integer.toString(like_hate.size()));
+                mGroupName.setText(Integer.toString(other_group.size()));
                 //int max = 0;
                 int max = score.get("Korean");
                 int index = 0;
