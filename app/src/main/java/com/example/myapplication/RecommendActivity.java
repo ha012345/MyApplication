@@ -48,6 +48,7 @@ public class RecommendActivity extends AppCompatActivity {
     ArrayList<String> menu1 = new ArrayList<>();
     ArrayList<String> today_hate = new ArrayList<>();
     Map<String, Double> like_hate = new HashMap<>();
+    Map<String, Double> like_hate_all = new HashMap<>();
     Map<String, Map<String, Double>> other_group = new HashMap<>();
 //    ArrayList<Integer> score = new ArrayList<>();
     String[] menu = {"Korean", "Snack", "asian", "chicken", "china", "curtlet", "dessert", "fast_food", "lunch_box", "pizza", "pork", "soup"};
@@ -156,7 +157,7 @@ public class RecommendActivity extends AppCompatActivity {
                 String name = ds.getKey();
                 int like = ds.child("Like").getValue(Integer.class).hashCode();
                 int hate = ds.child("Hate").getValue(Integer.class).hashCode();
-                double value = 3.0 * ((double)like/(double)(like+hate));
+                double value = 10.0 * ((double)like/(double)(like+hate));
                 like_hate.put(name, value);
             }
             @Override
@@ -186,7 +187,7 @@ public class RecommendActivity extends AppCompatActivity {
                             String menu = ds.getKey();
                             int like = ds.child("Like").getValue(Integer.class).hashCode();
                             int hate = ds.child("Hate").getValue(Integer.class).hashCode();
-                            double value = 3.0 * ((double) like / (double) (like + hate));
+                            double value = 10.0 * ((double) like / (double) (like + hate));
                             data.put(menu, value);
                         } catch (Exception e) {
 
@@ -252,8 +253,9 @@ public class RecommendActivity extends AppCompatActivity {
                             }
                         });
                 }
-
-                mGroupName.setText(Integer.toString(other_group.size()));
+                ArrayList<String> s = new ArrayList<>();
+                s.addAll(get_recommendations());
+                mGroupName.setText(Integer.toString(like_hate_all.size()));
                 //int max = 0;
                 int max = score.get("Korean");
                 int index = 0;
@@ -268,8 +270,7 @@ public class RecommendActivity extends AppCompatActivity {
                     if(max ==  score.get(key).hashCode())
                         menu1.add(key);
                 }
-
-
+                
                 Random rand = new Random();
                 if(!menu1.isEmpty()) {
                     final_menu = menu1.get(rand.nextInt(menu1.size()));
@@ -437,6 +438,21 @@ public class RecommendActivity extends AppCompatActivity {
             }
             //유사한 그룹 리스트에 저장
             similar_groups.add(key);
+        }
+        like_hate_all.putAll(like_hate);
+        for(int i=0; i<similar_groups.size(); i++){
+            String g = similar_groups.get(i);
+            for(String key : other_group.get(g).keySet()){
+                if(like_hate_all.containsKey(key)){
+                    double origin = like_hate_all.get(key);
+                    double other = other_group.get(g).get(key);
+                    like_hate_all.put(key, origin+other);
+                }
+                else {
+                    double val = other_group.get(g).get(key);
+                    like_hate_all.put(key, val);
+                }
+            }
         }
         return similar_groups;
     }
