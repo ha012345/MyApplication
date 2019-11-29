@@ -49,6 +49,7 @@ public class RecommendActivity extends AppCompatActivity {
     ArrayList<String> today_hate = new ArrayList<>();
     Map<String, Double> like_hate = new HashMap<>();
     Map<String, Double> like_hate_all = new HashMap<>();
+    Map<String, Double> like_hate_final = new HashMap<>();
     Map<String, Map<String, Double>> other_group = new HashMap<>();
 //    ArrayList<Integer> score = new ArrayList<>();
     String[] menu = {"Korean", "Snack", "asian", "chicken", "china", "curtlet", "dessert", "fast_food", "lunch_box", "pizza", "pork", "soup"};
@@ -220,54 +221,64 @@ public class RecommendActivity extends AppCompatActivity {
             }
         });
 
-        rec_food.setOnClickListener(new View.OnClickListener(){
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd");
+        final String formatDate = sdfNow.format(date);
+
+        databaseReference4.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-
-                long now = System.currentTimeMillis();
-                Date date = new Date(now);
-                SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd");
-                final String formatDate = sdfNow.format(date);
-
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (int i=0; i<mem_uid.size(); i++){
-                        databaseReference4.child("User").child(mem_uid.get(i)).child("today_hate_food").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                                    String time = ds.getValue().toString();
-                                    if(time.contains(formatDate)){
-                                        String menu = ds.getKey();
-                                        if(!today_hate.contains(menu)){
-                                            today_hate.add(menu);
-                                            int v = score.get(menu);
-                                            score.remove(menu);
-                                            score.put(menu, v-100);
-                                        }
+                    databaseReference4.child("User").child(mem_uid.get(i)).child("today_hate_food").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                                String time = ds.getValue().toString();
+                                if(time.contains(formatDate)){
+                                    String menu = ds.getKey();
+                                    if(!today_hate.contains(menu)){
+                                        today_hate.add(menu);
+                                        int v = score.get(menu);
+                                        score.remove(menu);
+                                        score.put(menu, v-100);
                                     }
                                 }
                             }
+                        }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
+                        }
+                    });
                 }
-                ArrayList<String> s = new ArrayList<>();
-                s.addAll(get_recommendations());
-                mGroupName.setText(Integer.toString(like_hate_all.size()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        rec_food.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                ArrayList<String> sg = new ArrayList<>();
+                sg.addAll(get_recommendations());
+                mGroupName.setText(Integer.toString(like_hate_final.size()));
                 //int max = 0;
-                int max = score.get("Korean");
+                double max = like_hate_final.get("Korean");
                 int index = 0;
-                if(score.isEmpty())
+                if(like_hate_final.isEmpty())
                     Toast.makeText(RecommendActivity.this, "score is empty", Toast.LENGTH_SHORT).show();
 
-                for(String key : score.keySet()){
-                    if(max < score.get(key).hashCode())
-                        max = score.get(key).hashCode();
+                for(String key : like_hate_final.keySet()){
+                    if(max < like_hate_final.get(key))
+                        max = like_hate_final.get(key);
                 }
-                for(String key : score.keySet()){
-                    if(max ==  score.get(key).hashCode())
+                for(String key : like_hate_final.keySet()){
+                    if(max ==  like_hate_final.get(key))
                         menu1.add(key);
                 }
                 
@@ -305,7 +316,7 @@ public class RecommendActivity extends AppCompatActivity {
                     {
                         imageview.setImageResource(R.drawable.soup);
                     }
-                    textView.setText(final_menu + " " + score.get(final_menu));
+                    textView.setText(final_menu + " " + like_hate_final.get(final_menu));
                 }
                 else
                     Toast.makeText(RecommendActivity.this, "Menu Error", Toast.LENGTH_SHORT).show();
@@ -452,6 +463,17 @@ public class RecommendActivity extends AppCompatActivity {
                     double val = other_group.get(g).get(key);
                     like_hate_all.put(key, val);
                 }
+            }
+        }
+        for(String key : like_hate_all.keySet()){
+            if(score.containsKey(key)){
+                double sc = (double)score.get(key);
+                double lh = like_hate_all.get(key);
+                like_hate_final.put(key, sc + lh);
+            }
+            else {
+                double lh = like_hate_all.get(key);
+                like_hate_final.put(key, lh);
             }
         }
         return similar_groups;
