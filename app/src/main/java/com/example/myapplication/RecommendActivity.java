@@ -465,15 +465,15 @@ public class RecommendActivity extends AppCompatActivity {
                 }
             }
         }
-        for(String key : like_hate_all.keySet()){
-            if(score.containsKey(key)){
+        for(String key : score.keySet()){
+            if(like_hate_all.containsKey(key)){
                 double sc = (double)score.get(key);
                 double lh = like_hate_all.get(key);
                 like_hate_final.put(key, sc + lh);
             }
             else {
-                double lh = like_hate_all.get(key);
-                like_hate_final.put(key, lh);
+                double sc = score.get(key);
+                like_hate_final.put(key, sc);
             }
         }
         return similar_groups;
