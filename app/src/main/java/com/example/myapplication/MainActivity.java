@@ -174,7 +174,7 @@ public class MainActivity extends Activity {
         mButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RecommendActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
                 startActivity(intent);
             }
         });

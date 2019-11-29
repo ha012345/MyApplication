@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_friend"
+        android:enabled="true"
+        android:title="친구"/>
+
+    <item
+        android:id="@+id/action_group"
+        android:enabled="true"
+        android:title="그룹"/>
+
+    <item
+        android:id="@+id/action_today"
+        android:enabled="true"
+        android:title="오늘의 비선호"/>
+
+</menu>
