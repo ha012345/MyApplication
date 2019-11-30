@@ -51,6 +51,7 @@ public class FriendActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private DataSnapshot dataSnapshot;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    ArrayList<String> data = new ArrayList<>();
 
     private String target_email;
     String uid;
@@ -67,10 +68,31 @@ public class FriendActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         mainAdapter = new MainAdapter(arrayList);
         recyclerView.setAdapter(mainAdapter);
-        final ArrayList<String> data = new ArrayList<>();
 
         final EditText et_search_nickname = (EditText)findViewById(R.id.et_search_nickname);
         Button btn_add = (Button)findViewById(R.id.btn_add);
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        databaseReference.child("User").child(user.getUid()).child("friends").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    String email = ds.child("friend_email").getValue(String.class);
+                    String nickname = ds.child("friend_nickname").getValue(String.class);
+                    if(!data.contains(nickname)){
+                        MainData mainData = new MainData(R.mipmap.ic_launcher, email, nickname);
+                        arrayList.add(mainData);
+                        data.add(nickname);
+                        mainAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,33 +127,6 @@ public class FriendActivity extends AppCompatActivity {
                 });
             }
         });
-    }
-
-    // 처음 시작할때 띄우기
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("friends");
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    String email = ds.child("friend_email").getValue().toString();
-                    String nickname = ds.child("friend_nickname").getValue().toString();
-                    MainData mainData = new MainData(R.mipmap.ic_launcher, email, nickname);
-                    arrayList.add(mainData);
-                    mainAdapter.notifyDataSetChanged();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        //if(arrayList.isEmpty())
-        db.addListenerForSingleValueEvent(eventListener);
     }
 
     //사용자 존재 여부 체크 후 추가

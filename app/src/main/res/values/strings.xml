@@ -21,7 +21,8 @@
     <string name="member_register_success">이메일 등록 성공</string>
     <string name="member_register_fail">이메일 등록 실패</string>
 
-    <string name="friend_add_email">이메일을 입력하세요,</string>
+    <string name="friend_add_email">이메일을 입력하세요.</string>
+    <string name="friend_add_nickname">닉네임을 입력하세요.</string>
     <string name="frined_add_button">친구 추가</string>
     <string name="title_activity_main3">Main3Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

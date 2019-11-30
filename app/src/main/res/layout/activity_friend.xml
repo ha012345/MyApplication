@@ -27,7 +27,7 @@
 
         <EditText
             android:id="@+id/et_search_nickname"
-            android:hint="@string/friend_add_email"
+            android:hint="@string/friend_add_nickname"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:inputType="textPersonName"
