@@ -1,13 +1,7 @@
 package com.example.myapplication;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,6 +38,7 @@ public class MainActivity extends Activity {
     Button mButton2;
     Button mButton3;
     Button mButton4;
+    Button mButton5;
 
     int click;
 
@@ -67,9 +62,10 @@ public class MainActivity extends Activity {
         mTextView3 = findViewById(R.id.main_page3);
         mButton = findViewById(R.id.addgroup);
         mButton1 = findViewById(R.id.move_to_friends);
-        mButton2 = findViewById(R.id.move_to_Like);
+        mButton2 = findViewById(R.id.move_to_dislike);
         mButton3 = findViewById(R.id.move_to_recommend);
         mButton4 = findViewById(R.id.btn_goto_map);
+        mButton5 = findViewById(R.id.move_to_like);
 
 
         ArrayList<String> data1 = new ArrayList<>();
@@ -166,7 +162,7 @@ public class MainActivity extends Activity {
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Edit_like.class);
+                Intent intent = new Intent(getApplicationContext(), Edit_dislike.class);
                 startActivity(intent);
             }
         });
@@ -185,6 +181,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String Url = "daummaps://open?page=placeSearch";
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Url));
+                startActivity(intent);
+            }
+        });
+
+        mButton5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Edit_like.class);
                 startActivity(intent);
             }
         });

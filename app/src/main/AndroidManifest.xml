@@ -17,9 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main3Activity"></activity>
+        <activity android:name=".Edit_like"></activity>
+        <activity android:name=".Main3Activity" />
         <activity android:name=".EachGroupActivity" />
-        <activity android:name=".Edit_like" />
+        <activity android:name=".Edit_dislike" />
         <activity android:name=".RecommendActivity" />
         <activity android:name=".GroupActivity" />
         <activity android:name=".FriendActivity" />

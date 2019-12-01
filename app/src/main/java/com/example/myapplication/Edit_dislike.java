@@ -25,7 +25,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class Edit_like extends AppCompatActivity {
+
+public class Edit_dislike extends AppCompatActivity {
 
     CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9, cb10;
     Food_Ranking food_ranking = new Food_Ranking();
@@ -70,9 +71,7 @@ public class Edit_like extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_edit_like);
 
         cb1 = (CheckBox) findViewById(R.id.chk_Korean);
@@ -91,7 +90,7 @@ public class Edit_like extends AppCompatActivity {
         ImageButton button = (ImageButton) findViewById(R.id.btn_edit_like);
         final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        //final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("today_hate_food");
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("today_hate_food");
         //final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank");
 
         /*ValueEventListener eventListener = new ValueEventListener() {
@@ -148,7 +147,7 @@ public class Edit_like extends AppCompatActivity {
                 DatabaseReference db1 = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("Food_Rank");
                 Set key = group.keySet();
                 if (cb1.isChecked() == true) {
-                    //ref.child("Korean").setValue(formatDate);
+                    ref.child("Korean").setValue(formatDate);
 
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
@@ -156,7 +155,7 @@ public class Edit_like extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -169,7 +168,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -179,14 +178,14 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
                 if (cb2.isChecked() == true) {
-                    //ref.child("Snack").setValue(formatDate);
+                    ref.child("Snack").setValue(formatDate);
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("Snack").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -199,7 +198,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -209,14 +208,14 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
                 if (cb3.isChecked() == true) {
-                    //ref.child("dessert").setValue(formatDate);
+                    ref.child("dessert").setValue(formatDate);
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("dessert").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -229,7 +228,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -239,14 +238,14 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
                 if (cb4.isChecked() == true) {
-                    //ref.child("chicken").setValue(formatDate);
+                    ref.child("chicken").setValue(formatDate);
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("chicken").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -259,7 +258,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -269,14 +268,14 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
                 if (cb5.isChecked() == true) {
-                    //ref.child("pizza").setValue(formatDate);
+                    ref.child("pizza").setValue(formatDate);
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("pizza").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -289,7 +288,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -299,14 +298,14 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
                 if (cb6.isChecked() == true) {
-                    //ref.child("asian").setValue(formatDate);
+                    ref.child("asian").setValue(formatDate);
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("asian").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -319,7 +318,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -329,14 +328,14 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
                 if (cb7.isChecked() == true) {
-                    //ref.child("china").setValue(formatDate);
+                    ref.child("china").setValue(formatDate);
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("china").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -349,7 +348,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -359,14 +358,14 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
                 if (cb8.isChecked() == true) {
-                    //ref.child("soup").setValue(formatDate);
+                    ref.child("soup").setValue(formatDate);
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("soup").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -379,7 +378,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -389,14 +388,14 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
                 if (cb9.isChecked() == true) {
-                    //ref.child("lunch_box").setValue(formatDate);
+                    ref.child("lunch_box").setValue(formatDate);
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("lunch_box").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -409,7 +408,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -419,14 +418,14 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
                 if (cb10.isChecked() == true) {
-                    //ref.child("fast_food").setValue(formatDate);
+                    ref.child("fast_food").setValue(formatDate);
                     for(Iterator iterator = key.iterator(); iterator.hasNext();){
                         final String keyname = (String) iterator.next();
                         db.child(keyname).child("data").child("fast_food").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 int val = dataSnapshot.getValue(Integer.class);
-                                dataSnapshot.getRef().setValue(val+1);
+                                dataSnapshot.getRef().setValue(val-1);
                             }
 
                             @Override
@@ -439,7 +438,7 @@ public class Edit_like extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             int val = dataSnapshot.getValue(Integer.class);
-                            dataSnapshot.getRef().setValue(val+1);
+                            dataSnapshot.getRef().setValue(val-1);
                         }
 
                         @Override
@@ -449,7 +448,7 @@ public class Edit_like extends AppCompatActivity {
                     });
                 }
 
-                Toast.makeText(Edit_like.this, "설정되었습니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(Edit_dislike.this, "설정되었습니다.", Toast.LENGTH_LONG).show();
 
                 finish();
             }

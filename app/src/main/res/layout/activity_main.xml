@@ -13,16 +13,25 @@
             android:id="@+id/move_to_recommend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="0dp"
             android:text="추천"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/move_to_Like"
+            android:id="@+id/move_to_like"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="47.5dp"
+            android:text="당일 선호 메뉴"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+        />
+        <Button
+            android:id="@+id/move_to_dislike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="95dp"
             android:text="당일 비선호 메뉴"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +40,7 @@
             android:id="@+id/move_to_friends"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="142.5dp"
             android:text="친구 생성"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +49,7 @@
             android:id="@+id/addgroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="142.5dp"
+            android:layout_marginTop="190dp"
             android:text="그룹 생성"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +58,7 @@
             android:id="@+id/btn_goto_map"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="237.5dp"
             android:text="지도"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -62,52 +71,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="237.5dp"
+        android:layout_marginTop="285dp"
         android:layout_marginBottom="50dp"
         android:orientation="vertical">
 
 
     </LinearLayout>
 
-
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/horizonScroll"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:weightSum="3">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/main_page1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/main_page1"
-                android:layout_width="140dp"
-                android:layout_height="50dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="@string/title_home"
-                android:textAlignment="center"
-                android:textSize="25sp" />
-            <TextView
-                android:id="@+id/main_page2"
-                android:layout_width="140dp"
-                android:layout_height="50dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:textAlignment="center"
-                android:textSize="25sp"
-                android:text="@string/title_dashboard"/>
-            <TextView
-                android:id="@+id/main_page3"
-                android:layout_width="140dp"
-                android:layout_height="50dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:textAlignment="center"
-                android:textSize="25sp"
-                android:text="@string/title_notifications"/>
-        </LinearLayout>
-    </HorizontalScrollView>
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/title_home"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+            android:layout_weight="1.0"
+            />
+        <TextView
+            android:id="@+id/main_page2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+            android:text="@string/title_dashboard"
+            android:layout_weight="1.0"
+            />
+        <TextView
+            android:id="@+id/main_page3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+            android:text="@string/title_notifications"
+            android:layout_weight="1.0"
+            />
+    </LinearLayout>
 
 </RelativeLayout>
