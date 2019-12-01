@@ -26,7 +26,8 @@ import java.util.Date;
 
 public class Edit_like extends AppCompatActivity {
 
-    CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9, cb10;
+    CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9, cb10, cb11, cb12, cb13, cb14;
+    CheckBox cb15, cb16, cb17, cb18, cb19, cb20, cb21, cb22, cb23, cb24, cb25, cb26, cb27, cb28;
     Food_Ranking food_ranking = new Food_Ranking();
     public void koreanClick(View view){
         cb1.toggle();
@@ -58,6 +59,60 @@ public class Edit_like extends AppCompatActivity {
     public void chinaClick(View view){
         cb7.toggle();
     }
+    public void porkClick(View view){
+        cb11.toggle();
+    }
+    public void curtletClick(View view){
+        cb12.toggle();
+    }
+    public void noodleClick(View view){
+        cb13.toggle();
+    }
+    public void ribsClick(View view){
+        cb14.toggle();
+    }
+    public void gukbapClick(View view){
+        cb15.toggle();
+    }
+    public void sandwichClick(View view){
+        cb16.toggle();
+    }
+    public void meatClick(View view){
+        cb17.toggle();
+    }
+    public void tieClick(View view){
+        cb18.toggle();
+    }
+    public void cold_noodleClick(View view){
+        cb19.toggle();
+    }
+    public void udonClick(View view){
+        cb20.toggle();
+    }
+    public void raw_fishClick(View view){
+        cb21.toggle();
+    }
+    public void curryClick(View view){
+        cb22.toggle();
+    }
+    public void skewersClick(View view){
+        cb23.toggle();
+    }
+    public void boiled_chickenClick(View view){
+        cb24.toggle();
+    }
+    public void ramenClick(View view){
+        cb25.toggle();
+    }
+    public void maraClick(View view){
+        cb26.toggle();
+    }
+    public void bossamClick(View view){
+        cb27.toggle();
+    }
+    public void fishClick(View view){
+        cb28.toggle();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +131,24 @@ public class Edit_like extends AppCompatActivity {
         cb8 = (CheckBox) findViewById(R.id.chk_soup);
         cb9 = (CheckBox) findViewById(R.id.chk_lunch_box);
         cb10 = (CheckBox) findViewById(R.id.chk_fast_food);
+        cb11 = (CheckBox) findViewById(R.id.chk_pork);
+        cb12 = (CheckBox) findViewById(R.id.chk_curtlet);
+        cb13 = (CheckBox) findViewById(R.id.chk_noodle);
+        cb14 = (CheckBox) findViewById(R.id.chk_ribs);
+        cb15 = (CheckBox) findViewById(R.id.chk_gukbap);
+        cb16 = (CheckBox) findViewById(R.id.chk_sandwich);
+        cb17 = (CheckBox) findViewById(R.id.chk_meat);
+        cb18 = (CheckBox) findViewById(R.id.chk_tie);
+        cb19 = (CheckBox) findViewById(R.id.chk_cold_noodle);
+        cb20 = (CheckBox) findViewById(R.id.chk_udon);
+        cb21 = (CheckBox) findViewById(R.id.chk_raw_fish);
+        cb22 = (CheckBox) findViewById(R.id.chk_curry);
+        cb23 = (CheckBox) findViewById(R.id.chk_skewers);
+        cb24 = (CheckBox) findViewById(R.id.chk_boiled_chicken);
+        cb25 = (CheckBox) findViewById(R.id.chk_ramen);
+        cb26 = (CheckBox) findViewById(R.id.chk_mara);
+        cb27 = (CheckBox) findViewById(R.id.chk_bossam);
+        cb28 = (CheckBox) findViewById(R.id.chk_fish);
 
         ImageButton button = (ImageButton) findViewById(R.id.btn_edit_like);
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -107,6 +180,7 @@ public class Edit_like extends AppCompatActivity {
                 // nowDate 변수에 값을 저장한다.
                 String formatDate = sdfNow.format(date);
 
+<<<<<<< Updated upstream
                 if (cb1.isChecked() == true) ref.child("Korean").setValue(formatDate);
                 if (cb2.isChecked() == true) ref.child("Snack").setValue(formatDate);
                 if (cb3.isChecked() == true) ref.child("dessert").setValue(formatDate);
@@ -117,6 +191,567 @@ public class Edit_like extends AppCompatActivity {
                 if (cb8.isChecked() == true) ref.child("soup").setValue(formatDate);
                 if (cb9.isChecked() == true) ref.child("lunch_box").setValue(formatDate);
                 if (cb10.isChecked() == true) ref.child("fast_food").setValue(formatDate);
+=======
+                        }
+                    });
+                }
+                if (cb11.isChecked() == true) {
+                    ref.child("pork").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("pork").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("pork").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+                if (cb12.isChecked() == true) {
+                    ref.child("curtlet").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("curtlet").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("curtlet").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb13.isChecked() == true) {
+                    ref.child("noodle").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("noodle").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("noodle").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb14.isChecked() == true) {
+                    ref.child("ribs").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("ribs").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("ribs").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb15.isChecked() == true) {
+                    ref.child("gukbap").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("gukbap").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("gukbap").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb16.isChecked() == true) {
+                    ref.child("sandwich").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("sandwich").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("sandwich").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb17.isChecked() == true) {
+                    ref.child("meat").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("meat").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("meat").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb18.isChecked() == true) {
+                    ref.child("tie").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("tie").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("tie").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb19.isChecked() == true) {
+                    ref.child("cold_noodle").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("cold_noodle").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("cold_noodle").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb20.isChecked() == true) {
+                    ref.child("udon").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("udon").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("udon").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb21.isChecked() == true) {
+                    ref.child("raw_fish").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("raw_fish").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("raw_fish").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb22.isChecked() == true) {
+                    ref.child("curry").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("curry").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("curry").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb23.isChecked() == true) {
+                    ref.child("skewers").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("skewers").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("skewers").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb24.isChecked() == true) {
+                    ref.child("boiled_chicken").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("boiled_chicken").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("boiled_chicken").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb25.isChecked() == true) {
+                    ref.child("ramen").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("ramen").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("ramen").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb26.isChecked() == true) {
+                    ref.child("mara").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("mara").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("mara").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb27.isChecked() == true) {
+                    ref.child("bossam").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("bossam").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("bossam").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                if (cb28.isChecked() == true) {
+                    ref.child("fish").setValue(formatDate);
+                    for(Iterator iterator = key.iterator(); iterator.hasNext();){
+                        final String keyname = (String) iterator.next();
+                        db.child(keyname).child("data").child("fish").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int val = dataSnapshot.getValue(Integer.class);
+                                dataSnapshot.getRef().setValue(val-1);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                    db1.child("fish").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            int val = dataSnapshot.getValue(Integer.class);
+                            dataSnapshot.getRef().setValue(val-1);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+>>>>>>> Stashed changes
 
                 Toast.makeText(Edit_like.this, "설정되었습니다.", Toast.LENGTH_LONG).show();
 
