@@ -39,6 +39,7 @@ public class Friend extends Fragment {
     public DatabaseReference databaseReference = firebaseDatabase.getReference();
     public DataSnapshot dataSnapshot;
     public FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    ArrayList<String> data = new ArrayList<>();
 
     public View view;
     public EditText et_search_nickname;
@@ -61,6 +62,7 @@ public class Friend extends Fragment {
                     String nickname = ds.child("friend_nickname").getValue().toString();
                     MainData mainData = new MainData(R.mipmap.ic_launcher, email, nickname);
                     arrayList.add(mainData);
+                    data.add(nickname);
                     mainAdapter.notifyDataSetChanged();
                 }
             }
@@ -96,7 +98,7 @@ public class Friend extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         btn_add = (Button)view.findViewById(R.id.btn_add_f1);
-        final ArrayList<String> data = new ArrayList<>();
+        //final ArrayList<String> data = new ArrayList<>();
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
