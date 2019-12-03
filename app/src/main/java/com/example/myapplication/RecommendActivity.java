@@ -156,8 +156,13 @@ public class RecommendActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 DataSnapshot ds = dataSnapshot;
                 String name = ds.getKey();
-                int like = ds.child("Like").getValue(Integer.class).hashCode();
-                int hate = ds.child("Hate").getValue(Integer.class).hashCode();
+                int like = 0; int hate = 0;
+                try {
+                    like = ds.child("Like").getValue(Integer.class).hashCode();
+                } catch (Exception e){}
+                try {
+                    hate = ds.child("Hate").getValue(Integer.class).hashCode();
+                } catch (Exception e){}
                 double value = 10.0 * ((double)like/(double)(like+hate));
                 like_hate.put(name, value);
             }
@@ -186,8 +191,13 @@ public class RecommendActivity extends AppCompatActivity {
                     for(DataSnapshot ds : dataSnapshot.child("Like_Hate").getChildren()) {
                         try {
                             String menu = ds.getKey();
-                            int like = ds.child("Like").getValue(Integer.class).hashCode();
-                            int hate = ds.child("Hate").getValue(Integer.class).hashCode();
+                            int like = 0; int hate = 0;
+                            try{
+                                like = ds.child("Like").getValue(Integer.class).hashCode();
+                            }catch (Exception e){}
+                            try {
+                                hate = ds.child("Hate").getValue(Integer.class).hashCode();
+                            } catch (Exception e){}
                             double value = 10.0 * ((double) like / (double) (like + hate));
                             data.put(menu, value);
                         } catch (Exception e) {
