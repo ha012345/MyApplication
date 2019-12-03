@@ -60,7 +60,7 @@
                                     android:layout_gravity="center"
                                     android:fontFamily="cursive"
                                     android:gravity="center"
-                                    android:text="한식"
+                                    android:text="백반"
                                     android:textSize="18sp"
                                     android:textStyle="bold"></TextView>
                             </LinearLayout>
@@ -165,7 +165,7 @@
                                     android:layout_gravity="center"
                                     android:fontFamily="cursive"
                                     android:gravity="center"
-                                    android:text="일식"
+                                    android:text="초밥"
                                     android:textSize="18sp"
                                     android:textStyle="bold"></TextView>
                             </LinearLayout>
@@ -322,7 +322,7 @@
                                     android:layout_gravity="center"
                                     android:fontFamily="cursive"
                                     android:gravity="center"
-                                    android:text="찜·탕"
+                                    android:text="감자탕"
                                     android:textSize="18sp"
                                     android:textStyle="bold"></TextView>
                             </LinearLayout>
@@ -483,7 +483,7 @@
                                     android:layout_gravity="center"
                                     android:fontFamily="cursive"
                                     android:gravity="center"
-                                    android:text="카페"
+                                    android:text="디저트"
                                     android:textSize="18sp"
                                     android:textStyle="bold"></TextView>
                             </LinearLayout>
@@ -546,11 +546,965 @@
                         </FrameLayout>
                     </LinearLayout>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="30dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton12"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/fast_food_food"
+                                            android:onClick="porkClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="패스트푸드"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_pork"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginRight="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        >
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton13"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/curtlet_food"
+                                            android:onClick="curtletClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="돈까스"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_curtlet"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton14"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/noodle_food"
+                                            android:onClick="noodleClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="국수"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_noodle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginRight="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        >
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton15"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/ribs_food"
+                                            android:onClick="ribsClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="닭갈비"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_ribs"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton16"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/gukbap_food"
+                                            android:onClick="gukbapClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="국밥"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_gukbap"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginRight="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        >
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton17"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/sandwich_food"
+                                            android:onClick="sandwichClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="샌드위치"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_sandwich"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton18"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/meat_food"
+                                            android:onClick="meatClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="고깃집"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_meat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginRight="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        >
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton19"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/tie_food"
+                                            android:onClick="tieClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="동남아식"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_tie"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton20"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/cold_noodle_food"
+                                            android:onClick="cold_noodleClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="냉면"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_cold_noodle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginRight="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        >
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton21"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/udon_food"
+                                            android:onClick="udonClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="우동"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_udon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton22"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/raw_fish_food"
+                                            android:onClick="raw_fishClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="회"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_raw_fish"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginRight="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        >
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton23"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/curry_food"
+                                            android:onClick="curryClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="카레"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_curry"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton26"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/ramen_food"
+                                            android:onClick="ramenClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="라면"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_ramen"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginRight="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        >
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton27"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/mara_food"
+                                            android:onClick="maraClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="마라탕"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_mara"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton24"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/skewers_food"
+                                            android:onClick="skewersClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="양꼬치"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_skewers"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginRight="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        >
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton25"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/boiled_chicken_food"
+                                            android:onClick="boiled_chickenClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="백숙"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_boiled_chicken"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp">
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton28"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/bossam_food"
+                                            android:onClick="bossamClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="보쌈·족발"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_bossam"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginRight="10dp">
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="10dp"
+                                        >
+
+                                        <ImageButton
+                                            android:id="@+id/imageButton29"
+                                            android:layout_width="140dp"
+                                            android:layout_height="140dp"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:background="@drawable/fish_food"
+                                            android:onClick="fishClick"
+                                            android:scaleType="fitCenter" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="cursive"
+                                        android:gravity="center"
+                                        android:text="생선구이"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"></TextView>
+                                </LinearLayout>
+                                <CheckBox
+                                    android:id="@+id/chk_fish"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
