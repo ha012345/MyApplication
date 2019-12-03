@@ -183,8 +183,9 @@ public class MainActivity extends Activity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                String Url = "daummaps://open?page=placeSearch";
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Url));
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                //String Url = "daummaps://open?page=placeSearch";
+                //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Url));
                 startActivity(intent);
             }
         });
