@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -19,10 +20,14 @@ public class Main3Activity extends AppCompatActivity {
     private group frag2;
     private today frag3;
 
+    // 뒤로가기 두번누르면 종료
+    private long backKeyPressedTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+        backKeyPressedTime = 0;
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
@@ -52,6 +57,21 @@ public class Main3Activity extends AppCompatActivity {
         setFrag(0); // 첫 프래그먼트 화면 지정
     }
 
+    @Override
+    public void onBackPressed() {
+
+        // 1.5초 안에 한번더 누르면 종료
+        if(System.currentTimeMillis() > backKeyPressedTime + 1500){
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(System.currentTimeMillis() <= backKeyPressedTime + 1500){
+            super.onBackPressed();
+        }
+
+    }
+
     private void setFrag(int n)
     {
         fm = getSupportFragmentManager();
@@ -72,8 +92,6 @@ public class Main3Activity extends AppCompatActivity {
                 ft.replace(R.id.Main_Frame,frag3);
                 ft.commit();
                 break;
-
-
         }
     }
 }

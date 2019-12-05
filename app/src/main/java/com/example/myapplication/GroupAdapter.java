@@ -15,18 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
+public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.CustomViewHolder> {
 
     private ArrayList<MainData> arrayList;
 
-    public MainAdapter(ArrayList<MainData> arrayList) {
+    public GroupAdapter(ArrayList<MainData> arrayList) {
         this.arrayList = arrayList;
     }
 
     @NonNull
     @Override
-    public MainAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GroupAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_friend, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
@@ -35,13 +34,26 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MainAdapter.CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final GroupAdapter.CustomViewHolder holder, int position) {
         holder.iv_profile.setImageResource(arrayList.get(position).getIv_profile());
         holder.tv_name.setText(arrayList.get(position).getTv_name());
         holder.tv_content.setText(arrayList.get(position).getTv_content());
 
+        holder.itemView.setTag(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String curName = holder.tv_name.getText().toString();
+                String curKey = holder.tv_content.getText().toString();
+                Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), EachGroupActivity.class);
+                intent.putExtra("groupkey", curKey);
+                intent.putExtra("groupname", curName);
+                v.getContext().startActivity(intent);
+            }
+        });
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
+        holder.itemView.setOnLongClickListener(new OnLongClickListener(){
 
             @Override
             public boolean onLongClick(View view) {

@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class GroupActivity extends AppCompatActivity {
 
     private ArrayList<MainData> arrayList;
-    private MainAdapter mainAdapter;
+    private GroupAdapter mainAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
 
@@ -60,7 +60,7 @@ public class GroupActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         arrayList = new ArrayList<>();
-        mainAdapter = new MainAdapter(arrayList);
+        mainAdapter = new GroupAdapter(arrayList);
         recyclerView.setAdapter(mainAdapter);
 
 

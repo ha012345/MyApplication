@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class group extends Fragment {
 
     public ArrayList<MainData> arrayList = new ArrayList<>();
-    public MainAdapter mainAdapter;
+    public GroupAdapter mainAdapter;
     public RecyclerView recyclerView;
     public LinearLayoutManager linearLayoutManager;
     public FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -103,11 +103,11 @@ public class group extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         arrayList = new ArrayList<>();
-        mainAdapter = new MainAdapter(arrayList);
+        mainAdapter = new GroupAdapter(arrayList);
         recyclerView.setAdapter(mainAdapter);
 
 
-        mEmailSearch = (EditText) view.findViewById(R.id.emailsearch_f2);
+//        mEmailSearch = (EditText) view.findViewById(R.id.emailsearch_f2);
         mGroupName = (EditText) view.findViewById(R.id.group_name_f2);
 
         return view;
@@ -118,7 +118,7 @@ public class group extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         mButton = (Button) view.findViewById(R.id.button1_f2);
-        mSearch = (Button) view.findViewById(R.id.button2_f2);
+//        mSearch = (Button) view.findViewById(R.id.button2_f2);
 //        mListView = (ListView) findViewById(R.id.listView1);
 //        mButton1 = (Button) findViewById(R.id.button3);
         final ArrayList<String> data = new ArrayList<>();
@@ -180,66 +180,66 @@ public class group extends Fragment {
             }
         });
 
-        mSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email;
-                email = mEmailSearch.getText().toString();
-                String groupname;
-                groupname = mGroupName.getText().toString();
-                databaseReference.child("User").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot val : dataSnapshot.getChildren()){
-                            if(val.child("UserEmail").getValue(String.class).contains(mEmailSearch.getText().toString())){
-
-                                String mem_uid = val.getKey();
-                                if(!data.contains(mEmailSearch.getText().toString())){
-                                    databaseReference.child("group").child(key).child(mGroupName.getText().toString()).push().setValue(mEmailSearch.getText().toString());
-                                    adapter.add(mEmailSearch.getText().toString());
-                                    databaseReference.child("User").child(mem_uid).child("Food_Rank").addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            Food_Ranking food = dataSnapshot.getValue(Food_Ranking.class);
-                                            food_ranking.Korean += food.Korean;
-                                            food_ranking.Snack += food.Snack;
-                                            food_ranking.dessert += food.dessert;
-                                            food_ranking.curtlet += food.curtlet;
-                                            food_ranking.chicken += food.chicken;
-                                            food_ranking.pizza += food.pizza;
-                                            food_ranking.asian += food.asian;
-                                            food_ranking.china += food.china;
-                                            food_ranking.pork += food.pork;
-                                            food_ranking.soup += food.soup;
-                                            food_ranking.lunch_box += food.lunch_box;
-                                            food_ranking.fast_food += food.fast_food;
-                                            databaseReference.child("group").child(key).child("data").setValue(food_ranking);
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                        }
-                                    });
-                                }
-                                databaseReference.child("User").child(mem_uid).child("group").child(key).setValue(mGroupName.getText().toString());
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-                //databaseReference.child("group").child(key).child(groupname).push().setValue(email);
-                //adapter.add(email);
-                //mListView.setAdapter(adapter);
-                //if (databaseReference.child("User").equals(email)) {
-                //databaseReference.child("group").child(groupname).push().setValue(email);
-                //Toast.makeText(GroupActivity.this, R.string.group_register_success, Toast.LENGTH_SHORT).show();
-                //}
-            }
-        });
+//        mSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String email;
+//                email = mEmailSearch.getText().toString();
+//                String groupname;
+//                groupname = mGroupName.getText().toString();
+//                databaseReference.child("User").addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        for (DataSnapshot val : dataSnapshot.getChildren()){
+//                            if(val.child("UserEmail").getValue(String.class).contains(mEmailSearch.getText().toString())){
+//
+//                                String mem_uid = val.getKey();
+//                                if(!data.contains(mEmailSearch.getText().toString())){
+//                                    databaseReference.child("group").child(key).child(mGroupName.getText().toString()).push().setValue(mEmailSearch.getText().toString());
+//                                    adapter.add(mEmailSearch.getText().toString());
+//                                    databaseReference.child("User").child(mem_uid).child("Food_Rank").addListenerForSingleValueEvent(new ValueEventListener() {
+//                                        @Override
+//                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                            Food_Ranking food = dataSnapshot.getValue(Food_Ranking.class);
+//                                            food_ranking.Korean += food.Korean;
+//                                            food_ranking.Snack += food.Snack;
+//                                            food_ranking.dessert += food.dessert;
+//                                            food_ranking.curtlet += food.curtlet;
+//                                            food_ranking.chicken += food.chicken;
+//                                            food_ranking.pizza += food.pizza;
+//                                            food_ranking.asian += food.asian;
+//                                            food_ranking.china += food.china;
+//                                            food_ranking.pork += food.pork;
+//                                            food_ranking.soup += food.soup;
+//                                            food_ranking.lunch_box += food.lunch_box;
+//                                            food_ranking.fast_food += food.fast_food;
+//                                            databaseReference.child("group").child(key).child("data").setValue(food_ranking);
+//                                        }
+//
+//                                        @Override
+//                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                                        }
+//                                    });
+//                                }
+//                                databaseReference.child("User").child(mem_uid).child("group").child(key).setValue(mGroupName.getText().toString());
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
+//                //databaseReference.child("group").child(key).child(groupname).push().setValue(email);
+//                //adapter.add(email);
+//                //mListView.setAdapter(adapter);
+//                //if (databaseReference.child("User").equals(email)) {
+//                //databaseReference.child("group").child(groupname).push().setValue(email);
+//                //Toast.makeText(GroupActivity.this, R.string.group_register_success, Toast.LENGTH_SHORT).show();
+//                //}
+//            }
+//        });
     }
 }

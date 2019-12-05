@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // 파이어베이스 인증 객체 생성
     private FirebaseAuth firebaseAuth;
+    private boolean saveLoginData;
 
     // 이메일과 비밀번호
     private EditText editTextEmail;
@@ -30,6 +33,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private String email = "";
     private String password = "";
+
+    //로그인정보 기억
+    private CheckBox checkBox;
+    private SharedPreferences appData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,16 @@ public class LoginActivity extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.et_eamil);
         editTextPassword = findViewById(R.id.et_password);
+
+
+        checkBox = findViewById(R.id.check_auto);
+        appData = getSharedPreferences("appData", MODE_PRIVATE);
+        load();
+        if(saveLoginData){
+            editTextEmail.setText(email);
+            editTextPassword.setText(password);
+            checkBox.setChecked(saveLoginData);
+        }
     }
 
     public void singUp(View view) {
@@ -111,8 +128,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 로그인 성공
+                            save();
                             Toast.makeText(LoginActivity.this, R.string.success_login, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
                             startActivity(intent);
                             finish();
 
@@ -122,5 +140,19 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void save(){
+        SharedPreferences.Editor editor = appData.edit();
+        editor.putBoolean("SAVE_LOGIN_DATA", checkBox.isChecked());
+        editor.putString("ID", editTextEmail.getText().toString().trim());
+        editor.putString("PWD", editTextPassword.getText().toString().trim());
+        editor.apply();
+    }
+
+    private void load(){
+        saveLoginData = appData.getBoolean("SAVE_LOGIN_DATA", false);
+        email = appData.getString("ID", "");
+        password = appData.getString("PWD", "");
     }
 }
