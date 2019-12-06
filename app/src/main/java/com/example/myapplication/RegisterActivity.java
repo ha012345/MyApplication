@@ -44,7 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
     Food_Ranking food_ranking = new Food_Ranking();
     Food_Ranking hating_food = new Food_Ranking();
     CheckBox checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6, checkbox7;
-    CheckBox checkbox8, checkbox9, checkbox10;
+    CheckBox checkbox8, checkbox9, checkbox10, checkbox11, checkbox12, checkbox13, checkbox14, checkbox15;
+    CheckBox checkbox16, checkbox17, checkbox18, checkbox19, checkbox20, checkbox21, checkbox22, checkbox23;
+    CheckBox checkbox24, checkbox25, checkbox26, checkbox27, checkbox28;
     RadioButton radioButton;
     private EditText editNickName;
     //
@@ -145,6 +147,78 @@ public class RegisterActivity extends AppCompatActivity {
         {
             food_ranking.china = -1000;
         }
+        if(checkbox11.isChecked())
+        {
+            food_ranking.pork = -1000;
+        }
+        if(checkbox12.isChecked())
+        {
+            food_ranking.curtlet = -1000;
+        }
+        if(checkbox13.isChecked())
+        {
+            food_ranking.noodle = -1000;
+        }
+        if(checkbox14.isChecked())
+        {
+            food_ranking.ribs = -1000;
+        }
+        if(checkbox15.isChecked())
+        {
+            food_ranking.gukbap = -1000;
+        }
+        if(checkbox16.isChecked())
+        {
+            food_ranking.sandwich = -1000;
+        }
+        if(checkbox17.isChecked())
+        {
+            food_ranking.meat = -1000;
+        }
+        if(checkbox18.isChecked())
+        {
+            food_ranking.tie = -1000;
+        }
+        if(checkbox19.isChecked())
+        {
+            food_ranking.cold_noodle = -1000;
+        }
+        if(checkbox20.isChecked())
+        {
+            food_ranking.udon = -1000;
+        }
+        if(checkbox21.isChecked())
+        {
+            food_ranking.raw_fish = -1000;
+        }
+        if(checkbox22.isChecked())
+        {
+            food_ranking.curry = -1000;
+        }
+        if(checkbox23.isChecked())
+        {
+            food_ranking.ramen = -1000;
+        }
+        if(checkbox24.isChecked())
+        {
+            food_ranking.mara = -1000;
+        }
+        if(checkbox25.isChecked())
+        {
+            food_ranking.skewers = -1000;
+        }
+        if(checkbox26.isChecked())
+        {
+            food_ranking.boiled_chicken = -1000;
+        }
+        if(checkbox27.isChecked())
+        {
+            food_ranking.bossam = -1000;
+        }
+        if(checkbox28.isChecked())
+        {
+            food_ranking.fish = -1000;
+        }
         if(isValidEmail() && isValidPasswd()) {
             createUser(email, password);
         }
@@ -179,6 +253,24 @@ public class RegisterActivity extends AppCompatActivity {
         checkbox8 = (CheckBox) findViewById(R.id.checkBox8);
         checkbox9 = (CheckBox) findViewById(R.id.checkBox9);
         checkbox10 = (CheckBox) findViewById(R.id.checkBox10);
+        checkbox11 = (CheckBox) findViewById(R.id.checkBox11);
+        checkbox12 = (CheckBox) findViewById(R.id.checkBox12);
+        checkbox13 = (CheckBox) findViewById(R.id.checkBox13);
+        checkbox14 = (CheckBox) findViewById(R.id.checkBox14);
+        checkbox15 = (CheckBox) findViewById(R.id.checkBox15);
+        checkbox16 = (CheckBox) findViewById(R.id.checkBox16);
+        checkbox17 = (CheckBox) findViewById(R.id.checkBox17);
+        checkbox18 = (CheckBox) findViewById(R.id.checkBox18);
+        checkbox19 = (CheckBox) findViewById(R.id.checkBox19);
+        checkbox20 = (CheckBox) findViewById(R.id.checkBox20);
+        checkbox21 = (CheckBox) findViewById(R.id.checkBox21);
+        checkbox22 = (CheckBox) findViewById(R.id.checkBox22);
+        checkbox23 = (CheckBox) findViewById(R.id.checkBox23);
+        checkbox24 = (CheckBox) findViewById(R.id.checkBox24);
+        checkbox25 = (CheckBox) findViewById(R.id.checkBox25);
+        checkbox26 = (CheckBox) findViewById(R.id.checkBox26);
+        checkbox27 = (CheckBox) findViewById(R.id.checkBox27);
+        checkbox28 = (CheckBox) findViewById(R.id.checkBox28);
         radioButton = (RadioButton) findViewById(R.id.radioButton);
 
         checkbox1.setOnClickListener(new CheckBox.OnClickListener() {
@@ -241,6 +333,114 @@ public class RegisterActivity extends AppCompatActivity {
                 radioButton.setChecked(false);
             }
         });
+        checkbox11.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox12.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox13.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox14.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox15.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox16.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox17.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox18.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox19.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox20.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox21.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox22.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox23.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox24.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox25.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox26.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox27.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
+        checkbox28.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioButton.setChecked(false);
+            }
+        });
 
         radioButton.setOnClickListener(new RadioButton.OnClickListener() {
             @Override
@@ -255,6 +455,24 @@ public class RegisterActivity extends AppCompatActivity {
                 checkbox8.setChecked(false);
                 checkbox9.setChecked(false);
                 checkbox10.setChecked(false);
+                checkbox11.setChecked(false);
+                checkbox12.setChecked(false);
+                checkbox13.setChecked(false);
+                checkbox14.setChecked(false);
+                checkbox15.setChecked(false);
+                checkbox16.setChecked(false);
+                checkbox17.setChecked(false);
+                checkbox18.setChecked(false);
+                checkbox19.setChecked(false);
+                checkbox20.setChecked(false);
+                checkbox21.setChecked(false);
+                checkbox22.setChecked(false);
+                checkbox23.setChecked(false);
+                checkbox24.setChecked(false);
+                checkbox25.setChecked(false);
+                checkbox26.setChecked(false);
+                checkbox27.setChecked(false);
+                checkbox28.setChecked(false);
             }
         });
 

@@ -121,50 +121,50 @@
                 android:focusableInTouchMode="false"
                 android:layout_marginTop="10dp"
                 android:hint="생년월일"/>
+
             <TextView
                 android:id="@+id/tv_food"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/et_birth"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="50dp"
-                android:textSize="18dp"
-                android:text="혐오메뉴" />
+                android:text="혐오 및 알러지 메뉴선택"
+                android:textSize="18dp" />
 
             <LinearLayout
                 android:layout_width = "match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/tv_food">
+
             <CheckBox
                 android:id="@+id/checkBox1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="한식"
-
-                android:layout_marginLeft="45dp"/>
+                android:layout_marginLeft="44dp"
+                android:text="백반" />
 
             <CheckBox
                 android:id="@+id/checkBox2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:text="분식" />
 
-            <CheckBox
-                android:id="@+id/checkBox3"
+                <CheckBox
+                android:id="@+id/checkBox16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="일식" />
-            <CheckBox
-                android:id="@+id/checkBox4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="11.5dp"
-                android:text="치킨" />
+                android:text="샌드위치" />
+
+                <CheckBox
+                    android:id="@+id/checkBox7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="도시락" />
+
             </LinearLayout>>
 
             <LinearLayout
@@ -172,27 +172,170 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/checkBox1">
+
+                <CheckBox
+                    android:id="@+id/checkBox26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:text="백숙" />
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:text="치킨" />
                 <CheckBox
                     android:id="@+id/checkBox5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="45dp"
+                    android:layout_marginLeft="1dp"
                     android:text="피자" />
 
+                <CheckBox
+                    android:id="@+id/checkBox27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:text="보쌈 · 족발" />
+            </LinearLayout>>
+            <LinearLayout
+                android:layout_width = "match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/checkBox6">
+                <CheckBox
+                    android:id="@+id/checkBox11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:text="패스트푸드" />
+                <CheckBox
+                    android:id="@+id/checkBox22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="카레" />
+                <CheckBox
+                    android:id="@+id/checkBox13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="국수" />
+                <CheckBox
+                    android:id="@+id/checkBox9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="중식" />
+            </LinearLayout>>
+            <LinearLayout
+                android:layout_width = "match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/checkBox11">
+                <CheckBox
+                    android:id="@+id/checkBox15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:text="국밥" />
+
+                <CheckBox
+                    android:id="@+id/checkBox12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="돈까스" />
+                <CheckBox
+                    android:id="@+id/checkBox17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고기류" />
+                <CheckBox
+                    android:id="@+id/checkBox14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="닭갈비" />
+
+            </LinearLayout>>
+            <LinearLayout
+                android:layout_width = "match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/checkBox15">
+                <CheckBox
+                    android:id="@+id/checkBox19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:text="냉면" />
+
+                <CheckBox
+                    android:id="@+id/checkBox20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="우동" />
+
+                <CheckBox
+                    android:id="@+id/checkBox10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="디저트" />
+
+                <CheckBox
+                    android:id="@+id/checkBox18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="동남아식" />
+            </LinearLayout>>
+            <LinearLayout
+                android:layout_width = "match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/checkBox19">
+                <CheckBox
+                    android:id="@+id/checkBox24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:text="마라탕" />
+                <CheckBox
+                    android:id="@+id/checkBox21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="생선회" />
+
+                <CheckBox
+                    android:id="@+id/checkBox25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="양꼬치" />
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="초밥" />
+            </LinearLayout>>
+
+            <LinearLayout
+                android:layout_width = "match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/checkBox24">
+                <CheckBox
+                    android:id="@+id/checkBox28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:text="생선구이" />
                 <CheckBox
                     android:id="@+id/checkBox6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="찜·탕"
-                    />
+                    android:text="감자탕" />
                 <CheckBox
-                    android:id="@+id/checkBox7"
+                    android:id="@+id/checkBox23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="도시락" />
-
+                    android:text="라면" />
                 <CheckBox
                     android:id="@+id/checkBox8"
                     android:layout_width="wrap_content"
@@ -200,40 +343,28 @@
                     android:text="양식" />
             </LinearLayout>>
 
-        <LinearLayout
-            android:layout_width = "match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/checkBox5">
-            <CheckBox
-                android:id="@+id/checkBox10"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width = "match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="45dp"
-                android:text="카페" />
-            <CheckBox
-                android:id="@+id/checkBox9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="중식" />
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="없음"
-                android:layout_marginLeft="5dp"
-                android:layout_below="@+id/checkBox6" />
-        </LinearLayout>
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/checkBox28">
 
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="없음"
+                    android:layout_marginLeft="44dp" />
+
+            </LinearLayout>>
             <Button
                 android:id="@+id/btn_signUp"
                 android:background="@drawable/bg_button"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/spinner"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
+                android:layout_marginBottom="44dp"
                 android:layout_weight="1"
                 android:onClick="singUp"
                 android:text="가입하기" />
