@@ -112,6 +112,22 @@ public class EachGroupActivity extends AppCompatActivity {
                                             food_ranking.soup += food.soup;
                                             food_ranking.lunch_box += food.lunch_box;
                                             food_ranking.fast_food += food.fast_food;
+                                            food_ranking.noodle += food.noodle;
+                                            food_ranking.ribs += food.ribs;
+                                            food_ranking.gukbap += food.gukbap;
+                                            food_ranking.sandwich += food.sandwich;
+                                            food_ranking.meat += food.meat;
+                                            food_ranking.tie += food.tie;
+                                            food_ranking.cold_noodle += food.cold_noodle;
+                                            food_ranking.udon += food.udon;
+                                            food_ranking.raw_fish += food.raw_fish;
+                                            food_ranking.curry += food.curry;
+                                            food_ranking.skewers += food.skewers;
+                                            food_ranking.boiled_chicken += food.boiled_chicken;
+                                            food_ranking.ramen += food.ramen;
+                                            food_ranking.mara += food.mara;
+                                            food_ranking.bossam += food.bossam;
+                                            food_ranking.fish += food.fish;
                                             databaseReference.child("group").child(groupkey).child("data").setValue(food_ranking);
                                         }
 

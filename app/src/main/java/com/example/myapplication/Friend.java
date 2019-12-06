@@ -60,10 +60,12 @@ public class Friend extends Fragment {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     String email = ds.child("friend_email").getValue().toString();
                     String nickname = ds.child("friend_nickname").getValue().toString();
-                    MainData mainData = new MainData(R.mipmap.ic_launcher, email, nickname);
-                    arrayList.add(mainData);
-                    data.add(nickname);
-                    mainAdapter.notifyDataSetChanged();
+                    if(!data.contains(nickname)) {
+                        MainData mainData = new MainData(R.mipmap.ic_launcher, email, nickname);
+                        arrayList.add(mainData);
+                        data.add(nickname);
+                        mainAdapter.notifyDataSetChanged();
+                    }
                 }
             }
             @Override
@@ -73,6 +75,7 @@ public class Friend extends Fragment {
         };
         if(arrayList.isEmpty())
             db.addListenerForSingleValueEvent(eventListener);
+
     }
 
     @Override

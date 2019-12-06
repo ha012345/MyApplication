@@ -85,6 +85,22 @@ public class GroupActivity extends AppCompatActivity {
         food_ranking.soup = 0;
         food_ranking.lunch_box = 0;
         food_ranking.fast_food = 0;
+        food_ranking.noodle = 0;
+        food_ranking.ribs = 0;
+        food_ranking.gukbap = 0;
+        food_ranking.sandwich = 0;
+        food_ranking.meat = 0;
+        food_ranking.tie = 0;
+        food_ranking.cold_noodle = 0;
+        food_ranking.udon = 0;
+        food_ranking.raw_fish = 0;
+        food_ranking.curry = 0;
+        food_ranking.skewers = 0;
+        food_ranking.boiled_chicken = 0;
+        food_ranking.ramen = 0;
+        food_ranking.mara = 0;
+        food_ranking.bossam = 0;
+        food_ranking.fish = 0;
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +134,22 @@ public class GroupActivity extends AppCompatActivity {
                                 food_ranking.soup += food.soup;
                                 food_ranking.lunch_box += food.lunch_box;
                                 food_ranking.fast_food += food.fast_food;
+                                food_ranking.noodle += food.noodle;
+                                food_ranking.ribs += food.ribs;
+                                food_ranking.gukbap += food.gukbap;
+                                food_ranking.sandwich += food.sandwich;
+                                food_ranking.meat += food.meat;
+                                food_ranking.tie += food.tie;
+                                food_ranking.cold_noodle += food.cold_noodle;
+                                food_ranking.udon += food.udon;
+                                food_ranking.raw_fish += food.raw_fish;
+                                food_ranking.curry += food.curry;
+                                food_ranking.skewers += food.skewers;
+                                food_ranking.boiled_chicken += food.boiled_chicken;
+                                food_ranking.ramen += food.ramen;
+                                food_ranking.mara += food.mara;
+                                food_ranking.bossam += food.bossam;
+                                food_ranking.fish += food.fish;
                                 databaseReference.child("group").child(key).child("data").setValue(food_ranking);
                             }
 
@@ -175,6 +207,22 @@ public class GroupActivity extends AppCompatActivity {
                                             food_ranking.soup += food.soup;
                                             food_ranking.lunch_box += food.lunch_box;
                                             food_ranking.fast_food += food.fast_food;
+                                            food_ranking.noodle += food.noodle;
+                                            food_ranking.ribs += food.ribs;
+                                            food_ranking.gukbap += food.gukbap;
+                                            food_ranking.sandwich += food.sandwich;
+                                            food_ranking.meat += food.meat;
+                                            food_ranking.tie += food.tie;
+                                            food_ranking.cold_noodle += food.cold_noodle;
+                                            food_ranking.udon += food.udon;
+                                            food_ranking.raw_fish += food.raw_fish;
+                                            food_ranking.curry += food.curry;
+                                            food_ranking.skewers += food.skewers;
+                                            food_ranking.boiled_chicken += food.boiled_chicken;
+                                            food_ranking.ramen += food.ramen;
+                                            food_ranking.mara += food.mara;
+                                            food_ranking.bossam += food.bossam;
+                                            food_ranking.fish += food.fish;
                                             databaseReference.child("group").child(key).child("data").setValue(food_ranking);
                                         }
 

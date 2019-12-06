@@ -52,7 +52,8 @@ public class RecommendActivity extends AppCompatActivity {
     Map<String, Double> like_hate_final = new HashMap<>();
     Map<String, Map<String, Double>> other_group = new HashMap<>();
 //    ArrayList<Integer> score = new ArrayList<>();
-    String[] menu = {"Korean", "Snack", "asian", "chicken", "china", "curtlet", "dessert", "fast_food", "lunch_box", "pizza", "pork", "soup"};
+    String[] menu = {"Korean", "Snack", "asian", "chicken", "china", "curtlet", "dessert", "fast_food", "lunch_box", "pizza", "pork", "soup",
+"noodle", "ribs", "gukbap", "sandwich", "meat", "tie", "cold_noodle", "udon", "raw_fish", "curry", "skewers", "boiled_chicken", "ramen", "mara", "bossam", "fish"};
     //ArrayList<Food_Ranking> score = new ArrayList<>();
     String final_menu;
 
