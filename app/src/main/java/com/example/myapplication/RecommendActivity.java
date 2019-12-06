@@ -277,7 +277,7 @@ public class RecommendActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ArrayList<String> sg = new ArrayList<>();
                 sg.addAll(get_recommendations());
-                mGroupName.setText(Integer.toString(like_hate_final.size()));
+                mGroupName.setText(Integer.toString(sg.size()));
                 //int max = 0;
                 double max = like_hate_final.get("Korean");
                 int index = 0;
@@ -296,36 +296,58 @@ public class RecommendActivity extends AppCompatActivity {
                 Random rand = new Random();
                 if(!menu1.isEmpty()) {
                     final_menu = menu1.get(rand.nextInt(menu1.size()));
-                    if(final_menu.equals("Korean"))
-                    {
+                    if(final_menu.equals("Korean")) {
                         imageview.setImageResource(R.drawable.rice);
-                    }else if(final_menu.equals("Snack"))
-                    {
+                    }else if(final_menu.equals("Snack")) {
                         imageview.setImageResource(R.drawable.snack);
-                    }else if(final_menu.equals("asian"))
-                    {
+                    }else if(final_menu.equals("asian")){
                         imageview.setImageResource(R.drawable.sushi);
-                    }else if(final_menu.equals("chicken"))
-                    {
+                    }else if(final_menu.equals("chicken")) {
                         imageview.setImageResource(R.drawable.chicken);
-                    }else if(final_menu.equals("china"))
-                    {
+                    }else if(final_menu.equals("china")) {
                         imageview.setImageResource(R.drawable.china);
-                    }else if(final_menu.equals("dessert"))
-                    {
+                    }else if(final_menu.equals("dessert")) {
                         imageview.setImageResource(R.drawable.dessert);
-                    }else if(final_menu.equals("fast_food"))
-                    {
+                    }else if(final_menu.equals("fast_food")) {
                         imageview.setImageResource(R.drawable.steak);
-                    }else if(final_menu.equals("lunch_box"))
-                    {
+                    }else if(final_menu.equals("lunch_box")) {
                         imageview.setImageResource(R.drawable.lunch_box);
-                    }else if(final_menu.equals("pizza"))
-                    {
+                    }else if(final_menu.equals("pizza")) {
                         imageview.setImageResource(R.drawable.pizza);
-                    }else if(final_menu.equals("soup"))
-                    {
+                    }else if(final_menu.equals("soup")) {
                         imageview.setImageResource(R.drawable.soup);
+                    }else if(final_menu.equals("noodle")){
+                        imageview.setImageResource(R.drawable.noodle);
+                    }else if(final_menu.equals("ribs")){
+                        imageview.setImageResource(R.drawable.ribs);
+                    }else if(final_menu.equals("gukbap")){
+                        imageview.setImageResource(R.drawable.gukbap);
+                    }else if(final_menu.equals("sandwich")){
+                        imageview.setImageResource(R.drawable.sandwich);
+                    }else if(final_menu.equals("meat")){
+                        imageview.setImageResource(R.drawable.meat);
+                    }else if(final_menu.equals("tie")){
+                        imageview.setImageResource(R.drawable.tie);
+                    }else if(final_menu.equals("cold_noodle")){
+                        imageview.setImageResource(R.drawable.cold_noodle);
+                    }else if(final_menu.equals("udon")){
+                        imageview.setImageResource(R.drawable.udon);
+                    }else if(final_menu.equals("raw_fish")){
+                        imageview.setImageResource(R.drawable.raw_fish);
+                    }else if(final_menu.equals("curry")){
+                        imageview.setImageResource(R.drawable.curry);
+                    }else if(final_menu.equals("skewers")){
+                        imageview.setImageResource(R.drawable.skewers);
+                    }else if(final_menu.equals("boiled_chicken")){
+                        imageview.setImageResource(R.drawable.boiled_chicken);
+                    }else if(final_menu.equals("ramen")){
+                        imageview.setImageResource(R.drawable.ramen);
+                    }else if(final_menu.equals("mara")){
+                        imageview.setImageResource(R.drawable.mara);
+                    }else if(final_menu.equals("bossam")){
+                        imageview.setImageResource(R.drawable.bossam);
+                    }else if(final_menu.equals("fish")){
+                        imageview.setImageResource(R.drawable.fish);
                     }
                     textView.setText(final_menu + " " + like_hate_final.get(final_menu));
                 }
@@ -461,7 +483,7 @@ public class RecommendActivity extends AppCompatActivity {
             //유사한 그룹 리스트에 저장
             similar_groups.add(key);
         }
-        like_hate_all.putAll(like_hate);
+        //like_hate_all.putAll(like_hate);
         for(int i=0; i<similar_groups.size(); i++){
             String g = similar_groups.get(i);
             for(String key : other_group.get(g).keySet()){
