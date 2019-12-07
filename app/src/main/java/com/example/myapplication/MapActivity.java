@@ -8,7 +8,9 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -46,61 +48,42 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 
-
 public class MapActivity extends AppCompatActivity {
 
-    private static final String URL_NAVER_MAP = "https://m.map.naver.com/";
+    private static final String URL_NAVER_MAP = "https://m.map.naver.com/search2/search.nhn?query=백반&siteSort=1&sm=clk";
     private static final String URL_DAUM_MAP = "https://m.map.daum.net/";
     private static final int MY_PERMISSION_REQUEST_LOCATION = 0;
     private WebView webView;
+    String final_menu;
 
     @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_map);
-        int permissionCheck = ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION);
-
-
-        if (permissionCheck!= PackageManager.PERMISSION_GRANTED) {
-
-            //Toast.makeText(this,"권한 승인이 필요합니다",Toast.LENGTH_LONG).show();
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                //Toast.makeText(this,"위치 정보 권한이 필요합니다.",Toast.LENGTH_LONG).show();
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSION_REQUEST_LOCATION);
-                //Toast.makeText(this,"위치 정보 권한이 필요합니다.",Toast.LENGTH_LONG).show();
-
-            }
-        }
-
-
+        Intent intent = getIntent();
+        final_menu = (String) intent.getExtras().get("final_menu");
         webView = (WebView) findViewById(R.id.webview);
-
-    }
-
-    private void initWebView(){
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
-        webView.setWebChromeClient(new WebChromeClient(){
-            @Override
-            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-                super.onGeolocationPermissionsShowPrompt(origin, callback);
-                callback.invoke(origin, true, false);
-            }
-        });
-        webView.loadUrl(URL_NAVER_MAP);
+        webView.loadUrl("https://m.map.naver.com/search2/search.nhn?query="+final_menu+"&siteSort=0&sm=clk");
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClientClass());
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//뒤로가기 버튼 이벤트
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {//웹뷰에서 뒤로가기 버튼을 누르면 뒤로가짐
+            webView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == MY_PERMISSION_REQUEST_LOCATION){
-            initWebView();
+    private class WebViewClientClass extends WebViewClient {//페이지 이동
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Log.d("check URL",url);
+            view.loadUrl(url);
+            return true;
         }
     }
 

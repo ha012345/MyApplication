@@ -67,6 +67,7 @@ public class RecommendActivity extends AppCompatActivity {
         groupkey = (String) intent.getExtras().get("groupkey");
 
         Button rec_food = (Button)findViewById(R.id.btn_recommend);
+        Button map_food = (Button)findViewById(R.id.btn_map);
         mGroupName = (TextView)findViewById(R.id.text1);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("Food_Rank");
@@ -422,6 +423,14 @@ public class RecommendActivity extends AppCompatActivity {
             private void onCancelled(@NonNull DatabaseError databaseError) {
             }
 
+        });
+        map_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                intent.putExtra("final_menu", final_menu);
+                startActivity(intent);
+            }
         });
     }
 
