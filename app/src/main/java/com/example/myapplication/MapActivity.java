@@ -1,47 +1,13 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Pattern;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-
-import android.Manifest;
-import android.content.pm.PackageManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -55,6 +21,33 @@ public class MapActivity extends AppCompatActivity {
     private static final int MY_PERMISSION_REQUEST_LOCATION = 0;
     private WebView webView;
     String final_menu;
+    class MyChromeClient extends WebChromeClient
+    {
+        @Override
+        public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+            // Should implement this function.
+            final String myOrigin = origin;
+            final GeolocationPermissions.Callback myCallback = callback;
+            AlertDialog.Builder builder = new AlertDialog.Builder(MapActivity.this);
+
+            builder.setTitle("GPS");
+            builder.setMessage("Allow Current Location?");
+            builder.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    myCallback.invoke(myOrigin, true, false);
+                }
+            });
+
+            builder.setNegativeButton("Decline", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    myCallback.invoke(myOrigin, false, false);
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle saveInstanceState) {
@@ -64,9 +57,14 @@ public class MapActivity extends AppCompatActivity {
         final_menu = (String) intent.getExtras().get("final_menu");
         webView = (WebView) findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://m.map.naver.com/search2/search.nhn?query="+final_menu+"&siteSort=0&sm=clk");
-        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebChromeClient(new MyChromeClient());
         webView.setWebViewClient(new WebViewClientClass());
+        if(final_menu != null){
+            webView.loadUrl("https://m.map.naver.com/search2/search.nhn?query="+final_menu+"&siteSort=0&sm=clk#/map/1");
+        }
+        else {
+            webView.loadUrl("https://m.map.naver.com");
+        }
     }
 
     @Override
