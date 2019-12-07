@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1029505642319:android:77001b67b9292a613a9f3a",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "com.tujuh.tujuh_capstone_project"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1029505642319-anmav5va4t7sggdckvvg5irj8146t1ch.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.myapplication",
+            "package_name": "com.tujuh.tujuh_capstone_project",
             "certificate_hash": "a5c4a5a039735d906f3ddeeb3b9811139ae61379"
           }
         },
