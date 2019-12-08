@@ -297,58 +297,84 @@ public class RecommendActivity extends AppCompatActivity {
                     final_menu = menu1.get(rand.nextInt(menu1.size()));
                     if(final_menu.equals("Korean")) {
                         imageview.setImageResource(R.drawable.rice);
+                        final_menu = "백반";
                     }else if(final_menu.equals("Snack")) {
                         imageview.setImageResource(R.drawable.snack);
+                        final_menu = "분식";
                     }else if(final_menu.equals("asian")){
                         imageview.setImageResource(R.drawable.sushi);
+                        final_menu = "초밥";
                     }else if(final_menu.equals("chicken")) {
                         imageview.setImageResource(R.drawable.chicken);
+                        final_menu = "치킨";
                     }else if(final_menu.equals("china")) {
                         imageview.setImageResource(R.drawable.china);
+                        final_menu = "중식";
                     }else if(final_menu.equals("dessert")) {
                         imageview.setImageResource(R.drawable.dessert);
+                        final_menu = "디저트";
                     }else if(final_menu.equals("fast_food")) {
                         imageview.setImageResource(R.drawable.steak);
+                        final_menu = "양식";
                     }else if(final_menu.equals("lunch_box")) {
                         imageview.setImageResource(R.drawable.lunch_box);
+                        final_menu = "도시락";
                     }else if(final_menu.equals("pizza")) {
                         imageview.setImageResource(R.drawable.pizza);
+                        final_menu = "피자";
                     }else if(final_menu.equals("soup")) {
                         imageview.setImageResource(R.drawable.soup);
+                        final_menu = "감자탕";
                     }else if(final_menu.equals("noodle")){
                         imageview.setImageResource(R.drawable.noodle);
+                        final_menu = "국수";
                     }else if(final_menu.equals("ribs")){
                         imageview.setImageResource(R.drawable.ribs);
+                        final_menu = "닭갈비";
                     }else if(final_menu.equals("gukbap")){
                         imageview.setImageResource(R.drawable.gukbap);
+                        final_menu = "국밥";
                     }else if(final_menu.equals("sandwich")){
                         imageview.setImageResource(R.drawable.sandwich);
+                        final_menu = "샌드위치";
                     }else if(final_menu.equals("meat")){
                         imageview.setImageResource(R.drawable.meat);
+                        final_menu = "고기류";
                     }else if(final_menu.equals("tie")){
                         imageview.setImageResource(R.drawable.tie);
+                        final_menu = "동남아식";
                     }else if(final_menu.equals("cold_noodle")){
                         imageview.setImageResource(R.drawable.cold_noodle);
+                        final_menu = "냉면";
                     }else if(final_menu.equals("udon")){
                         imageview.setImageResource(R.drawable.udon);
+                        final_menu = "우동";
                     }else if(final_menu.equals("raw_fish")){
                         imageview.setImageResource(R.drawable.raw_fish);
+                        final_menu = "회";
                     }else if(final_menu.equals("curry")){
                         imageview.setImageResource(R.drawable.curry);
+                        final_menu = "카레";
                     }else if(final_menu.equals("skewers")){
                         imageview.setImageResource(R.drawable.skewers);
+                        final_menu = "양꼬치";
                     }else if(final_menu.equals("boiled_chicken")){
                         imageview.setImageResource(R.drawable.boiled_chicken);
+                        final_menu = "백숙";
                     }else if(final_menu.equals("ramen")){
                         imageview.setImageResource(R.drawable.ramen);
+                        final_menu = "라면";
                     }else if(final_menu.equals("mara")){
                         imageview.setImageResource(R.drawable.mara);
+                        final_menu = "마라탕";
                     }else if(final_menu.equals("bossam")){
                         imageview.setImageResource(R.drawable.bossam);
+                        final_menu = "족발·보쌈";
                     }else if(final_menu.equals("fish")){
                         imageview.setImageResource(R.drawable.fish);
+                        final_menu = "생선구이";
                     }
-                    textView.setText(final_menu + " " + like_hate_final.get(final_menu));
+                    textView.setText(final_menu); // + " " + like_hate_final.get(final_menu));
                 }
                 else
                     Toast.makeText(RecommendActivity.this, "Menu Error", Toast.LENGTH_SHORT).show();
