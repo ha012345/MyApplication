@@ -144,71 +144,76 @@ public class group extends Fragment {
             @Override
             public void onClick(View v) {
                 groupname = mGroupName.getText().toString();
-                DatabaseReference newDatabaseReference = databaseReference.child("group").push();
-                key = newDatabaseReference.getKey();
+                if (groupname.equals("")) {
+                    Toast.makeText(getActivity(), "그룹명을 입력해주세요!", Toast.LENGTH_SHORT).show();
+                } else {
+                    DatabaseReference newDatabaseReference = databaseReference.child("group").push();
+                    key = newDatabaseReference.getKey();
 //                databaseReference.child("group").child(key).child(groupname).setValue(groupname);
-                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-                uid = currentUser.getUid();
-                //그룹에 자기 자신 추가
-                DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("UserEmail");
-                ValueEventListener eventListener = new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String email = dataSnapshot.getValue().toString();
-                        databaseReference.child("group").child(key).child(groupname).push().setValue(email);
-                        databaseReference.child("User").child(uid).child("Food_Rank").addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                Food_Ranking food = dataSnapshot.getValue(Food_Ranking.class);
-                                food_ranking.Korean += food.Korean;
-                                food_ranking.Snack += food.Snack;
-                                food_ranking.dessert += food.dessert;
-                                food_ranking.curtlet += food.curtlet;
-                                food_ranking.chicken += food.chicken;
-                                food_ranking.pizza += food.pizza;
-                                food_ranking.asian += food.asian;
-                                food_ranking.china += food.china;
-                                food_ranking.pork += food.pork;
-                                food_ranking.soup += food.soup;
-                                food_ranking.lunch_box += food.lunch_box;
-                                food_ranking.fast_food += food.fast_food;
-                                food_ranking.noodle += food.noodle;
-                                food_ranking.ribs += food.ribs;
-                                food_ranking.gukbap += food.gukbap;
-                                food_ranking.sandwich += food.sandwich;
-                                food_ranking.meat += food.meat;
-                                food_ranking.tie += food.tie;
-                                food_ranking.cold_noodle += food.cold_noodle;
-                                food_ranking.udon += food.udon;
-                                food_ranking.raw_fish += food.raw_fish;
-                                food_ranking.curry += food.curry;
-                                food_ranking.skewers += food.skewers;
-                                food_ranking.boiled_chicken += food.boiled_chicken;
-                                food_ranking.ramen += food.ramen;
-                                food_ranking.mara += food.mara;
-                                food_ranking.bossam += food.bossam;
-                                food_ranking.fish += food.fish;
-                                databaseReference.child("group").child(key).child("data").setValue(food_ranking);
-                            }
+                    FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+                    uid = currentUser.getUid();
+                    //그룹에 자기 자신 추가
+                    DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("User").child(uid).child("UserEmail");
+                    ValueEventListener eventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String email = dataSnapshot.getValue().toString();
+                            databaseReference.child("group").child(key).child(groupname).push().setValue(email);
+                            databaseReference.child("User").child(uid).child("Food_Rank").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    Food_Ranking food = dataSnapshot.getValue(Food_Ranking.class);
+                                    food_ranking.Korean += food.Korean;
+                                    food_ranking.Snack += food.Snack;
+                                    food_ranking.dessert += food.dessert;
+                                    food_ranking.curtlet += food.curtlet;
+                                    food_ranking.chicken += food.chicken;
+                                    food_ranking.pizza += food.pizza;
+                                    food_ranking.asian += food.asian;
+                                    food_ranking.china += food.china;
+                                    food_ranking.pork += food.pork;
+                                    food_ranking.soup += food.soup;
+                                    food_ranking.lunch_box += food.lunch_box;
+                                    food_ranking.fast_food += food.fast_food;
+                                    food_ranking.noodle += food.noodle;
+                                    food_ranking.ribs += food.ribs;
+                                    food_ranking.gukbap += food.gukbap;
+                                    food_ranking.sandwich += food.sandwich;
+                                    food_ranking.meat += food.meat;
+                                    food_ranking.tie += food.tie;
+                                    food_ranking.cold_noodle += food.cold_noodle;
+                                    food_ranking.udon += food.udon;
+                                    food_ranking.raw_fish += food.raw_fish;
+                                    food_ranking.curry += food.curry;
+                                    food_ranking.skewers += food.skewers;
+                                    food_ranking.boiled_chicken += food.boiled_chicken;
+                                    food_ranking.ramen += food.ramen;
+                                    food_ranking.mara += food.mara;
+                                    food_ranking.bossam += food.bossam;
+                                    food_ranking.fish += food.fish;
+                                    databaseReference.child("group").child(key).child("data").setValue(food_ranking);
+                                }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                }
+                            });
+                        }
 
-                    }
-                };
-                db.addListenerForSingleValueEvent(eventListener);
-                databaseReference.child("User").child(uid).child("group").child(key).setValue(groupname);
-                MainData mainData = new MainData(R.mipmap.ic_launcher, groupname, key);
-                arrayList.add(mainData);
-                mainAdapter.notifyDataSetChanged();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                Toast.makeText(getActivity(), R.string.group_register_success, Toast.LENGTH_SHORT).show();
+                        }
+                    };
+                    db.addListenerForSingleValueEvent(eventListener);
+                    databaseReference.child("User").child(uid).child("group").child(key).setValue(groupname);
+                    MainData mainData = new MainData(R.mipmap.ic_launcher, groupname, key);
+                    arrayList.add(mainData);
+                    mainAdapter.notifyDataSetChanged();
+
+                    Toast.makeText(getActivity(), R.string.group_register_success, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
