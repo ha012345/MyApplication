@@ -113,7 +113,7 @@ public class Friend extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot val : dataSnapshot.getChildren()){
-                            if(val.child("UserNickName").getValue(String.class).contains(nickname)){
+                            if(val.child("UserNickName").getValue(String.class).contentEquals(nickname)){
                                 String mem_uid = val.getKey();
                                 String email = val.child("UserEmail").getValue(String.class);
                                 //String nickname = val.child("UserNickName").getValue(String.class);

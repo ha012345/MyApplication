@@ -89,7 +89,7 @@ public class EachGroupActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot val : dataSnapshot.getChildren()){
-                            if(val.child("UserEmail").getValue(String.class).contains(target_email)){
+                            if(val.child("UserEmail").getValue(String.class).contentEquals(target_email)){
 
                                 String mem_uid = val.getKey();
                                 if(!data.contains(target_email)){
