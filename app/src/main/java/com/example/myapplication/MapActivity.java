@@ -60,7 +60,7 @@ public class MapActivity extends AppCompatActivity {
         webView.setWebChromeClient(new MyChromeClient());
         webView.setWebViewClient(new WebViewClientClass());
         if(final_menu != null){
-            webView.loadUrl("https://m.map.naver.com/search2/search.nhn?query="+final_menu+"&siteSort=0&sm=clk#/map/1");
+            webView.loadUrl("https://m.map.naver.com/search2/search.nhn?query="+final_menu+"&style=v5&sm=clk");
         }
         else {
             webView.loadUrl("https://m.map.naver.com");
