@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ryan"
+            android:src="@drawable/tujuh_icon"
             android:layout_marginLeft="20dp">
         </ImageView>
 
