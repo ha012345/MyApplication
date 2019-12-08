@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1029505642319:android:77001b67b9292a613a9f3a",
         "android_client_info": {
-          "package_name": "com.tujuh.tujuh_capstone_project"
+          "package_name": "com.example.myapplication"
         }
       },
       "oauth_client": [
@@ -18,10 +18,39 @@
           "client_id": "1029505642319-anmav5va4t7sggdckvvg5irj8146t1ch.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.tujuh.tujuh_capstone_project",
+            "package_name": "com.example.myapplication",
             "certificate_hash": "a5c4a5a039735d906f3ddeeb3b9811139ae61379"
           }
         },
+        {
+          "client_id": "1029505642319-82jd0tqnu02p5qf3ek13ilaql7de6n40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcXxDcddRqEbagE8OHW52wWcBurc2YMTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029505642319-82jd0tqnu02p5qf3ek13ilaql7de6n40.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029505642319:android:3b6cd8cd534f76883a9f3a",
+        "android_client_info": {
+          "package_name": "com.tujuh.tujuh_capstone_project"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "1029505642319-82jd0tqnu02p5qf3ek13ilaql7de6n40.apps.googleusercontent.com",
           "client_type": 3
