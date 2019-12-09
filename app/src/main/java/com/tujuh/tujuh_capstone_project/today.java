@@ -33,6 +33,7 @@ public class today extends Fragment {
     public Button button1;
     public Button button2;
     public Button button3;
+    String final_menu;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,6 +85,7 @@ public class today extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MapActivity.class);
+                intent.putExtra("final_menu", final_menu);
                 startActivity(intent);
             }
         });
