@@ -373,6 +373,12 @@ public class RecommendActivity extends AppCompatActivity {
                     }else if(final_menu.equals("fish")){
                         imageview.setImageResource(R.drawable.fish);
                         final_menu = "생선구이";
+                    }else if(final_menu.equals("curtlet")){
+                        imageview.setImageResource(R.drawable.curtlet);
+                        final_menu = "돈까스";
+                    }else if(final_menu.equals("pork")){
+                        imageview.setImageResource(R.drawable.fast_food);
+                        final_menu = "패스트푸드";
                     }
                     textView.setText(final_menu); // + " " + like_hate_final.get(final_menu));
                 }
