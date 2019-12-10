@@ -32,6 +32,8 @@
             android:layout_height="48dp"
             android:paddingLeft="18dp"
             android:paddingRight="18dp"
+            android:imeOptions="actionNext"
+            android:inputType="text"
             android:hint="이메일"/>
 
         <EditText

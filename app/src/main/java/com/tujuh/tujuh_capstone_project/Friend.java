@@ -122,8 +122,8 @@ public class Friend extends Fragment {
                                         databaseReference.child("User").child(uid).child("friends").child(mem_uid).child("friend_nickname").setValue(nickname);
                                         data.add(nickname);
                                         add_frined_to_view(email, nickname);
-                                        return;
                                     }
+                                    return;
                                 }
                             }
                             Toast.makeText(getActivity(), "없는 사용자 입니다.", Toast.LENGTH_SHORT).show();

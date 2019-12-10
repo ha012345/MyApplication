@@ -19,7 +19,7 @@
         android:gravity="center"
         android:text="추천 메뉴"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/btn_recommend"
+        app:layout_constraintBottom_toTopOf="@+id/layout_like_hate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
