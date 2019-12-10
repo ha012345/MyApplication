@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -102,33 +103,37 @@ public class Friend extends Fragment {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String nickname;
-                nickname = et_search_nickname.getText().toString();
-                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-                uid = currentUser.getUid();
-                databaseReference.child("User").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot val : dataSnapshot.getChildren()){
-                            if(val.child("UserNickName").getValue(String.class).contentEquals(nickname)){
-                                String mem_uid = val.getKey();
-                                String email = val.child("UserEmail").getValue(String.class);
-                                //String nickname = val.child("UserNickName").getValue(String.class);
-                                if(!data.contains(nickname)){
-                                    databaseReference.child("User").child(uid).child("friends").child(mem_uid).child("friend_email").setValue(email);
-                                    databaseReference.child("User").child(uid).child("friends").child(mem_uid).child("friend_nickname").setValue(nickname);
-                                    data.add(nickname);
-                                    add_frined_to_view(email, nickname);
+                final String nickname = et_search_nickname.getText().toString();
+                if (nickname.equals("")) {
+                    Toast.makeText(getActivity(), "친구 닉네임을 입력해주세요!", Toast.LENGTH_SHORT).show();
+                }else{
+                    FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+                    uid = currentUser.getUid();
+
+                    databaseReference.child("User").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot val : dataSnapshot.getChildren()){
+                                if(val.child("UserNickName").getValue(String.class).contentEquals(nickname)){
+                                    String mem_uid = val.getKey();
+                                    String email = val.child("UserEmail").getValue(String.class);
+                                    //String nickname = val.child("UserNickName").getValue(String.class);
+                                    if(!data.contains(nickname)){
+                                        databaseReference.child("User").child(uid).child("friends").child(mem_uid).child("friend_email").setValue(email);
+                                        databaseReference.child("User").child(uid).child("friends").child(mem_uid).child("friend_nickname").setValue(nickname);
+                                        data.add(nickname);
+                                        add_frined_to_view(email, nickname);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
+                }
             }
         });
     }
