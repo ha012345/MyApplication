@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingTop="20dp"
         >
 
         <TextView
@@ -34,13 +35,15 @@
         <TextView
             android:id="@+id/profile_id"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="40dp"
+            android:paddingLeft="20dp">
         </TextView>
 
         <TextView
             android:id="@+id/profile_email"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="40dp"
+            android:paddingLeft="20dp">
         </TextView>
 
     </LinearLayout>
@@ -58,8 +61,10 @@
         android:id="@+id/btn_move_to_like"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="  오늘의 선호"
+        android:text="오늘의 선호"
         android:gravity="left"
+        android:drawablePadding="25dp"
+        android:padding="15dp"
         android:drawableLeft="@drawable/icon_like"
         ></Button>
 
@@ -67,9 +72,11 @@
             android:id="@+id/btn_move_to_hate"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="  오늘의 비선호"
+            android:text="오늘의 비선호"
             android:gravity="left"
             android:drawableLeft="@drawable/unlike_icon"
+            android:drawablePadding="25dp"
+            android:padding="15dp"
             ></Button>
 
 
@@ -77,10 +84,9 @@
             android:id="@+id/btn_move_to_map"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="  지도"
+            android:drawableLeft="@drawable/map"
             android:gravity="left"
-            android:drawableLeft="@drawable/unlike_icon"
-            ></Button>
+            android:text="  지도"></Button>
 
     </LinearLayout>
 

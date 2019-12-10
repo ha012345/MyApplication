@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -130,6 +131,8 @@ public class Edit_dislike extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_like);
 
+        TextView okay = (TextView)findViewById(R.id.okay);
+        okay.setText("먹기 싫은 메뉴를 선택해주세요");
         cb1 = (CheckBox) findViewById(R.id.chk_Korean);
         cb2 = (CheckBox) findViewById(R.id.chk_Snack);
         cb3 = (CheckBox) findViewById(R.id.chk_dessert);

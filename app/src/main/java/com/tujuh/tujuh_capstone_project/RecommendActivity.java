@@ -1,16 +1,17 @@
 package com.tujuh.tujuh_capstone_project;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -56,6 +57,12 @@ public class RecommendActivity extends AppCompatActivity {
     //ArrayList<Food_Ranking> score = new ArrayList<>();
     String final_menu;
     String final_menu_kor;
+
+    private static final String URL_NAVER_MAP = "https://m.map.naver.com/search2/search.nhn?query=백반&siteSort=1&sm=clk";
+    private static final String URL_DAUM_MAP = "https://m.map.daum.net/";
+    private static final int MY_PERMISSION_REQUEST_LOCATION = 0;
+    private WebView webView;
+    private final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION=1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -463,6 +470,7 @@ public class RecommendActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                 intent.putExtra("final_menu", final_menu_kor);
                 startActivity(intent);
+
             }
         });
     }

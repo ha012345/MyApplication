@@ -38,17 +38,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <EditText
                     android:id="@+id/group_name_f2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:hint=" 그룹명을 정해주세요."
                     app:layout_constraintEnd_toStartOf="@+id/button1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/Recyclerview_dashboard"
-                    android:layout_weight="9"
-                    android:hint=" 그룹 명"
-                    >
-                </EditText>
+                    app:layout_constraintTop_toBottomOf="@id/Recyclerview_dashboard"></EditText>
 
                 <Button
                     android:id="@+id/button1_f2"
