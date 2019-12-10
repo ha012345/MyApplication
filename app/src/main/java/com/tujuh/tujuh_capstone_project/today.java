@@ -2,6 +2,8 @@ package com.tujuh.tujuh_capstone_project;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +36,9 @@ public class today extends Fragment {
     public Button button1;
     public Button button2;
     public Button button3;
+    public ImageView btn;
     String final_menu;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +48,18 @@ public class today extends Fragment {
         button1 = view.findViewById(R.id.btn_move_to_like);
         button2 = view.findViewById(R.id.btn_move_to_hate);
         button3 = view.findViewById(R.id.btn_move_to_map);
+        final ImageView img = view.findViewById(R.id.imageView2);
+
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.coupang.com/"));
+                startActivity(intent);
+            }
+        });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
@@ -89,8 +106,6 @@ public class today extends Fragment {
                 startActivity(intent);
             }
         });
-
-
 
         return view;
     }
