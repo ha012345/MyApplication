@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.CustomViewHolder> {
 
-    private ArrayList<MainData> arrayList;
+    private ArrayList<GroupData> arrayList;
 
-    public GroupAdapter(ArrayList<MainData> arrayList) {
+    public GroupAdapter(ArrayList<GroupData> arrayList) {
         this.arrayList = arrayList;
     }
 
@@ -38,6 +38,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.CustomViewHo
         holder.iv_profile.setImageResource(arrayList.get(position).getIv_profile());
         holder.tv_name.setText(arrayList.get(position).getTv_name());
         holder.tv_content.setText(arrayList.get(position).getTv_content());
+        holder.tv_count.setText("");
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -84,12 +85,14 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.CustomViewHo
         protected ImageView iv_profile;
         protected TextView tv_name;
         protected TextView tv_content;
+        protected TextView tv_count;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             this.iv_profile = (ImageView) itemView.findViewById(R.id.iv_profile);
             this.tv_name = (TextView) itemView.findViewById(R.id.tv_name);
-            this.tv_content = (TextView) itemView.findViewById(R.id.tv_content);
+            this.tv_content = (TextView) itemView.findViewById(R.id.tv_key);
+            this.tv_count = (TextView) itemView.findViewById(R.id.tv_content);
         }
     }
 }
