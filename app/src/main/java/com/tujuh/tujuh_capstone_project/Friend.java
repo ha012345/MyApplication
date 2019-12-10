@@ -1,19 +1,18 @@
 package com.tujuh.tujuh_capstone_project;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -123,9 +122,11 @@ public class Friend extends Fragment {
                                         databaseReference.child("User").child(uid).child("friends").child(mem_uid).child("friend_nickname").setValue(nickname);
                                         data.add(nickname);
                                         add_frined_to_view(email, nickname);
+                                        return;
                                     }
                                 }
                             }
+                            Toast.makeText(getActivity(), "없는 사용자 입니다.", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
