@@ -1,10 +1,5 @@
 package com.tujuh.tujuh_capstone_project;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 //이메일검색해서 사용자 찾고 그룹 만들기
 public class GroupActivity extends AppCompatActivity {
 
-    private ArrayList<MainData> arrayList;
+    private ArrayList<GroupData> arrayList;
     private GroupAdapter mainAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
@@ -161,7 +161,7 @@ public class GroupActivity extends AppCompatActivity {
                  };
                 db.addListenerForSingleValueEvent(eventListener);
                 databaseReference.child("User").child(uid).child("group").child(key).setValue(groupname);
-                MainData mainData = new MainData(R.mipmap.ic_launcher, groupname, key);
+                GroupData mainData = new GroupData(R.mipmap.ic_launcher, groupname, key, 1);
                 arrayList.add(mainData);
                 mainAdapter.notifyDataSetChanged();
 
@@ -259,7 +259,7 @@ public class GroupActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     String email = ds.getValue().toString();
-                    MainData mainData = new MainData(R.mipmap.ic_launcher, email, ds.getKey().toString());
+                    GroupData mainData = new GroupData(R.mipmap.ic_launcher, email, ds.getKey(), ds.getChildrenCount());
                     arrayList.add(mainData);
                     mainAdapter.notifyDataSetChanged();
                 }

@@ -1,13 +1,6 @@
 package com.tujuh.tujuh_capstone_project;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 
 public class group extends Fragment {
 
-    public ArrayList<MainData> arrayList = new ArrayList<>();
+    public ArrayList<GroupData> arrayList = new ArrayList<>();
     public GroupAdapter mainAdapter;
     public RecyclerView recyclerView;
     public LinearLayoutManager linearLayoutManager;
@@ -51,6 +50,7 @@ public class group extends Fragment {
     String key, uid;
     String groupname;
     Food_Ranking food_ranking = new Food_Ranking();
+    public long count = -1;
 
 
     @Override
@@ -93,7 +93,7 @@ public class group extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     String email = ds.getValue().toString();
-                    MainData mainData = new MainData(R.mipmap.ic_launcher, email, ds.getKey().toString());
+                    GroupData mainData = new GroupData(R.mipmap.ic_launcher, email, ds.getKey(), 0);
                     arrayList.add(mainData);
                     mainAdapter.notifyDataSetChanged();
                 }
@@ -105,6 +105,7 @@ public class group extends Fragment {
         };
         //if(arrayList.isEmpty())
         db.addListenerForSingleValueEvent(eventListener);
+
     }
 
     @Override
@@ -206,7 +207,9 @@ public class group extends Fragment {
                     };
                     db.addListenerForSingleValueEvent(eventListener);
                     databaseReference.child("User").child(uid).child("group").child(key).setValue(groupname);
-                    MainData mainData = new MainData(R.mipmap.ic_launcher, groupname, key);
+                    GroupData mainData = new GroupData(R.mipmap.ic_launcher, groupname, key, 1);
+
+
                     arrayList.add(mainData);
                     mainAdapter.notifyDataSetChanged();
 
@@ -277,4 +280,5 @@ public class group extends Fragment {
 //            }
 //        });
     }
+
 }
