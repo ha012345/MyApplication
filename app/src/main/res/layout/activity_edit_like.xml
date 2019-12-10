@@ -1518,11 +1518,11 @@
         </ScrollView>
 
         <TextView
+            android:id="@+id/okay"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:background="#FFF8F7"
             android:gravity="center"
-            android:text="당일 비선호 메뉴 선택"
             android:textSize="18sp"
             android:textStyle="bold"></TextView>
         <ImageButton
