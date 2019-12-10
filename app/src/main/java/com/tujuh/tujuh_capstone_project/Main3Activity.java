@@ -1,13 +1,14 @@
 package com.tujuh.tujuh_capstone_project;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,6 +28,13 @@ public class Main3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("안내창");
+        alert.setMessage("그룹을 생성한 뒤 클릭하시면 추천창으로 넘어가실 수 있습니다. 그룹인원이 한명이여도 추천 받으실 수 있습니다.");
+        alert.show();
+
+
         backKeyPressedTime = 0;
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
