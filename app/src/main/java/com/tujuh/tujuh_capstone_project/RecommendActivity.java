@@ -422,6 +422,7 @@ public class RecommendActivity extends AppCompatActivity {
                             }
                         };
                         ref.addListenerForSingleValueEvent(valueEventListener);
+                        Toast.makeText(RecommendActivity.this, "좋아요를 눌렀습니다", Toast.LENGTH_SHORT).show();
                     }
                     else{
                         Toast.makeText(RecommendActivity.this, "Menu is empty", Toast.LENGTH_SHORT).show();
@@ -454,6 +455,7 @@ public class RecommendActivity extends AppCompatActivity {
                         }
                     };
                     ref.addListenerForSingleValueEvent(valueEventListener);
+                    Toast.makeText(RecommendActivity.this, "싫어요를 눌렀습니다", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(RecommendActivity.this, "Menu is empty", Toast.LENGTH_SHORT).show();

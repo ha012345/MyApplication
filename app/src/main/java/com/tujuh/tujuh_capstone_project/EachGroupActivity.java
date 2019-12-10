@@ -1,5 +1,6 @@
 package com.tujuh.tujuh_capstone_project;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -161,8 +167,10 @@ public class EachGroupActivity extends AppCompatActivity {
                                     });
                                 }
                                 databaseReference.child("User").child(mem_uid).child("group").child(groupkey).setValue(groupname);
+                                return;
                             }
                         }
+                        Toast.makeText(EachGroupActivity.this, "없는 사용자 입니다.", Toast.LENGTH_SHORT).show();
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
