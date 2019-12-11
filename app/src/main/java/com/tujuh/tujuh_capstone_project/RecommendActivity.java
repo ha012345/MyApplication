@@ -349,7 +349,7 @@ public class RecommendActivity extends AppCompatActivity {
                         final_menu_kor = "샌드위치";
                     }else if(final_menu.equals("meat")){
                         imageview.setImageResource(R.drawable.meat);
-                        final_menu_kor = "고기류";
+                        final_menu_kor = "돼지고기";
                     }else if(final_menu.equals("tie")){
                         imageview.setImageResource(R.drawable.tie);
                         final_menu_kor = "동남아식";
