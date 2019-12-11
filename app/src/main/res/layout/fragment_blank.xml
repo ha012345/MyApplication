@@ -12,6 +12,21 @@
         android:orientation="vertical"
         >
 
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Friends"
+                android:textSize="30dp"
+                android:fontFamily="@font/lobster"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Recyclerview_f1"
         android:layout_width="match_parent"
@@ -36,16 +51,20 @@
             android:hint="@string/friend_add_nickname"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:background="@drawable/bg_editext"
             android:inputType="textPersonName"
             android:layout_weight="9"
             />
 
         <Button
             android:id="@+id/btn_add_f1"
-            android:layout_width="wrap_content"
+            android:layout_width="27dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/frined_add_button"></Button>
+            android:drawableLeft="@drawable/friend"
+            android:text="+"></Button>
     </LinearLayout>
     </LinearLayout>
 

@@ -11,6 +11,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Group"
+                android:textSize="30dp"
+                android:fontFamily="@font/lobster"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Recyclerview_group_f2"
             android:layout_width="match_parent"
@@ -42,6 +58,9 @@
                     android:id="@+id/group_name_f2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:background="@drawable/bg_editext"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     app:layout_constraintEnd_toStartOf="@+id/button1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Recyclerview_dashboard"
@@ -52,13 +71,14 @@
 
                 <Button
                     android:id="@+id/button1_f2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="15dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/group"
+                    android:text="+"
                     app:layout_constraintBaseline_toBaselineOf="@+id/group_name"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/group_name"
-                    android:layout_weight="1"
-                    android:text="그룹 생성"></Button>
+                    app:layout_constraintStart_toEndOf="@+id/group_name"></Button>
             </LinearLayout>
 
 
