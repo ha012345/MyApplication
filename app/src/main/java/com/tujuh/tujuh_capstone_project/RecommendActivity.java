@@ -285,7 +285,7 @@ public class RecommendActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ArrayList<String> sg = new ArrayList<>();
                 sg.addAll(get_recommendations());
-                mGroupName.setText(Integer.toString(sg.size()));
+                //mGroupName.setText(Integer.toString(sg.size()));
                 //int max = 0;
                 double max = like_hate_final.get("Korean");
                 int index = 0;
