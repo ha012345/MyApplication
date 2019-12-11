@@ -28,6 +28,7 @@
         <EditText
             android:id="@+id/et_search_nickname"
             android:hint="@string/friend_add_nickname"
+            android:background="@drawable/bg_editext"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:inputType="textPersonName"
@@ -39,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/frined_add_button"></Button>
+            android:text="+"></Button>
     </LinearLayout>
 
 
