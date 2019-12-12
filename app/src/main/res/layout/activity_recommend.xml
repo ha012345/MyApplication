@@ -19,51 +19,76 @@
         android:gravity="center"
         android:text="추천 메뉴"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/layout_like_hate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView" />
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintVertical_bias="0.016" />
 
     <Button
         android:id="@+id/btn_recommend"
-        android:layout_width="match_parent"
+        android:layout_width="236dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_button3"
+        android:drawableLeft="@drawable/trayopen"
+        android:paddingLeft="5dp"
+        android:paddingRight="40dp"
         android:text="추천!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_recommend"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.416" />
+
     <Button
         android:id="@+id/btn_map"
-        android:layout_width="match_parent"
+        android:layout_width="236dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_button3"
+        android:drawableLeft="@drawable/map3"
+        android:paddingLeft="5dp"
+        android:paddingRight="30dp"
         android:text="지도에서 검색"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_recommend"/>
+        app:layout_constraintTop_toBottomOf="@id/btn_recommend" />
 
     <LinearLayout
         android:id="@+id/layout_like_hate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/btn_recommend"
-        android:gravity="center"
-        >
+        tools:layout_editor_absoluteX="0dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_like"
-        android:text="좋아요"
-        ></Button>
+        <Button
+            android:id="@+id/btn_like"
+            android:layout_width="77dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bgbuttongreen"
+            android:drawableLeft="@drawable/icon_like"
+            android:paddingLeft="8dp"
+            android:paddingRight="0dp"
+            android:text="좋아요" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_hate"
-        android:text="싫어요"
-        ></Button>
+
+        <Button
+            android:id="@+id/btn_hate"
+            android:layout_width="76dp"
+            android:layout_height="38dp"
+            android:background="@drawable/bgbuttonred"
+            android:drawableLeft="@drawable/unlike_icon"
+            android:paddingLeft="8dp"
+            android:paddingRight="0dp"
+            android:text="싫어요"></Button>
     </LinearLayout>
 
     <ImageView
@@ -79,7 +104,7 @@
         android:id="@+id/imageView"
         android:layout_width="216dp"
         android:layout_height="203dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="116dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

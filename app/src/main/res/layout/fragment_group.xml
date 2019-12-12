@@ -20,7 +20,7 @@
             <TextView
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:text="Group"
+                android:text="Groups"
                 android:textSize="30dp"
                 android:fontFamily="@font/lobster"/>
 
@@ -70,7 +70,7 @@
 
                 <Button
                     android:id="@+id/button1_f2"
-                    android:layout_width="15dp"
+                    android:layout_width="27dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/group"

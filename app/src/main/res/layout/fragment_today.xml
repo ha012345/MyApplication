@@ -6,7 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".today">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textSize="30dp"
+            android:fontFamily="@font/lobster"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
+        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -28,11 +45,6 @@
         >
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
-        </TextView>
-
-        <TextView
             android:id="@+id/profile_id"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -41,6 +53,12 @@
 
         <TextView
             android:id="@+id/profile_email"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp">
+        </TextView>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:paddingLeft="20dp">
