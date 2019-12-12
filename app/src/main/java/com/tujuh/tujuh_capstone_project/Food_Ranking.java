@@ -1,18 +1,18 @@
 package com.tujuh.tujuh_capstone_project;
 
 public class Food_Ranking {
-    public int Korean;
-    public int Snack;
-    public int dessert;
-    public int chicken;
-    public int pizza;
-    public int asian;
-    public int china;
-    public int soup;
-    public int lunch_box;
-    public int fast_food;
-    public int pork; // 패스트푸드
-    public int curtlet; // 돈까스
+    public int Korean; // 1
+    public int Snack; // 1
+    public int dessert; // 1
+    public int chicken; // 1
+    public int pizza; // 1
+    public int asian; // 1
+    public int china; // 1
+    public int soup; // 1
+    public int lunch_box; // 1
+    public int fast_food; // 1
+    public int pork; // 패스트푸드 1
+    public int curtlet; // 돈까스 1
     public int noodle; // 국수
     public int ribs; // 닭갈비
     public int gukbap; // 국밥

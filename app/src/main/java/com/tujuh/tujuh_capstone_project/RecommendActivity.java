@@ -64,6 +64,13 @@ public class RecommendActivity extends AppCompatActivity {
     private WebView webView;
     private final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION=1001;
 
+    public void onClick(View view)
+    {
+        Intent intent = new Intent(this, Vote.class);
+        intent.putExtra("groupkey", groupkey);
+        intent.putExtra("groupname", groupname);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -400,6 +407,7 @@ public class RecommendActivity extends AppCompatActivity {
 
             Button button_like = (Button)findViewById(R.id.btn_like);
             Button button_hate = (Button)findViewById(R.id.btn_hate);
+
             button_like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
